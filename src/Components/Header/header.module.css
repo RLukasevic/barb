@@ -1,0 +1,35 @@
+/* .rows {
+    display: inline-block;
+    margin-left: 0px;
+} 
+
+.row {
+    display: inline-block;
+    height: inherit;
+    padding-left: 4px;
+    padding-right: 2px;
+    text-align: center;
+    vertical-align: middle;
+    border-left: 1px solid #000000;
+}
+
+.rowerino {
+    display: inline-block;
+    height: inherit;
+    padding-right: 2px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.rower {
+    display: inline-block;
+    height: inherit;
+}
+
+.ul {
+    text-align: right;
+} */
+
+.logo {
+    font-size: 100px;
+}

@@ -1,0 +1,11 @@
+.inputField {
+    width: 500px;
+    vertical-align: middle;
+}
+
+.Button {
+    vertical-align: middle;
+    align-self: center;
+    height: 30px;
+    width: 40px;
+}
