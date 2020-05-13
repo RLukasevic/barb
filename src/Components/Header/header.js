@@ -20,7 +20,7 @@ const Header = props => {
                     <Row>
                         <Col>
                         <Row>
-                        Parsisiuskit
+                        Parsisiuskite
                         <img src={appleIcon} alt="Apple icon" />
                         <img src={androidIcon} alt="Android icon" />
                         </Row>
