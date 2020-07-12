@@ -8,3 +8,68 @@
     padding-right: 2px;
     border-left: 1px solid #000000;
 } */
+
+.menuWrap {
+    /*margin-left: 10px !important;
+    padding-right: 10px !important;*/
+    width: 500px;
+    margin-top: 0px;
+    align-self: center;
+}
+
+.languageBar {
+    /*padding-right: 10px !important;*/
+    /*margin-right: 40px !important;*/
+    width: 20px;
+
+    align-self: center;
+}
+
+/*.languageBar:before {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 150%;
+    background: #0f0f0f;
+    position: absolute;
+    bottom: -19%;
+    right: 105%;
+    z-index: 1;
+}*/
+
+.loginMenu {
+    max-width: 32% !important;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    font-size: 11px;
+    align-self: center;
+    /*
+    padding-left: 50px !important;
+    padding-right: 50px !important;*/
+}
+
+.loginMenu:before {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 100%;
+    background: #0f0f0f;
+    position: absolute;
+    top: 0;
+    left: 18%;
+    z-index: 1;
+}
+
+.loginMenu:after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 100%;
+    background: #0f0f0f;
+    position: absolute;
+    top: 0;
+    left: 31%;
+    z-index: 1;
+}
+

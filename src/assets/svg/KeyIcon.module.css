@@ -1,0 +1,20 @@
+.keyIcon {
+    fill: rgb(181, 14, 14);
+    width: 15px !important;
+    height: 15px !important;
+}
+
+.keyContentWrap {
+    width: 150px;
+    fill:  rgb(181, 14, 14);
+}
+
+.keyContentWrap:hover {
+    color: red;
+    fill: red !important;
+}
+
+.keyIcon:hover {
+    color: red;
+    fill: red !important;
+}

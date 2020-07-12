@@ -1,11 +1,50 @@
 .inputField {
     width: 500px;
+    height: 43px;
     vertical-align: middle;
+    border-style: solid;
+    border-width: 1px;
+    font-weight: 400;
+    font-size: 1rem;
+    text-indent: 5px;
+    border-width: 2px;
+    font-style: italic;
+    border-color: rgb(182, 182, 182);
+}
+
+.inputField:focus {
+    outline: none;
+    font-size: 1rem;
+    font-style: normal;
+}
+
+.inputField--placeholder {
+    font-size: 1rem;
+    text-indent: 5px;
+    border-width: 2px;
+    font-style: italic;
 }
 
 .Button {
     vertical-align: middle;
-    align-self: center;
-    height: 30px;
-    width: 40px;
+    padding-left: 11.2px;
+    padding-right: 11.2px;
+    padding-top: 11.2px;
+    padding-bottom: 11.2px;
+    line-height: 0;
+    font-size: 1rem;
+    height: 43px;
+    width: 45px;
+    background-color: rgb(182, 182, 182);
+    border: none;
+}
+
+.Button:focus {
+    border: none;
+    outline: none;
+}
+
+.Button:hover {
+    background-color: #999;
+    border-color: #999;
 }

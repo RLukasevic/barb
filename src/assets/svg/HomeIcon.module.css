@@ -1,0 +1,10 @@
+.homeButton {
+    cursor: pointer;
+    padding-top: 0px;
+    margin-left: 0px !important;
+    fill: rgb(179, 177, 177);
+}
+
+.homeButton:hover {
+    fill: #e22e39;
+}

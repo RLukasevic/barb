@@ -1,0 +1,13 @@
+.languageOptionsWrap {
+    outline: 0!important;
+    font-size: 14px;
+    border: 0;
+    background: #f0f0f0;
+}
+
+.languageBarCol {
+    min-width: 19px !important;
+    max-width: 100px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}

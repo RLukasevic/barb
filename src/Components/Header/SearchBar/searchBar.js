@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchIcon from '../../../assets/svg/SearchIcon';
 import styles from './searchBar.module.css';
 
 const SearchBar = props => {
@@ -6,8 +7,8 @@ const SearchBar = props => {
     return (
         <form>
             <label>
-                <input className={styles.inputField}></input>
-                <button className={styles.Button} />
+                <input type="text" className={styles.inputField} placeholder="Iveskite ieskoma preke, pvz., pienas" ></input>
+                <button className={styles.Button} ><SearchIcon fill="white" /></button>
             </label>
         </form>
     );

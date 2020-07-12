@@ -1,3 +1,28 @@
-.classerino {
-    height: inherit;
+
+.navItem {
+    align-self: center;
+    max-width: 90% !important;
+    width: 130px !important;
+    cursor: pointer;
+    color: rgb(181, 14, 14);
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+.navItem:hover {
+    color: red;
+    fill: red;
+}
+
+.navItemKeyCol {
+    align-self: center;
+    margin-left: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.navItemKeyCol:hover {
+    fill: red !important;
+    color: red;
 }
