@@ -45,7 +45,7 @@ const Header = props => {
                         </Col>
             
                         <Col >
-                            <Navigation logoutClick={props.logoutClick} lClick={props.lClick} isLoggedIn={props.isLoggedIn}  />   
+                            <Navigation logoutClick={props.logoutClick} lClick={props.lClick} isLoggedIn={props.isLoggedIn} displayName={props.displayName} />   
                         </Col>
 
                        

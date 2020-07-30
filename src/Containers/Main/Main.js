@@ -4,6 +4,7 @@ import Header from '../../Components/Header/header';
 import ItemsList from '../../Components/ItemsList/itemsList';
 import Modal from '../../Components/Modal/modal';
 import ModalLogReg from '../../Components/Modal/modalLogReg/modalLogReg';
+import Spinner from '../../Components/UI/Spinner/Spinner';
 import { connect } from 'react-redux';
 import * as authActions from '../../Store/Actions/index';
 
@@ -33,9 +34,29 @@ export class Main extends Component {
             getSmsOfferChecked: false
         },
 
+        favorited: ['null'],
         modalActiveNow: "login",
         modalPasswordMode: "password",
         extended: false,
+    }
+
+    componentDidMount() {
+        if(!this.props.items) {
+            this.props.initItems();
+        }
+
+        if(this.props.favorited) {
+            setTimeout(() => {
+                this.setState({...this.state, favorited: new Array(...this.props.favorited)}) // increasing ui responsibility by using local state as well as store state
+              }, 800)
+        }
+    }
+
+    resetView() {
+        setTimeout(() => {
+            this.setState({...this.state, favorited: new Array(...this.props.favorited)}) // increasing ui responsibility by using local state as well as store state
+            this.forceUpdate();
+          }, 800)
     }
 
     handleChecks = (whatChecked) => {
@@ -76,6 +97,7 @@ export class Main extends Component {
             this.props.auth(this.state.signUpData, this.state.modalActiveNow);
         } else {
             this.props.auth(this.state.signInData, this.state.modalActiveNow);
+            this.resetView();
         }
     }
 
@@ -85,6 +107,50 @@ export class Main extends Component {
             [inputName]: event.target.value
         };
         this.setState({[mode]: newControls});
+    }
+
+    favClickHandler = (itemId, mode) => {
+
+        let newFav;
+
+        if (this.props.favorited == null){
+            newFav = [];
+        } else {
+            newFav = new Array(...this.props.favorited)
+        }
+
+        switch(mode) {
+            case 'ADD':
+                if (this.props.token) {
+                    let newStateFav = new Array(...this.state.favorited);
+                    newStateFav.push(itemId);
+                    this.setState({...this.state, favorited: new Array(...newStateFav)})
+                    this.props.addFav(itemId, newFav)
+                } else {
+                    this.modalHandler('login');
+                }
+                break;
+
+            case 'DEL':
+                if (this.props.token) {
+                    let newStateArr = new Array(...this.state.favorited);
+
+                    if (newStateArr.length === 1) {       
+                        newStateArr[0] = 'null';
+                    } else {
+                        let index = newStateArr.indexOf(itemId);
+                        newStateArr.splice(index,1);
+                    }
+                    this.setState({...this.state, favorited: new Array(...newStateArr)})
+                    this.props.delFav(itemId, newFav)
+                } else {
+                    this.modalHandler('login');
+                }
+                break;
+
+            default:
+                break;
+        }
     }
 
     handleModalButtonPress = () => {
@@ -106,6 +172,8 @@ export class Main extends Component {
     }
 
     logoutHandler = () => {
+        this.setState({...this.state, favorited: 'null'})
+        this.props.resetFav();
         this.props.authLogout();
     }
 
@@ -158,8 +226,9 @@ export class Main extends Component {
                     />
                 </Modal>
 
-                <Header logoutClick={this.logoutHandler} lClick={this.modalHandler} isLoggedIn={this.props.loggedIn} />
-                <ItemsList modalShow={this.props.modalShow} cClick={this.modalHandler}  />
+            {this.props.items ? <div>
+                <Header logoutClick={this.logoutHandler} lClick={this.modalHandler} isLoggedIn={this.props.loggedIn} displayName={this.props.accountSettings.name + " " + this.props.accountSettings.lastName} />
+                <ItemsList modalShow={this.props.modalShow} cClick={this.modalHandler} favorited={this.state.favorited} favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} items={this.props.items} /></div> : <Spinner/>}
             </div>
         );
 
@@ -170,7 +239,11 @@ const mapStateToProps = state => {
     return {
         loggedIn: state.auth.authData.idToken,
         loading: state.auth.loading,
-        modalShow: state.auth.modalShow
+        modalShow: state.auth.modalShow,
+        token: state.auth.authData.idToken,
+        items: state.home.items,
+        favorited: state.home.favorited,
+        accountSettings: state.auth.accountSettings,
     }
 }
 
@@ -180,6 +253,10 @@ const mapDispatchToProps = dispatch => {
         authClearError: () => dispatch(authActions.authClearError()),
         authLogout: () => dispatch(authActions.authLogout()),
         modalToggle: () => dispatch(authActions.modalToggle()),
+        initItems: () => dispatch(authActions.initItems()),
+        addFav: (itemId, favorited) => dispatch(authActions.addFav(itemId, favorited)),
+        delFav: (itemId, favorited) => dispatch(authActions.delFav(itemId, favorited)),
+        resetFav: () => dispatch (authActions.resetFav()),
     }
 }
 

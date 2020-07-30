@@ -10,6 +10,7 @@ class App extends Component {
 
   componentDidMount() {
     this.props.authCheckState();
+    this.props.fetchFavorites();
   }
 
 
@@ -35,12 +36,14 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     isAuth: state.auth.authData.idToken !== null,
+    favorited: state.home.favorited,
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     authCheckState: () => dispatch(actions.authCheckState()),
+    fetchFavorites: () => dispatch(actions.fetchFavorites()),
   };
 }
 

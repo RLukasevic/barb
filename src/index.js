@@ -8,12 +8,13 @@ import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose, combineReducers  } from 'redux';
 import checkoutReducer from './Store/Reducers/checkoutReducer';
 import authReducer from './Store/Reducers/authReducer';
+import homeReducer from './Store/Reducers/homeReducer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const rootReducer = combineReducers({
     checkout: checkoutReducer,
     auth: authReducer,
-    //burgerBuilder: burgerBuilderReducer,
+    home: homeReducer,
     //order: orderReducer,
     //auth: authReducer,
 });

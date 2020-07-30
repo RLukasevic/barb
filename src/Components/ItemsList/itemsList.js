@@ -6,58 +6,34 @@ import { faCaretRight as fasCaretRight } from "@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class ItemsList extends Component {
+
+
     render() {
 
-        let itemsRows = (
-        <Row className="show-grid">
-            <Item 
-            img="https://barbora.lt/api/Images/GetInventoryImage?id=2a668bcf-1e6f-4977-8b7d-8f3b05e630de"
-            alt="Vistienos sultinys"
-            name="Vištienos sultinys VEGETA (12x10g), 120 g"
-            oldPrice="€0,99"
-            actualPrice="€0,50"
-            pricePer="€4,13/kg"
-            fav={true}
-            cClick={this.props.cClick}
-            >
-            </Item> 
+        let actualItems = [];
 
-            <Item
-            img="https://barbora.lt/api/Images/GetInventoryImage?id=fd382ff9-5a01-4627-acc4-2b8ccfd36ea5"
-            alt="Tunu pjausnys"
-            name="Tunų pjausnys RIO MARE alyvuogių aliejuje, 240 g"
-            oldPrice="€5,49"
-            actualPrice="€3,79"
-            pricePer="€15,79/vnt."
-            fav={false}
-            >
-            </Item> 
-            
-            <Item 
-            img="https://barbora.lt/api/Images/GetInventoryImage?id=2a668bcf-1e6f-4977-8b7d-8f3b05e630de"
-            alt="Vistienos sultinys"
-            name="Vištienos sultinys VEGETA (12x10g), 120 g"
-            oldPrice="€0,99"
-            actualPrice="€0,50"
-            pricePer="€4,13/kg"
-            fav={false}
-            >
-            </Item> 
+        Object.keys(this.props.items).map(itemKey => {       
 
-            <Item
-            img="https://barbora.lt/api/Images/GetInventoryImage?id=fd382ff9-5a01-4627-acc4-2b8ccfd36ea5"
-            alt="Tunu pjausnys"
-            name="Tunų pjausnys RIO MARE alyvuogių aliejuje, 240 g"
-            oldPrice="€5,49"
-            actualPrice="€3,79"
-            pricePer="€15,79/vnt."
-            fav={true}
-            >
-            </Item> 
+            let itemInstance = 
+                <Item
+                    key={itemKey}
+                    id={itemKey}
+                    img={this.props.items[itemKey].img}
+                    alt={this.props.items[itemKey].alt}
+                    name={this.props.items[itemKey].name}
+                    oldPrice={this.props.items[itemKey].oldPrice}
+                    actualPrice={this.props.items[itemKey].actualPrice}
+                    pricePer={this.props.items[itemKey].pricePer}
+                    fav={this.props.favorited == null ? false : this.props.favorited.includes(itemKey) ? true : false}
+                    favClick={this.props.favClick}
+                    cClick={this.props.cClick}
+                >
+                </Item>
 
+                actualItems.push(itemInstance);
 
-            </Row>)
-
+            return null;
+        })
 
 
         return (
@@ -67,9 +43,8 @@ class ItemsList extends Component {
                     <Col className={styles.altRibbon} ><FontAwesomeIcon icon={fasCaretRight} className={styles.arrowIcon}></FontAwesomeIcon>Daugiau akciju</Col>
                 </Row>
 
-                {itemsRows}
-                {itemsRows}
-                {itemsRows}
+                <Row className='show-grid' >{actualItems}</Row>
+
 
             </Container>
         );
