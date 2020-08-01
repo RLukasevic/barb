@@ -116,6 +116,22 @@
     background-color: rgb(181, 14, 14);
 }
 
+.mainMenuFirstColActive {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Open Sans";
+    line-height: 60px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration-style: solid;
+    margin-top: 4px;
+    font-weight: 700;
+    align-content: center;
+    background-color: #fff;
+    color: #e22e39;
+}
+
 .mainMenuFirstCol:active {
     background-color: #fff;
     color: #e22e39;
@@ -175,6 +191,22 @@
 
 .mainMenuCol:hover {
     background-color: rgb(181, 14, 14);
+}
+
+.mainMenuColActive {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Open Sans";
+    line-height: 60px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration-style: solid;
+    margin-top: 4px;
+    font-weight: 700;
+    align-content: center;
+    background-color: #fff;
+    color: #e22e39;
 }
 
 .mainMenuCol:active {

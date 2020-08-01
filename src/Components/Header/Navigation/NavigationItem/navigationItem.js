@@ -8,7 +8,7 @@ const NavigationItem = props => {
     return (
         <Row className={styles.navItem}>
             <div className={styles.navItemKeyCol} onClick={props.lClick} style={{"width": "50px"}}>
-                {props.showKey ? <KeyIcon content={props.title + " " + props.displayName} /> : props.title + " " + props.displayName }
+                {props.showKey ? <KeyIcon content={props.title === 'Atsijungti' ? props.title + " " + props.displayName : props.title} /> : props.title}
             </div>
         </Row>
     );

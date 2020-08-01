@@ -61,37 +61,37 @@ const Header = props => {
         
             <Row className={"show-grid " + styles.mainMenu} >
                 <Col >
-                    <Row className={styles.mainMenuFirstCol}>
+                    <Row onClick={() => props.mmClick('Prekes')} className={props.mmActiveNow === 'Prekes' ? styles.mainMenuFirstColActive : styles.mainMenuFirstCol}>
                         Prekes
                     </Row>
                 </Col>
 
                 <Col>
-                    <Row className={styles.mainMenuCol}>
+                    <Row onClick={() => props.mmClick('manoPrekes')} className={props.mmActiveNow === 'manoPrekes' ? styles.mainMenuColActive : styles.mainMenuCol}>
                         Mano Prekes
                     </Row>
                 </Col>
 
                 <Col>
-                    <Row className={styles.mainMenuCol}>
+                    <Row onClick={() => props.mmClick('Akcijos')} className={props.mmActiveNow === 'Akcijos' ? styles.mainMenuColActive : styles.mainMenuCol}>
                         Akcijos
                     </Row>
                 </Col>
 
                 <Col>
-                    <Row className={styles.mainMenuCol}>
+                    <Row onClick={() => props.mmClick('ekoIrUkis')} className={props.mmActiveNow === 'ekoIrUkis' ? styles.mainMenuColActive : styles.mainMenuCol}>
                         Eko ir Ukis
                     </Row>
                 </Col>
 
                 <Col>
-                    <Row className={styles.mainMenuCol}>
+                    <Row onClick={() => props.mmClick('Naujienos')} className={props.mmActiveNow === 'Naujienos' ? styles.mainMenuColActive : styles.mainMenuCol}>
                         Naujienos
                     </Row>
                 </Col>
 
                 <Col>
-                    <Row className={styles.mainMenuCol}>
+                    <Row onClick={() => props.mmClick('Receptai')} className={props.mmActiveNow === 'Receptai' ? styles.mainMenuColActive : styles.mainMenuCol}>
                         Receptai
                     </Row>
                 </Col>

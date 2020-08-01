@@ -36,6 +36,7 @@ export class Main extends Component {
 
         favorited: ['null'],
         modalActiveNow: "login",
+        mmActiveNow: "Prekes",
         modalPasswordMode: "password",
         extended: false,
     }
@@ -89,6 +90,38 @@ export class Main extends Component {
             default:
                 break;
         }   
+    }
+
+    mmClickHandle = (whatClicked) => {
+        switch (whatClicked) {
+
+            case 'Prekes':
+                this.setState({...this.state, mmActiveNow: 'Prekes'});
+                break;
+
+            case 'manoPrekes':
+                this.setState({...this.state, mmActiveNow: 'manoPrekes'});
+                break;
+
+            case 'Akcijos':
+                this.setState({...this.state, mmActiveNow: 'Akcijos'});
+                break;
+
+            case 'ekoIrUkis':
+                this.setState({...this.state, mmActiveNow: 'ekoIrUkis'});
+                break;
+
+            case 'Naujienos':
+                this.setState({...this.state, mmActiveNow: 'Naujienos'});
+                break;
+
+            case 'Receptai':
+                this.setState({...this.state, mmActiveNow: 'Receptai'});
+                break;
+             
+            default:
+                break;
+        }
     }
 
     SubmitHandler = (event) => {
@@ -227,7 +260,7 @@ export class Main extends Component {
                 </Modal>
 
             {this.props.items ? <div>
-                <Header logoutClick={this.logoutHandler} lClick={this.modalHandler} isLoggedIn={this.props.loggedIn} displayName={this.props.accountSettings.name + " " + this.props.accountSettings.lastName} />
+                <Header mmClick={(whatClicked) => this.mmClickHandle(whatClicked)} mmActiveNow={this.state.mmActiveNow} logoutClick={this.logoutHandler} lClick={this.modalHandler} isLoggedIn={this.props.loggedIn} displayName={this.props.accountSettings.name + " " + this.props.accountSettings.lastName} />
                 <ItemsList modalShow={this.props.modalShow} cClick={this.modalHandler} favorited={this.state.favorited} favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} items={this.props.items} /></div> : <Spinner/>}
             </div>
         );
