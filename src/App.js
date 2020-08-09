@@ -13,12 +13,13 @@ class App extends Component {
     this.props.fetchFavorites();
   }
 
-
   render() {
+
     let routes = (
       <Switch>
         <Route path='/checkout' component={Checkout} />
-        <Route path='/' exact component={Main} /> 
+        <Route path='/' exact component={Main} />
+        <Route path='/item/:id' render={(props) => (<Main {...props} details={true} detailsId={0} />)}  />
         <Redirect to='/' />        
       </Switch>
     );

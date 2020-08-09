@@ -7,6 +7,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class ItemsList extends Component {
 
+    itemClicked(id) {
+        this.props.history.push('/item/' + id)
+    }
+
 
     render() {
 
@@ -16,6 +20,7 @@ class ItemsList extends Component {
 
             let itemInstance = 
                 <Item
+                    redirClick={(id) => this.itemClicked(id)}
                     key={itemKey}
                     id={itemKey}
                     img={this.props.items[itemKey].img}

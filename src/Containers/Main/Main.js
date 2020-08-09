@@ -5,6 +5,7 @@ import ItemsList from '../../Components/ItemsList/itemsList';
 import Modal from '../../Components/Modal/modal';
 import ModalLogReg from '../../Components/Modal/modalLogReg/modalLogReg';
 import Spinner from '../../Components/UI/Spinner/Spinner';
+import ItemDetails from '../../Components/itemDetails/itemDetails';
 import { connect } from 'react-redux';
 import * as authActions from '../../Store/Actions/index';
 
@@ -259,9 +260,12 @@ export class Main extends Component {
                     />
                 </Modal>
 
-            {this.props.items ? <div>
                 <Header mmClick={(whatClicked) => this.mmClickHandle(whatClicked)} mmActiveNow={this.state.mmActiveNow} logoutClick={this.logoutHandler} lClick={this.modalHandler} isLoggedIn={this.props.loggedIn} displayName={this.props.accountSettings.name + " " + this.props.accountSettings.lastName} />
-                <ItemsList modalShow={this.props.modalShow} cClick={this.modalHandler} favorited={this.state.favorited} favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} items={this.props.items} /></div> : <Spinner/>}
+
+                {this.props.details && this.props.items ?
+                <ItemDetails modalShow={this.props.modalShow} cClick={this.modalHandler} favorited={this.state.favorited} favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} items={this.props.items}  /> : 
+                this.props.items ? (<div>
+                <ItemsList history={this.props.history} modalShow={this.props.modalShow} cClick={this.modalHandler} favorited={this.state.favorited} favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} items={this.props.items} /></div>) : <Spinner/>}
             </div>
         );
 

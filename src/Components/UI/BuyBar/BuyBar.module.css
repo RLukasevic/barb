@@ -1,0 +1,88 @@
+.controlRow {
+    position: absolute;
+    bottom: 0;
+    left: 4;
+    padding-left: 23% !important;
+    padding-right: 0% !important;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.inputVnt {
+    width: 15% !important;
+    position: relative;
+    bottom: 2px;
+    text-align: center;
+    height: 80%;
+    border-radius: 0px;
+    border-width: 1px;
+    border-color: rgba(172, 172, 172, 0.4);
+}
+
+.vnt {
+    box-sizing: border-box;
+    padding-right: 2% !important;
+    padding-left: 2% !important;
+    /*height: 60% !important;*/
+    width: 10%;
+    font-size: 20px;
+    border: 1px solid rgba(172, 172, 172, 0.7);
+}
+
+.addToCartButton {
+    padding-left: 2% !important;
+    padding-right: 2% !important;
+    color: white;
+    font-weight: 400;
+    cursor: pointer;
+    font-size: 20px;
+    background-color: #e22e39;
+    border: 1px solid #e22e39;
+}
+
+.addToCartButton:hover {
+    background-color: rgb(181, 14, 14);
+}
+
+.controlRowNorm {
+    padding-left: 5.5% !important;
+    padding-right: 0% !important;
+    padding-top: 0%;
+    padding-bottom: 0%;
+}
+
+.inputVntNorm {
+    width: 15% !important;
+    position: relative;
+    bottom: 0px;
+    text-align: center;
+    height: 92%;
+    border-radius: 0px;
+    border-width: 1px;
+    border-color: rgba(172, 172, 172, 0.4);
+}
+
+.vntNorm {
+    box-sizing: border-box;
+    padding-right: 2% !important;
+    padding-left: 2% !important;
+    /*height: 60% !important;*/
+    width: 10%;
+    font-size: 16px;
+    border: 1px solid rgba(172, 172, 172, 0.7);
+}
+
+.addToCartButtonNorm {
+    padding-left: 2% !important;
+    padding-right: 2% !important;
+    color: white;
+    font-weight: 400;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #e22e39;
+    border: 1px solid #e22e39;
+}
+
+.addToCartButtonNorm:hover {
+    background-color: rgb(181, 14, 14);
+}

@@ -1,0 +1,298 @@
+.wholeWrap {
+    background-color: white;
+    margin-bottom: 40px;
+}
+
+.imgParamContainer {
+
+}
+
+.favIcon {
+    padding-right: 0% !important;
+    padding-left: 95% !important;
+}
+
+.favButtonActive {
+    color: #e22e39;
+    cursor: pointer;
+}
+
+.favButtonNotActive {
+    color: rgba(172, 172, 172, 0.7);
+    cursor: pointer;
+}
+
+.favButtonNotActive:hover {
+    color: rgba(245, 233, 81, 0.7)
+}
+
+.imageCol {
+    display: inline-block;
+    white-space: normal;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.hrSolid {
+    border-style: solid;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: 1px solid #ccc !important;
+    box-sizing: content-box;
+    width: 100%;
+    max-width: 95%;
+    margin-right: 5%;
+    height: 3;
+}
+
+.nameRow {
+    margin-top: 14px;
+    font-weight: 700;
+    font-size: 1.375rem;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    display: block;
+    margin-block-start: 0.67em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.pricesContainer {
+    display: block !important;
+    margin-bottom: 20px;
+}
+
+.priceCol {
+    display: block !important;
+}
+
+.priceActualRow {
+    font-size: 1.625rem;
+    line-height: 1;
+    font-weight: 700;
+    color: #e22e39;
+    font-family: "Open Sans";
+    margin-bottom: 0;
+}
+
+.pricePerRow {
+    display: block !important;
+    text-align: center !important;
+    font-size: .6875rem;
+    line-height: 1.2;
+    color: #999;
+    font-family: "Open Sans";
+    margin-bottom: 0 !important;
+    padding-left: 4px;
+}
+
+.paramRowContainer {
+    margin-top: 20px;
+}
+
+.paramRow {
+
+}
+
+.paramRowLeft {
+    display: block;
+    font-weight: 400;
+    padding-right: 4px;
+    line-height: 1.42857143;
+    font-size: .75rem;
+    margin-bottom: 0;
+}
+
+.paramRowRight {
+    font-weight: 700;
+    margin-left: 0;
+    line-height: 1.42857143;
+    display: block;
+    font-size: .75rem;
+    margin-bottom: 0;
+}
+
+.paramRowImg {
+    margin-top: 3px;
+    height: 13px;
+    width: 61px;
+}
+
+.wavyLine {
+    margin-top: 20px;
+}
+
+.wavyLineHr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 0;
+    max-width: 96%;
+    height: 4px;
+    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMSIgaGVpZ2h0PSI0IiB2aWV3Qm94PSIwIDAgMTEgNC4wMDAwMDAxIj48cGF0aCBkPSJNMCA0TDUuNS42IDExIDQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2JmYmZiZiIvPjwvc3ZnPg==);
+}
+
+.descItemRowContainer {
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-bottom: -10px;
+}
+
+.descItemRowTitle {
+    text-transform: uppercase;
+    font-family: "Open Sans";
+    color: #494949;
+    margin-top: 15px;
+    font-weight: 900;
+    font-size: .875rem;
+    display: block;
+    text-align: justify;
+}
+
+.descItemRowContent {
+    font-family: "Open Sans";
+    color: #494949;
+    font-size: .9325rem;
+    margin-bottom: 10px;
+    line-height: 1.42857143;
+    display: block;
+    margin-inline-start: 40px;
+    text-align: justify;
+}
+
+.descStatsRowTitle {
+    font-family: "Open Sans";
+    color: #494949;
+    width: 100%;
+    margin-top: 15px;
+    padding-left: 3%;
+    font-weight: 900;
+    font-size: .975rem;
+    display: block;
+    text-align: justify;
+}
+
+.table {
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #f0f0f0;
+}
+
+.td {
+    padding: 5px !important;
+    font-size: .75rem;
+}
+
+.tdRight {
+    padding: 5px !important;
+    text-align: right;
+    font-size: .75rem;
+}
+
+.descMaistineVerteContainer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 1.8%;
+}
+
+.descRekParosNormaContainer {
+    display: block;
+    overflow-y: hidden;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    padding-left: 3%;
+}
+
+.descRekParosNormaColContainer {
+    display: block;
+    overflow-y: hidden;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    background: #edf7ed;
+    padding-left: 10px;
+    padding-right: 10px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    width: 100%;
+    margin-right: 2%;
+    text-align: center;
+}
+
+.name {
+    display: block !important;
+    min-height: 3em;
+    font-size: .625rem;
+    font-weight: 550;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: "Open Sans";
+    color: #494949;
+}
+
+.valueEnerg {
+    display: table;
+    height: 48px;
+    min-height: 2em;
+    width: 100%;
+    vertical-align: middle;
+    font-weight: 700;
+    font-size: 1.0rem;
+    font-family: "Open Sans";
+    color: #494949;
+}
+
+.value {
+    display: table;
+    height: 48px;
+    min-height: 2em;
+    width: 100%;
+    vertical-align: middle;
+    font-weight: 700;
+    font-size: 1.0rem;
+    padding-top: 10px;
+    font-family: "Open Sans";
+    color: #494949;
+}
+
+.percent {
+    display: block !important;
+    text-align: center;
+    margin: 0 auto -11px;
+    font-size: .75rem;
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    -webkit-border-radius: 44px;
+    border-radius: 44px;
+    background: #fff;
+    margin-left: 29% !important;
+    font-weight: 700;
+    font-family: "Open Sans";
+    color: #494949;
+}
+
+.descItemRowTitleOpacity {
+    text-transform: uppercase;
+    font-family: "Open Sans";
+    color: #494949;
+    margin-top: 15px;
+    font-weight: 900;
+    font-size: .875rem;
+    display: block;
+    text-align: justify;
+    opacity: 0.5;
+}
+
+.descItemRowContentOpacity {
+    font-family: "Open Sans";
+    color: #494949;
+    font-size: 1.0125rem;
+    margin-bottom: 10px;
+    line-height: 1.42857143;
+    display: block;
+    margin-inline-start: 40px;
+    text-align: justify;
+    opacity: 0.5;
+}

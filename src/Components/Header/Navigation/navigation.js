@@ -19,7 +19,7 @@ const NavigationBar = props => {
         
     let loggedInItems = (
         <Row style={{"marginLeft":"70px"}}>
-            <div xl={2} className={styles.loginMenu}>
+            <div xl={2} className={styles.loginMenuLoginned}>
                 <NavigationItem lClick={props.logoutClick} title="Atsijungti" showKey={true} displayName={props.displayName} />
             </div> 
         </Row> )

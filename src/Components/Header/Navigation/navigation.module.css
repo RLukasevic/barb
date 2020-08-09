@@ -73,3 +73,24 @@
     z-index: 1;
 }
 
+.loginMenuLoginned {
+    max-width: 32% !important;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    font-size: 11px;
+    align-self: center;
+}
+
+.loginMenuLoginned:before {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 100%;
+    background: #0f0f0f;
+    position: absolute;
+    top: 0;
+    left: 18%;
+    z-index: 1;
+}
+
