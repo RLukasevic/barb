@@ -277,8 +277,7 @@ export class Main extends Component {
     }
 
     render() {
-        let damn = this.getContent();
-        console.log(damn)
+        let content = this.getContent();
 
 
         return (
@@ -307,7 +306,7 @@ export class Main extends Component {
 
                 <Header homeClick={this.homeClick} mmClick={(whatClicked) => this.mmClickHandle(whatClicked)} mmActiveNow={this.state.mmActiveNow} logoutClick={this.logoutHandler} lClick={this.modalHandler} isLoggedIn={this.props.loggedIn} displayName={this.props.accountSettings.name + " " + this.props.accountSettings.lastName} />
 
-                {this.props.items ? <div>{damn}</div> : <Spinner/>}
+                {this.props.items ? <div>{content}</div> : <Spinner/>}
 
             </div>
         );
