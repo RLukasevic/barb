@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import styles from './item.module.css';
 import BuyBar from '../../UI/BuyBar/BuyBar';
@@ -6,6 +6,12 @@ import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Item = props => {
+
+    const [fav, changeFav] = useState(false);
+
+    if (props.fav && fav === false) {
+        changeFav(true);
+    }
 
     return (
         <Col className={styles.itemcont} >

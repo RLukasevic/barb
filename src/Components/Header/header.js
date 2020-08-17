@@ -14,8 +14,8 @@ const Header = props => {
         <Container >
             <Row className="show-grid" >
 
-                <Col md={4} className={styles.logo}>
-                    <BarbLogo />
+                <Col md={4} className={styles.logo} >
+                    <BarbLogo homeClick={props.homeClick} />
                 </Col>
 
                 <Col xl={8} className={styles.rightSideWrap}>
@@ -40,8 +40,8 @@ const Header = props => {
 
                         </Col>
 
-                        <Col xl={1} className={styles.homeButton}>
-                            <HomeIcon  width="20px" height="20px" />
+                        <Col xl={1} className={styles.homeButton} >
+                            <HomeIcon width="20px" height="20px" homeClick={props.homeClick} />
                         </Col>
             
                         <Col >

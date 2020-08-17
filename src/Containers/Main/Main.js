@@ -8,6 +8,11 @@ import Spinner from '../../Components/UI/Spinner/Spinner';
 import ItemDetails from '../../Components/itemDetails/itemDetails';
 import { connect } from 'react-redux';
 import * as authActions from '../../Store/Actions/index';
+import Favorites from '../../Components/Favorites/Favorites';
+import Discounts from '../../Components/Discounts/Discounts';
+import EkoIrUkis from '../../Components/EkoIrUkis/EkoIrUkis';
+import New from '../../Components/New/New';
+import Recipes from '../../Components/Recipes/Recipes';
 
 
 export class Main extends Component {
@@ -98,31 +103,41 @@ export class Main extends Component {
 
             case 'Prekes':
                 this.setState({...this.state, mmActiveNow: 'Prekes'});
+                this.props.history.push('/')
                 break;
 
             case 'manoPrekes':
                 this.setState({...this.state, mmActiveNow: 'manoPrekes'});
+                this.props.history.push('/myfavorites')
                 break;
 
             case 'Akcijos':
                 this.setState({...this.state, mmActiveNow: 'Akcijos'});
+                this.props.history.push('/discounts')
                 break;
 
             case 'ekoIrUkis':
                 this.setState({...this.state, mmActiveNow: 'ekoIrUkis'});
+                this.props.history.push('/ekoirukis')
                 break;
 
             case 'Naujienos':
                 this.setState({...this.state, mmActiveNow: 'Naujienos'});
+                this.props.history.push('/new')
                 break;
 
             case 'Receptai':
                 this.setState({...this.state, mmActiveNow: 'Receptai'});
+                this.props.history.push('/recipes')
                 break;
              
             default:
                 break;
         }
+    }
+
+    homeClick = () => {
+        this.props.history.push('/')
     }
 
     SubmitHandler = (event) => {
@@ -206,7 +221,7 @@ export class Main extends Component {
     }
 
     logoutHandler = () => {
-        this.setState({...this.state, favorited: 'null'})
+        this.setState({...this.state, favorited: ['null']})
         this.props.resetFav();
         this.props.authLogout();
     }
@@ -234,7 +249,37 @@ export class Main extends Component {
         }
     }
 
+    getContent = () => {
+
+        switch (this.props.pageMode) {
+
+            case 'details':
+                return <ItemDetails modalShow={this.props.modalShow} cClick={this.modalHandler} favorited={this.state.favorited} favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} items={this.props.items}  />
+
+            case 'myfavorites':
+                return <Favorites />
+
+            case 'discounts':
+                return <Discounts />
+
+            case 'ekoirukis':
+                return <EkoIrUkis />
+
+            case 'new':
+                return <New />
+
+            case 'recipes':
+                return <Recipes />
+
+            default:
+                return <ItemsList history={this.props.history} modalShow={this.props.modalShow} cClick={this.modalHandler} favorited={this.state.favorited} favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} items={this.props.items} />
+        }
+    }
+
     render() {
+        let damn = this.getContent();
+        console.log(damn)
+
 
         return (
             <div className={styles.wholeWrap} >
@@ -260,12 +305,10 @@ export class Main extends Component {
                     />
                 </Modal>
 
-                <Header mmClick={(whatClicked) => this.mmClickHandle(whatClicked)} mmActiveNow={this.state.mmActiveNow} logoutClick={this.logoutHandler} lClick={this.modalHandler} isLoggedIn={this.props.loggedIn} displayName={this.props.accountSettings.name + " " + this.props.accountSettings.lastName} />
+                <Header homeClick={this.homeClick} mmClick={(whatClicked) => this.mmClickHandle(whatClicked)} mmActiveNow={this.state.mmActiveNow} logoutClick={this.logoutHandler} lClick={this.modalHandler} isLoggedIn={this.props.loggedIn} displayName={this.props.accountSettings.name + " " + this.props.accountSettings.lastName} />
 
-                {this.props.details && this.props.items ?
-                <ItemDetails modalShow={this.props.modalShow} cClick={this.modalHandler} favorited={this.state.favorited} favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} items={this.props.items}  /> : 
-                this.props.items ? (<div>
-                <ItemsList history={this.props.history} modalShow={this.props.modalShow} cClick={this.modalHandler} favorited={this.state.favorited} favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} items={this.props.items} /></div>) : <Spinner/>}
+                {this.props.items ? <div>{damn}</div> : <Spinner/>}
+
             </div>
         );
 

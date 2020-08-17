@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import styles from './itemDetails.module.css';
@@ -16,6 +16,19 @@ const Item = props => {
 
     let { id } = useParams();
 
+    const [fav, changeFav] = useState(false);
+
+
+    useEffect(() => {
+        if (props.favorited && props.favorited.includes(id) && fav === false) {
+            changeFav(true);
+        } 
+        
+        if(props.favorited[0] === 'null') {
+            changeFav(false);
+        }
+    });
+
     return (
 
 
@@ -24,14 +37,20 @@ const Item = props => {
                 <Col className={styles.wholeWrap} >
                     <Row className={styles.favIcon} >
                         <FontAwesomeIcon 
-                        onClick={!props.fav ? () => props.favClick(id , 'ADD') : () => props.favClick(id , 'DEL') }
-                        className={props.fav ? styles.favButtonActive : styles.favButtonNotActive} icon={fasHeart} size='2x'
+                        onClick={!fav ? 
+                            () => {
+                                props.favClick(id , 'ADD');
+                                changeFav(true)} : 
+                            () => {
+                                props.favClick(id , 'DEL');
+                                changeFav(false)}}
+                        className={fav ? styles.favButtonActive : styles.favButtonNotActive} icon={fasHeart} size='2x'
                         />
                     </Row>
 
                     <Row className={styles.imgParamContainer}>
                         <Col className={styles.imageCol} xl={6} >
-                            <img src={props.items[id].imgBig} />
+                            <img className={styles.noSelect} src={props.items[id].imgBig} />
                         </Col>
                         <Col xl={6} >
                             <Row className={styles.nameRow}>
@@ -55,7 +74,7 @@ const Item = props => {
                                 </Col>
                             </Row>
                             <Row>
-                                <BuyBar mode={'normal'} />
+                                <BuyBar cClick={props.cClick} mode={'normal'} />
                             </Row>
                             <Row className={styles.paramRowContainer}>
                                 <Col>

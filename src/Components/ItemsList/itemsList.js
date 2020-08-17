@@ -11,6 +11,10 @@ class ItemsList extends Component {
         this.props.history.push('/item/' + id)
     }
 
+    moreDiscountsClicked() {
+        this.props.history.push('/discounts');
+    }
+
 
     render() {
 
@@ -45,7 +49,7 @@ class ItemsList extends Component {
             <Container className={styles.wholeWrap}>
                 <Row className={"show-grid " + styles.ribbonWrap} >
                     <Col className={styles.mainRibbon} xl={9}>YPATINGI PASIULIMAI</Col>
-                    <Col className={styles.altRibbon} ><FontAwesomeIcon icon={fasCaretRight} className={styles.arrowIcon}></FontAwesomeIcon>Daugiau akciju</Col>
+                    <Col className={styles.altRibbon} onClick={() => this.moreDiscountsClicked()} ><FontAwesomeIcon icon={fasCaretRight} className={styles.arrowIcon}></FontAwesomeIcon>Daugiau akciju</Col>
                 </Row>
 
                 <Row className='show-grid' >{actualItems}</Row>
