@@ -13,6 +13,7 @@ import Discounts from '../../Components/Discounts/Discounts';
 import EkoIrUkis from '../../Components/EkoIrUkis/EkoIrUkis';
 import New from '../../Components/New/New';
 import Recipes from '../../Components/Recipes/Recipes';
+import { Container, Row, Col } from 'react-bootstrap';
 
 
 export class Main extends Component {
@@ -304,9 +305,22 @@ export class Main extends Component {
                     />
                 </Modal>
 
-                <Header homeClick={this.homeClick} mmClick={(whatClicked) => this.mmClickHandle(whatClicked)} mmActiveNow={this.state.mmActiveNow} logoutClick={this.logoutHandler} lClick={this.modalHandler} isLoggedIn={this.props.loggedIn} displayName={this.props.accountSettings.name + " " + this.props.accountSettings.lastName} />
+                <Container >
+                    <Row>
+                        <Col xl={10}>
+                            <Header homeClick={this.homeClick} mmClick={(whatClicked) => this.mmClickHandle(whatClicked)} mmActiveNow={this.state.mmActiveNow} logoutClick={this.logoutHandler} lClick={this.modalHandler} isLoggedIn={this.props.loggedIn} displayName={this.props.accountSettings.name + " " + this.props.accountSettings.lastName} />
 
-                {this.props.items ? <div>{content}</div> : <Spinner/>}
+                            {this.props.items ? <div>{content}</div> : <Spinner/>}  
+                        </Col>
+                        <Col xl={2}>
+                            CART
+                        </Col>
+                    </Row>
+                </Container>
+
+                {/* <Header homeClick={this.homeClick} mmClick={(whatClicked) => this.mmClickHandle(whatClicked)} mmActiveNow={this.state.mmActiveNow} logoutClick={this.logoutHandler} lClick={this.modalHandler} isLoggedIn={this.props.loggedIn} displayName={this.props.accountSettings.name + " " + this.props.accountSettings.lastName} />
+
+                {this.props.items ? <div>{content}</div> : <Spinner/>} */}
 
             </div>
         );

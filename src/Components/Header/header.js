@@ -44,7 +44,7 @@ const Header = props => {
                             <HomeIcon width="20px" height="20px" homeClick={props.homeClick} />
                         </Col>
             
-                        <Col >
+                        <Col xl={5} >
                             <Navigation logoutClick={props.logoutClick} lClick={props.lClick} isLoggedIn={props.isLoggedIn} displayName={props.displayName} />   
                         </Col>
 
@@ -104,67 +104,67 @@ const Header = props => {
             </Row>
 
             <Row className={"show-grid " + styles.categoriesWrap} >
-                <Col className={styles.categoriesItem} >
+                <Col xl={1} className={styles.categoriesItem} >
                     <Row className={styles.categoriesItemText}>
                         Darzoves ir vaisiai
                     </Row>
                 </Col>
 
-                <Col className={styles.categoriesItem} >
+                <Col xl={1} className={styles.categoriesItem} >
                     <Row className={styles.categoriesItemText}>
                         Pieno gaminiai ir kiausiniai
                     </Row>
                 </Col>
 
-                <Col className={styles.categoriesItem} >
+                <Col xl={1} className={styles.categoriesItem} >
                     <Row className={styles.categoriesItemText}>
                         Duonos gaminiai ir konditerija
                     </Row>
                 </Col>
 
-                <Col className={styles.categoriesItem} >
+                <Col xl={1} className={styles.categoriesItem} >
                     <Row className={styles.categoriesItemText}>
                         Mesa, zuvis ir kulinarija
                     </Row>
                 </Col>
 
-                <Col className={styles.categoriesItem + " " + styles.categoriesItemFix}>
+                <Col xl={1} className={styles.categoriesItem + " " + styles.categoriesItemFix}>
                     <Row className={styles.categoriesItemText}>
                         Bakaleja
                     </Row>
                 </Col>
 
-                <Col className={styles.categoriesItem + " " + styles.categoriesItemFix}>
+                <Col xl={1} className={styles.categoriesItem + ' ' + styles.categoriesItemSaldF}>
                     <Row className={styles.categoriesItemText}>
                         Saldytas maistas
                     </Row>
                 </Col>
 
-                <Col className={styles.categoriesItem + " " + styles.categoriesItemFix} >
+                <Col xl={1} className={styles.categoriesItem + " " + styles.categoriesItemFix} >
                     <Row className={styles.categoriesItemText}>
                         Gerimai
                     </Row>
                 </Col>
 
-                <Col className={styles.categoriesItem} >
+                <Col xl={1} className={styles.categoriesItem} >
                     <Row className={styles.categoriesItemText}>
                         Kudikiu ir vaiku prekes
                     </Row>
                 </Col>
 
-                <Col className={styles.categoriesItem} >
+                <Col xl={1} className={styles.categoriesItem} >
                     <Row className={styles.categoriesItemText}>
                         Kosmetika ir higiena
                     </Row>
                 </Col>
 
-                <Col className={styles.categoriesItem} >
+                <Col xl={1} className={styles.categoriesItem} >
                     <Row className={styles.categoriesItemText}>
                         Svaros ir gyvunu prekes
                     </Row>
                 </Col>
 
-                <Col className={styles.categoriesItem} >
+                <Col xl={1} className={styles.categoriesItem} >
                     <Row className={styles.categoriesItemText}>
                         NAMAI IR LAISVALAIKIS
                     </Row>

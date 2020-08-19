@@ -19,7 +19,8 @@ const Item = props => {
                 <FontAwesomeIcon 
                 onClick={!props.fav ? () => props.favClick(props.id , 'ADD') : () => props.favClick(props.id , 'DEL') }
                 className={props.fav ? styles.favButtonActive : styles.favButtonNotActive} icon={fasHeart} size='2x'
-                /></Row>
+                />
+            </Row>
             <Row className={styles.image}><img src={props.img} alt={props.alt} onClick={() => props.redirClick(props.id)} /></Row>
             <Row className={styles.name} onClick={() => props.redirClick(props.id)} >{props.name}</Row>
             <Row xl={2} className={styles.prices}>
@@ -30,13 +31,6 @@ const Item = props => {
 
             <BuyBar cClick={props.cClick} mode={'list'} />
 
-             {/* <Row className={styles.controlRow} >
-                <div>
-                    <input type="text" defaultValue="1" className={styles.inputVnt}></input>
-                    <span className={styles.vnt}>vnt.</span>
-                    <span className={styles.addToCartButton} onClick={props.cClick} >i krepseli</span>
-                </div>
-             </Row> */}
         </Col>
     );
 }
