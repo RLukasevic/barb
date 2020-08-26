@@ -13,6 +13,7 @@ import Discounts from '../../Components/Discounts/Discounts';
 import EkoIrUkis from '../../Components/EkoIrUkis/EkoIrUkis';
 import New from '../../Components/New/New';
 import Recipes from '../../Components/Recipes/Recipes';
+import SideCart from '../../Components/UI/SideCart/SideCart';
 import { Container, Row, Col } from 'react-bootstrap';
 
 
@@ -46,18 +47,25 @@ export class Main extends Component {
         mmActiveNow: "Prekes",
         modalPasswordMode: "password",
         extended: false,
+        vertOffset: 0,
     }
 
     componentDidMount() {
         if(!this.props.items) {
             this.props.initItems();
-        }
+        } 
 
         if(this.props.favorited) {
             setTimeout(() => {
                 this.setState({...this.state, favorited: new Array(...this.props.favorited)}) // increasing ui responsibility by using local state as well as store state
               }, 800)
         }
+
+        window.addEventListener('scroll', this.handleScroll, true);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
     }
 
     resetView() {
@@ -250,6 +258,15 @@ export class Main extends Component {
         }
     }
 
+    handleScroll = () => {
+        let vertOffset = window.pageYOffset;
+
+        this.setState({
+            ...this.state,
+            vertOffset: vertOffset,
+        });
+    }
+
     getContent = () => {
 
         switch (this.props.pageMode) {
@@ -305,22 +322,19 @@ export class Main extends Component {
                     />
                 </Modal>
 
-                <Container >
-                    <Row>
+                <Container  >
+                    <Row >
                         <Col xl={10}>
                             <Header homeClick={this.homeClick} mmClick={(whatClicked) => this.mmClickHandle(whatClicked)} mmActiveNow={this.state.mmActiveNow} logoutClick={this.logoutHandler} lClick={this.modalHandler} isLoggedIn={this.props.loggedIn} displayName={this.props.accountSettings.name + " " + this.props.accountSettings.lastName} />
 
                             {this.props.items ? <div>{content}</div> : <Spinner/>}  
+
                         </Col>
                         <Col xl={2}>
-                            CART
+                            <SideCart vertOffset={this.state.vertOffset} />
                         </Col>
                     </Row>
                 </Container>
-
-                {/* <Header homeClick={this.homeClick} mmClick={(whatClicked) => this.mmClickHandle(whatClicked)} mmActiveNow={this.state.mmActiveNow} logoutClick={this.logoutHandler} lClick={this.modalHandler} isLoggedIn={this.props.loggedIn} displayName={this.props.accountSettings.name + " " + this.props.accountSettings.lastName} />
-
-                {this.props.items ? <div>{content}</div> : <Spinner/>} */}
 
             </div>
         );

@@ -66,7 +66,7 @@ const Item = props => {
                             <Row className={styles.pricesContainer}>
                                 <Col className={styles.priceCol} xl={1}>
                                     <Row className={styles.priceActualRow}>
-                                        <label style={{'marginBottom': '0'}}>{props.items[id].actualPrice}</label>
+                                        <label style={{'marginBottom': '0'}}>€{props.items[id].actualPrice.replace('.',',')}</label>
                                     </Row>
                                     <Row className={styles.pricePerRow}>
                                         <label style={{'marginBottom': '0'}}>{props.items[id].pricePer}</label>

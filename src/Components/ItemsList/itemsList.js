@@ -33,6 +33,7 @@ class ItemsList extends Component {
                     oldPrice={this.props.items[itemKey].oldPrice}
                     actualPrice={this.props.items[itemKey].actualPrice}
                     pricePer={this.props.items[itemKey].pricePer}
+                    vienetai={this.props.items[itemKey].params.vienetai}
                     fav={this.props.favorited == null ? false : this.props.favorited.includes(itemKey) ? true : false}
                     favClick={this.props.favClick}
                     cClick={this.props.cClick}

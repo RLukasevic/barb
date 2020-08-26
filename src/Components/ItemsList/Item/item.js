@@ -24,8 +24,8 @@ const Item = props => {
             <Row className={styles.image}><img src={props.img} alt={props.alt} onClick={() => props.redirClick(props.id)} /></Row>
             <Row className={styles.name} onClick={() => props.redirClick(props.id)} >{props.name}</Row>
             <Row xl={2} className={styles.prices}>
-                <Col className={styles.oldPrice} >{props.oldPrice}</Col>
-                <Col className={styles.actualPrice}>{props.actualPrice}</Col>
+                <Col className={styles.oldPrice} >€{props.oldPrice.replace('.',',')}</Col>
+                <Col className={styles.actualPrice}>€{props.actualPrice.replace('.',',')}</Col>
             </Row>
              <Row className={styles.pricePer}><div style={{textAlign: "center"}}>{props.pricePer}</div></Row>
 
