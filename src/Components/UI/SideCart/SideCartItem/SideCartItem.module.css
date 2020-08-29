@@ -1,0 +1,122 @@
+.productInCartRow {
+    width: 180px !important;
+    border-top: 3px solid #f0f0f0;
+    min-height: 60px;
+    font-size: .6875rem;
+    margin-bottom: 20px;
+}
+
+.productInCartWrap {
+    width: 180px !important;
+}
+
+.productImgInCartWrap {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.productImgInCart {
+    max-width: 56px !important;
+    height: auto;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    cursor: pointer;
+}
+
+.productName {
+    color: #494949;
+    text-decoration: none;
+    outline: 0 !important;
+    cursor: pointer;
+    padding: 5px 0 5px;
+    font-size: .6rem;
+    text-align: left;
+    display: block;
+    line-height: 1.1;
+}
+
+.productName:hover {
+    color: #e22e39;
+}
+
+.productPrice {
+    display: block;
+    color: #e22e39;
+    font-weight: 700;
+    font-size: .8125rem;
+    line-height: 22px;
+}
+
+.itemInCartControlsValue {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-top: 2px !important;
+    margin-right: 0px !important;
+    text-align: center;
+    height: auto;
+    font-size: .8125rem;
+    border-radius: 0;
+    border: 0;
+    background: #f0f0f0;
+    font-weight: 700;
+    color: #555;
+    line-height: 25px;
+    font-family: "Open Sans";
+}
+
+.itemInCartControlsVnt {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-top: 2px !important;
+    text-align: center;
+    height: auto;
+    font-size: .8125rem;
+    border-radius: 0;
+    border: 0;
+    background: #f0f0f0;
+    font-weight: 700;
+    color: #555;
+    line-height: 25px;    
+    font-family: "Open Sans";
+}
+
+.itemInCartControlsButtonMinus {
+    margin-left: 3px !important;
+    margin-right: 15px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    text-align: center;
+    height: auto;
+    font-size: .8125rem;
+    border-radius: 0;
+    border: 0;
+    background: #f0f0f0;
+    font-weight: 700;  
+    color: #555;
+    line-height: 25px;
+    font-family: "Open Sans";
+    cursor: pointer;
+}
+
+.itemInCartControlsButtonPlus {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    text-align: center;
+    height: auto;
+    font-size: .8125rem;
+    border-radius: 0;
+    border: 0;
+    background: #f0f0f0;
+    font-weight: 700;  
+    color: #555;
+    line-height: 25px;
+    font-family: "Open Sans";
+    cursor: pointer;
+}
+
+.xButtonCol {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}

@@ -1,0 +1,127 @@
+.footer {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.loadingBar {
+    background: #ccc;
+    width: 180px;
+    height: 4px;
+}
+
+.loadingBarCompleted {
+    background: #4db349;
+    width: 180px;
+    height: 4px;
+}
+
+.ikiTruksta {
+    background: rgb(255, 248, 192);
+    align-items: center;
+    font-family: "Open Sans";
+    color: #494949;
+    width: 180px;
+}
+
+.ikiTrukstaCompleted {
+    background: #edf7ed;
+    align-items: center;
+    font-family: "Open Sans";
+    color: #494949;
+    width: 180px;
+}
+
+.ikiIconCol {
+    padding-left: 10px !important;
+    padding-right: 0px !important;
+    padding-top: 4px;
+}
+
+.ikiText {
+    font-size: .69rem;
+    line-height: 1.2;
+}
+
+.footerIconCol {
+    margin-left: 5.5px;
+    margin-top: 3px;
+}
+
+.footerIconGreen {
+    background: #4db349;
+    padding: 6px;
+    border-radius: 35px;
+    justify-content: center;
+    align-items: center;
+}
+
+.footerIconGrey {
+    background: #f0f0f0;
+    padding: 6px;
+    border-radius: 35px;
+    justify-content: center;
+    align-items: center;
+}
+
+.footerIconPrice {
+    padding-left: 4px;
+    font-size: .625rem;
+    margin-top: 3px;
+    font-family: "Open Sans";
+    color: #494949;
+    line-height: 1.42857143;
+}
+
+.footerIconPriceZero {
+    padding-left: 4px;
+    font-size: .625rem;
+    margin-top: 3px;
+    font-family: "Open Sans";
+    color: #928d8d;
+    line-height: 1.42857143;
+}
+
+.galutineKainaRow {
+    font-family: "Open Sans";
+    font-weight: 700;
+    font-size: .9375rem;
+    color: #494949;
+    line-height: 1.42857143;
+    background-color: white;
+}
+
+.galutineKaina {
+    padding-left: 5px !important;
+    padding-right: 0px !important;
+}
+
+.galutineKainaPrice {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    color: #e22e39;
+}
+
+.footerButton {
+    margin: 5px 0px !important;
+    color: white;
+    cursor: pointer;
+    background: #e22e39;
+    justify-content: center;
+    padding: .7em;
+    font-weight: 700;
+}
+
+.footerButton:hover {
+    background: rgb(181, 14, 14);
+}
+
+.footerButtonDisabled {
+    margin: 5px 0px !important;
+    color: #494949;
+    cursor: not-allowed;
+    background: #f0f0f0;
+    justify-content: center;
+    padding: .7em;
+    font-weight: 700;
+    opacity: .5;
+}

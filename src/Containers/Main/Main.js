@@ -331,7 +331,7 @@ export class Main extends Component {
 
                         </Col>
                         <Col xl={2}>
-                            <SideCart vertOffset={this.state.vertOffset} />
+                            <SideCart vertOffset={this.state.vertOffset} cart={null} />
                         </Col>
                     </Row>
                 </Container>
