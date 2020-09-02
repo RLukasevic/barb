@@ -168,3 +168,11 @@ export const resetFav = () => {
         type: actionTypes.RESET_FAV,
     }
 }
+
+export const updateCart = (newCart) => {
+
+    return {
+        type: actionTypes.UPDATE_CART,
+        newCart: newCart,
+    }
+}

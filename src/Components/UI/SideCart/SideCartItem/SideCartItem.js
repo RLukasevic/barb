@@ -7,26 +7,28 @@ import SideCartX from '../../../../assets/svg/SideCartX';
 
 const SideCartItem = props => {
 
+    let price = Number(props.actualPrice * props.quantity).toFixed(2).replace('.',',')
+
     return (
         <Row className={styles.productInCartRow}>
             <Col xl={11} style={props.cartGoodsHeight} >
                 <Row style={{backgroundColor: "white"}}>
                     <Col xl={4} className={styles.productImgInCartWrap} >
-                        <img className={styles.productImgInCart} src="https://barbora.lt/api/images/GetInventoryImage?id=e7f6e71b-ab0d-42d9-a8fe-fa64e2222f45" />
+                        <img className={styles.productImgInCart} src={props.img} alt={props.alt} />
                     </Col>
                     <Col xl={8}>
                         <Row className={styles.productName}>
-                            Dantų pasta R.O.C.S. COFFEE & TOBACCO, 74 g
+                            {props.name}
                         </Row>
                         <Row className={styles.productPrice}>
-                            €4,19
+                            €{price}
                         </Row>
                         <Row>
                             <Col xl={2} className={styles.itemInCartControlsValue} >
-                                22
+                                {props.quantity}
                             </Col>
                             <Col xl={3} className={styles.itemInCartControlsVnt}>
-                                vnt.
+                                {props.vienetai}
                             </Col>
                             <Col xl={2} className={styles.itemInCartControlsButtonMinus}>
                                 <span>
@@ -43,7 +45,7 @@ const SideCartItem = props => {
                 </Row>
             </Col>
             <Col xl={1} className={styles.xButtonCol} >
-                <SideCartX />
+                <SideCartX xClick={props.xClick} id={props.id} />
             </Col>
         </Row> 
     );

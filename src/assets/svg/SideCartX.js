@@ -4,7 +4,7 @@ import React from 'react';
 const SideCartX = props => {
 
     return (
-        <svg style={{width: "2em", height: "2em", position: "absolute", marginTop: "-3px", left: "-4px", cursor: "pointer", color: "#df313e"}} >
+        <svg onClick={() => props.xClick(props.id)} style={{width: "2em", height: "2em", position: "absolute", marginTop: "-3px", left: "-4px", cursor: "pointer", color: "#df313e"}} >
             <use xlinkHref="#wbg-cross" >
                 <svg viewBox="0 0 32 32" id="wbg-cross" >
                     <path fill="currentColor"

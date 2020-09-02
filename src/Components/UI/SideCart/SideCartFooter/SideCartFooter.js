@@ -9,20 +9,31 @@ import Masina from '../../../../assets/svg/CartFooter/Masina';
 import Procent from '../../../../assets/svg/CartFooter/Procent';
 import MinCart from '../../../../assets/svg/CartFooter/MinCart';
 
-
 const SideCartFooter = props => {
+
+    const minKrepselis = 10;
+    let diff = Number(minKrepselis - props.cartFinalPrice).toFixed(2);
+
+    let show = {
+        display: "flex",
+    }
+
+    let hide = {
+        display: "none",
+    }
+
     return (
         <Container className={styles.footer}>
-            <Row className={styles.loadingBarCompleted} />
-            <Row className={styles.ikiTruksta} style={{display: "none"}} >
+            <Row className={diff > 0 ? styles.loadingBar : styles.loadingBarCompleted} />
+            <Row className={styles.ikiTruksta} style={diff > 0 ? show : hide} >
                 <Col xl={2} className={styles.ikiIconCol} >
                     <MinCart />
                 </Col>
                 <Col xl={10} >
-                    <span className={styles.ikiText} >Iki minimalaus krepšelio Jums trūksta: <span style={{fontWeight: "700"}}>€14,70.</span></span>
+                    <span className={styles.ikiText} >Iki minimalaus krepšelio Jums trūksta: <span style={{fontWeight: "700"}}>€{diff.replace('.',',')}.</span></span>
                 </Col>
             </Row>
-            <Row className={styles.ikiTrukstaCompleted} >
+            <Row className={styles.ikiTrukstaCompleted} style={diff <= 0 ? show : hide} >
                 <Col xl={2} className={styles.ikiIconCol} >
                     <Truck />
                 </Col>
@@ -36,7 +47,7 @@ const SideCartFooter = props => {
                         <Euras/>
                     </Row>
                     <Row className={styles.footerIconPrice}>
-                        €15,67
+                        €{props.cartFinalPriceNoDiscount.replace('.',',')}
                     </Row>
                 </Col>
                 <Col xl={2} className={styles.footerIconCol}>
@@ -68,7 +79,7 @@ const SideCartFooter = props => {
                         <Procent/> 
                     </Row>
                     <Row className={styles.footerIconPrice}>
-                        €4,92
+                        €{props.cartDiscountTotal.replace('.',',')}
                     </Row>
                 </Col>
             </Row>
@@ -77,10 +88,10 @@ const SideCartFooter = props => {
                     Galutine kaina
                 </Col>
                 <Col xl={2} className={styles.galutineKainaPrice} >
-                    €19,63
+                    €{props.cartFinalPrice.replace('.',',')}
                 </Col>
             </Row>
-            <Row className={styles.footerButtonDisabled}>
+            <Row className={diff <= 0 ? styles.footerButton : styles.footerButtonDisabled}>
                 Pirkti
             </Row>
         </Container>

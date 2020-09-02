@@ -1,10 +1,23 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Row, Col, Container } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import * as authActions from '../../../Store/Actions/index';
 import styles from './SideCart.module.css';
 import SideCartFooter from './SideCartFooter/SideCartFooter';
 import SideInfo from './SideInfo/SideInfo';
-import SideCartItem from './SideCartItem/SideCartItem';
 import SideCartKrepselis from './SideCartKrepselis/SideCartKrepselis';
+import SideCartItem from './SideCartItem/SideCartItem';
+
+let cartItems = [];
+let cartFinalPrice = 0.29; //maiselis = 0.29
+let cartDiscountTotal = 0;
+let cartFinalPriceNoDiscount = 0;
+let copyOfCart = {};
+
+function useForceUpdate(){
+    const [value, setValue] = useState(0); 
+    return () => setValue(value => ++value); 
+}
 
 const SideCart = props => {
 
@@ -12,18 +25,34 @@ const SideCart = props => {
     const [showBottomArrow, changeBottomArrow] = useState(false);
     const [productsSectionHeight, changeProductsSectionHeight] = useState(0);
     const [cartEmpty, changeCartEmpty] = useState(true);
+    const [copyOfCartState, changeCopyOfcart] = useState({});
 
     const products = useRef(null)
     const productList = useRef(null)
     const krepselis = useRef(null)
     const footer = useRef(null)
 
+    let combinedHeight = 0;
+
     useEffect(() => {
-        if (props.cart !== null) {
+
+        if(props.cartredux !== copyOfCartState) {
+
+            formCartContent();
+    
+            if (!showBottomArrow && 
+                productList.current.scrollHeight > combinedHeight && 
+                productList.current.scrollHeight - productList.current.clientHeight - productList.current.scrollTop > 0) {
+                changeBottomArrow(true);
+            }
+        }
+
+        if (Object.keys(props.cart).length === 0) {
+            changeCartEmpty(true);
+        } else {
             changeCartEmpty(false);
         }
 
-        let combinedHeight = 0;
         let productsSection = window.window.innerHeight - krepselis.current.scrollHeight - footer.current.scrollHeight;
 
         changeProductsSectionHeight(productsSection);
@@ -38,6 +67,8 @@ const SideCart = props => {
             productList.current.scrollHeight - productList.current.clientHeight - productList.current.scrollTop > 0) {
             changeBottomArrow(true);
         }
+
+        handleScroll(productList,'productlist');
     });
 
     let vertOffset;
@@ -51,16 +82,12 @@ const SideCart = props => {
         top: 0 - vertOffset + "px",
     }
 
-    let cartGoodsHeight = {
-        height: 80 + "px",
-    }
-
     let itemsCartHeight = {
         height: productsSectionHeight + vertOffset - 113 + "px",
     }
 
     let bottomArrowPadding = {
-        top: productsSectionHeight + vertOffset - 38 + "px",
+        top: productsSectionHeight + vertOffset - 37 + "px",
         display: "flex",
     }
 
@@ -73,19 +100,93 @@ const SideCart = props => {
     }
 
 
-    const handleScroll = (event) => {
-        let element = event.target
+    const handleScroll = (event,mode) => {
 
-        if(element.scrollTop > 0) {
-            changeTopArrow(true);
+        if (mode === 'productlist') {
+            let element = event.current
+
+            if (element.scrollTop > 0) {
+                changeTopArrow(true);
+            } else {
+                changeTopArrow(false);
+            }
+    
+            if(element.scrollHeight - element.clientHeight - element.scrollTop <= 0) {
+                changeBottomArrow(false);
+            } else {
+                changeBottomArrow(true);
+            }
+
         } else {
-            changeTopArrow(false);
+            let element = event.target
+
+            if(element.scrollTop > 0) {
+                changeTopArrow(true);
+            } else {
+                changeTopArrow(false);
+            }
+    
+            if(element.scrollHeight - element.clientHeight - element.scrollTop <= 0) {
+                changeBottomArrow(false);
+            } else {
+                changeBottomArrow(true);
+            }
+        }
+    }
+
+    const update = useForceUpdate();
+
+    
+    const xCartClicked = (itemId) => {
+        cartFinalPrice -= Number(props.items[itemId].actualPrice * props.cart[itemId]);
+        cartDiscountTotal -= Number((props.items[itemId].oldPrice - props.items[itemId].actualPrice) * props.cart[itemId]);
+        cartFinalPriceNoDiscount -= Number(props.items[itemId].oldPrice * props.cart[itemId]);
+
+        let newCart = new Object(props.cartredux);
+        delete newCart[itemId];
+
+        props.updateCart(newCart);
+
+        for (let i = 0; i <= cartItems.length; i++) {
+            if (cartItems[i].key == itemId) {
+                cartItems.splice(i,1)
+                break;
+            }
         }
 
-        if(element.scrollHeight - element.clientHeight - element.scrollTop <= 0) {
-            changeBottomArrow(false);
-        } else {
-            changeBottomArrow(true);
+        changeCopyOfcart(newCart);
+        update();
+    }
+
+    const formCartContent = () => {
+        changeCopyOfcart(props.cart)
+        copyOfCart = Object(props.cart)
+        if (props.items && props.cart && Object.keys(props.cart).length > 0) {
+            Object.keys(props.cart).map(itemKey => {       
+                let itemInstance = 
+                    <SideCartItem
+                        cartGoodsHeight={{height: "80px"}}
+                        key={itemKey}
+                        id={itemKey}
+                        img={props.items[itemKey].imgCart}
+                        alt={props.items[itemKey].alt}
+                        name={props.items[itemKey].name}
+                        actualPrice={props.items[itemKey].actualPrice}
+                        pricePer={props.items[itemKey].pricePer}
+                        vienetai={props.items[itemKey].params.vienetai}
+                        quantity={props.cart[itemKey]}
+                        xClick={() => xCartClicked(itemKey)}
+                        //minusClick={this.props.minusClick}
+                        //plusClick={this.props.plusClick}
+                    />
+        
+                    cartItems.push(itemInstance);
+                    cartFinalPrice += Number(props.items[itemKey].actualPrice * props.cart[itemKey]);
+                    cartDiscountTotal += Number((props.items[itemKey].oldPrice - props.items[itemKey].actualPrice) * props.cart[itemKey]);
+                    cartFinalPriceNoDiscount += Number(props.items[itemKey].oldPrice * props.cart[itemKey]);
+        
+                return null;
+            })
         }
     }
 
@@ -97,13 +198,13 @@ const SideCart = props => {
                     <Row>
                         <Col xl={11} style={cartMainStyle} >
                             <Row className={styles.krepselisWrap} ref={krepselis}>
-                                <SideCartKrepselis cartEmpty={cartEmpty} />
+                                <SideCartKrepselis visoPrekiu={Object.keys(props.cart).length} cartEmpty={cartEmpty} />
                             </Row>
                             <Row className={styles.separationStripe} />
                             <Row className={styles.topScrollArrow} style={showTopArrow ? showArrow : hideArrow} />
                             <Row className={styles.ProductWholewrap} onScroll={handleScroll} style={itemsCartHeight} ref={productList}>
                                 <Col xl={12} className={styles.productInCartWrap} style={itemsCartHeight}  ref={products} >
-                                    <SideCartItem cartGoodsHeight={cartGoodsHeight} />
+                                    {cartItems}
                                 </Col>
                             </Row>                           
                             <Row className={styles.bottomScrollArrow} style={showBottomArrow ? bottomArrowPadding : hideArrow}/>                   
@@ -113,12 +214,23 @@ const SideCart = props => {
             </Row>
             <Row  >
                 <Col xl={12} className={styles.footer} ref={footer}>
-                    <SideCartFooter  />
+                    <SideCartFooter cartFinalPrice={cartFinalPrice.toFixed(2)} cartDiscountTotal={cartDiscountTotal.toFixed(2)} cartFinalPriceNoDiscount={cartFinalPriceNoDiscount.toFixed(2)} />
                 </Col>
             </Row>  
         </Container>
     );
 }
 
+const mapStateToProps = state => {
+    return {
+        cartredux: state.home.cart,
+    }
+}
 
-export default SideCart ;
+const mapDispatchToProps = dispatch => {
+    return {
+        updateCart: (newCart) => dispatch(authActions.updateCart(newCart)),
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(SideCart);

@@ -294,9 +294,15 @@ export class Main extends Component {
         }
     }
 
+    xCartClicked = (itemId) => {
+        let newCart = this.props.cart;
+        delete newCart[itemId];
+
+        this.props.updateCart(newCart);
+    }
+
     render() {
         let content = this.getContent();
-
 
         return (
             <div className={styles.wholeWrap} >
@@ -331,7 +337,15 @@ export class Main extends Component {
 
                         </Col>
                         <Col xl={2}>
-                            <SideCart vertOffset={this.state.vertOffset} cart={null} />
+                            {this.props.items && this.props.cart ?
+                                <SideCart 
+                                    vertOffset={this.state.vertOffset} 
+
+                                    cart={this.props.cart} 
+
+                                    items={this.props.items}
+                                /> :
+                                null}
                         </Col>
                     </Row>
                 </Container>
@@ -351,6 +365,7 @@ const mapStateToProps = state => {
         items: state.home.items,
         favorited: state.home.favorited,
         accountSettings: state.auth.accountSettings,
+        cart: state.home.cart,
     }
 }
 
@@ -363,7 +378,8 @@ const mapDispatchToProps = dispatch => {
         initItems: () => dispatch(authActions.initItems()),
         addFav: (itemId, favorited) => dispatch(authActions.addFav(itemId, favorited)),
         delFav: (itemId, favorited) => dispatch(authActions.delFav(itemId, favorited)),
-        resetFav: () => dispatch (authActions.resetFav()),
+        resetFav: () => dispatch(authActions.resetFav()),
+        updateCart: (newCart) => dispatch(authActions.updateCart(newCart)),
     }
 }
 

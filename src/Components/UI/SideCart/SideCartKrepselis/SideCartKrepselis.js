@@ -20,15 +20,15 @@ const SideInfo = props => {
                 <Basket />
                 <span>Krepselis</span>
             </Row>
-            <Row className={styles.prekiuKrepselyje} style={props.cartEmpty ? show : hide}>
+            <Row className={styles.prekiuKrepselyje} style={props.cartEmpty ? hide : show}>
                 <Col xl={{ span: 3, offset: 6 }} className={styles.visoPrekiuCol} >
                     viso prekių:
                 </Col>
                 <Col xl={2} className={styles.visoPrekiuColAmount} > 
-                    99
+                    {props.visoPrekiu}
                 </Col>
             </Row>
-            <Row className={styles.emptyCart} style={props.cartEmpty ? hide : show}>
+            <Row className={styles.emptyCart} style={props.cartEmpty ? show : hide}>
                 <span>Krepšelis tuščias. Išsirinkite prekę ir spauskite mygtuką Į krepšelį. 
                     Taip pat galite peržiūrėti savo <span className={styles.pirkimoIstorija}>Pirkimo istoriją</span>
                 </span>

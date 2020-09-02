@@ -1,2 +1,2 @@
 export { auth, authLogout, authClearError, authCheckState, modalToggle } from './auth';  
-export { initItems, addFav, delFav, fetchFavorites, resetFav } from './home';
+export { initItems, addFav, delFav, fetchFavorites, resetFav, updateCart } from './home';
