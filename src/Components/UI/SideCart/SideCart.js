@@ -37,6 +37,7 @@ const SideCart = props => {
     useEffect(() => {
 
         if(props.cartredux !== copyOfCartState) {
+            console.log('kekw')
 
             formCartContent();
     
@@ -138,9 +139,6 @@ const SideCart = props => {
 
     
     const xCartClicked = (itemId) => {
-        cartFinalPrice -= Number(props.items[itemId].actualPrice * props.cart[itemId]);
-        cartDiscountTotal -= Number((props.items[itemId].oldPrice - props.items[itemId].actualPrice) * props.cart[itemId]);
-        cartFinalPriceNoDiscount -= Number(props.items[itemId].oldPrice * props.cart[itemId]);
 
         let newCart = new Object(props.cartredux);
         delete newCart[itemId];
@@ -155,10 +153,37 @@ const SideCart = props => {
         }
 
         changeCopyOfcart(newCart);
+        formCartContent();
+        update();
+    }
+
+    const minusClick = (itemId) => {
+        if (props.cart[itemId] === 1) {
+            xCartClicked(itemId)
+        } else {
+            let newCart = new Object(props.cartredux);
+            newCart[itemId] = --newCart[itemId]
+            props.updateCart(newCart);
+
+            formCartContent();
+            update();
+        }
+    }
+
+    const plusClick = (itemId) => {
+        let newCart = new Object(props.cartredux);
+        newCart[itemId] = ++newCart[itemId]
+        props.updateCart(newCart);
+
+        formCartContent();
         update();
     }
 
     const formCartContent = () => {
+        cartItems = [];
+        cartFinalPrice = 0.29; //maiselis = 0.29
+        cartDiscountTotal = 0;
+        cartFinalPriceNoDiscount = 0;
         changeCopyOfcart(props.cart)
         copyOfCart = Object(props.cart)
         if (props.items && props.cart && Object.keys(props.cart).length > 0) {
@@ -176,8 +201,8 @@ const SideCart = props => {
                         vienetai={props.items[itemKey].params.vienetai}
                         quantity={props.cart[itemKey]}
                         xClick={() => xCartClicked(itemKey)}
-                        //minusClick={this.props.minusClick}
-                        //plusClick={this.props.plusClick}
+                        minusClick={() => minusClick(itemKey)}
+                        plusClick={() => plusClick(itemKey)}
                     />
         
                     cartItems.push(itemInstance);

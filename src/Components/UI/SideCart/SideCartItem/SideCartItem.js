@@ -32,12 +32,12 @@ const SideCartItem = props => {
                             </Col>
                             <Col xl={2} className={styles.itemInCartControlsButtonMinus}>
                                 <span>
-                                    <WbgMinus />
+                                    <WbgMinus minusClick={props.minusClick} id={props.id} />
                                 </span>
                             </Col>
                             <Col xl={2} className={styles.itemInCartControlsButtonPlus}>
                                 <span>
-                                    <WbgPlus />
+                                    <WbgPlus plusClick={props.plusClick} id={props.id} />
                                 </span>
                             </Col>
                         </Row>

@@ -290,15 +290,12 @@ export class Main extends Component {
                 return <Recipes />
 
             default:
-                return <ItemsList history={this.props.history} modalShow={this.props.modalShow} cClick={this.modalHandler} favorited={this.state.favorited} favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} items={this.props.items} />
+                return <ItemsList history={this.props.history} modalShow={this.props.modalShow} toCartClick={this.addToCart} cClick={this.modalHandler} favorited={this.state.favorited} favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} items={this.props.items} />
         }
     }
 
-    xCartClicked = (itemId) => {
-        let newCart = this.props.cart;
-        delete newCart[itemId];
+    addToCart = () => {
 
-        this.props.updateCart(newCart);
     }
 
     render() {
@@ -337,7 +334,7 @@ export class Main extends Component {
 
                         </Col>
                         <Col xl={2}>
-                            {this.props.items && this.props.cart ?
+                            {this.props.items && this.props.cart && this.props.token ?
                                 <SideCart 
                                     vertOffset={this.state.vertOffset} 
 
