@@ -26,6 +26,7 @@ const SideCart = props => {
     const [productsSectionHeight, changeProductsSectionHeight] = useState(0);
     const [cartEmpty, changeCartEmpty] = useState(true);
     const [copyOfCartState, changeCopyOfcart] = useState({});
+    const [cartUpdate, changeCartUpdate] = useState(0);
 
     const products = useRef(null)
     const productList = useRef(null)
@@ -36,8 +37,13 @@ const SideCart = props => {
 
     useEffect(() => {
 
+        if(props.update !== cartUpdate) {
+            changeCartUpdate(props.update);
+            formCartContent();
+            update();
+        }
+
         if(props.cartredux !== copyOfCartState) {
-            console.log('kekw')
 
             formCartContent();
     
@@ -139,31 +145,18 @@ const SideCart = props => {
 
     
     const xCartClicked = (itemId) => {
-
-        let newCart = new Object(props.cartredux);
-        delete newCart[itemId];
-
-        props.updateCart(newCart);
-
-        for (let i = 0; i <= cartItems.length; i++) {
-            if (cartItems[i].key == itemId) {
-                cartItems.splice(i,1)
-                break;
-            }
-        }
-
-        changeCopyOfcart(newCart);
+        props.xClick(itemId)
         formCartContent();
         update();
     }
 
     const minusClick = (itemId) => {
         if (props.cart[itemId] === 1) {
-            xCartClicked(itemId)
+            props.xClick(itemId);
+            formCartContent();
+            update();
         } else {
-            let newCart = new Object(props.cartredux);
-            newCart[itemId] = --newCart[itemId]
-            props.updateCart(newCart);
+            props.listInCartMinusButton(itemId);
 
             formCartContent();
             update();
@@ -171,9 +164,7 @@ const SideCart = props => {
     }
 
     const plusClick = (itemId) => {
-        let newCart = new Object(props.cartredux);
-        newCart[itemId] = ++newCart[itemId]
-        props.updateCart(newCart);
+        props.listInCartPlusButton(itemId);
 
         formCartContent();
         update();
@@ -200,6 +191,7 @@ const SideCart = props => {
                         pricePer={props.items[itemKey].pricePer}
                         vienetai={props.items[itemKey].params.vienetai}
                         quantity={props.cart[itemKey]}
+                        history={props.history}
                         xClick={() => xCartClicked(itemKey)}
                         minusClick={() => minusClick(itemKey)}
                         plusClick={() => plusClick(itemKey)}

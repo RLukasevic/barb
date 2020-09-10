@@ -3,8 +3,14 @@ import { Container, Row, Col, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import styles from './itemDetails.module.css';
 import BuyBar from '../UI/BuyBar/BuyBar';
+import AddedToCartBuyBar from '../UI/AddedToCartBuyBar/AddedToCartBuyBar';
 import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+function useForceUpdate(){
+    const [value, setValue] = useState(0); 
+    return () => setValue(value => ++value); 
+}
 
 const Item = props => {
 
@@ -16,18 +22,41 @@ const Item = props => {
 
     let { id } = useParams();
 
-    const [fav, changeFav] = useState(false);
+    const [fav, changeFav] = useState(props.favorited.includes(id));
+    const [buyBarMode, changeBuyBarMode] = useState('notInCart');
 
 
     useEffect(() => {
+
         if (props.favorited && props.favorited.includes(id) && fav === false) {
+            console.log(props.favorited[0])
+            console.log('fav = ', fav)
             changeFav(true);
         } 
-        
-        if(props.favorited[0] === 'null') {
-            changeFav(false);
-        }
+
+        if(props.cart[id] && buyBarMode === 'notInCart') {
+            changeBuyBarMode('inCart');
+        } else if (!props.cart[id] && buyBarMode === 'inCart') {
+            changeBuyBarMode('notInCart');
+        } 
     });
+
+    const update = useForceUpdate();
+
+    const favHandler = () => {
+        if (fav) {
+            console.log(props.favorited[0])
+            console.log('fav = ', fav)
+            props.favClick(id , 'DEL');
+            changeFav(false);
+        } else {
+            console.log(props.favorited[0])
+            console.log('fav = ', fav)
+            props.favClick(id , 'ADD');
+            changeFav(true);
+            update()
+        }
+    }
 
     return (
 
@@ -37,13 +66,7 @@ const Item = props => {
                 <Col className={styles.wholeWrap} >
                     <Row className={styles.favIcon} >
                         <FontAwesomeIcon 
-                        onClick={!fav ? 
-                            () => {
-                                props.favClick(id , 'ADD');
-                                changeFav(true)} : 
-                            () => {
-                                props.favClick(id , 'DEL');
-                                changeFav(false)}}
+                        onClick={() => favHandler()}
                         className={fav ? styles.favButtonActive : styles.favButtonNotActive} icon={fasHeart} size='2x'
                         />
                     </Row>
@@ -74,7 +97,24 @@ const Item = props => {
                                 </Col>
                             </Row>
                             <Row>
-                                <BuyBar cClick={props.cClick} mode={'normal'} />
+                                {buyBarMode === 'inCart' ? 
+                                <AddedToCartBuyBar 
+                                    vienetai={props.items[id].params.vienetai} 
+                                    quantity={props.cart[id]} 
+                                    id={id} 
+                                    token={props.token}
+                                    mode={'normal'}
+                                    listInCartPlusButton={props.listInCartPlusButton}
+                                    listInCartMinusButton={props.listInCartMinusButton} 
+                                /> : 
+                                <BuyBar 
+                                    vienetai={props.items[id].params.vienetai} 
+                                    id={id} 
+                                    token={props.token}
+                                    addToCartClick={props.addToCartClick} 
+                                    cClick={props.cClick} 
+                                    mode={'normal'} 
+                                />}
                             </Row>
                             <Row className={styles.paramRowContainer}>
                                 <Col>

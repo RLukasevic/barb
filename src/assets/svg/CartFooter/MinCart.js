@@ -4,7 +4,7 @@ import React from 'react';
 const MinCart = props => {
 
     return (
-        <svg style={{width: "1.7em", height: "1.7em", position: "relative", minWidth: "23px", color: "#555"}} >
+        <svg style={{width: "1.7em", height: "1.7em", position: "relative", minWidth: "23px"}} >
             <use xlinkHref="#minCart" >
                 <svg viewBox="0 0 22.454969 22.455" id="minCart" >
                     <path fill="currentColor"

@@ -49,6 +49,7 @@
 
 .footerIconGreen {
     background: #4db349;
+    color: #fff;
     padding: 6px;
     border-radius: 35px;
     justify-content: center;
@@ -57,6 +58,7 @@
 
 .footerIconGrey {
     background: #f0f0f0;
+    color: #555;
     padding: 6px;
     border-radius: 35px;
     justify-content: center;

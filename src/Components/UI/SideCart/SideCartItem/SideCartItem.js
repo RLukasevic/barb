@@ -9,15 +9,19 @@ const SideCartItem = props => {
 
     let price = Number(props.actualPrice * props.quantity).toFixed(2).replace('.',',')
 
+    const itemClicked = (id) => {
+        props.history.push('/item/' + id)
+    }
+
     return (
         <Row className={styles.productInCartRow}>
             <Col xl={11} style={props.cartGoodsHeight} >
                 <Row style={{backgroundColor: "white"}}>
-                    <Col xl={4} className={styles.productImgInCartWrap} >
+                    <Col xl={4} className={styles.productImgInCartWrap} onClick={() => itemClicked(props.id)} >
                         <img className={styles.productImgInCart} src={props.img} alt={props.alt} />
                     </Col>
                     <Col xl={8}>
-                        <Row className={styles.productName}>
+                        <Row className={styles.productName} onClick={() => itemClicked(props.id)} >
                             {props.name}
                         </Row>
                         <Row className={styles.productPrice}>

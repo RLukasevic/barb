@@ -4,7 +4,7 @@ import React from 'react';
 const Truck = props => {
 
     return (
-        <svg style={{width: "1.7em", height: "1.7em", position: "relative", top: "-2px", minWidth: "23px", color: "#555"}} >
+        <svg style={{width: "1.7em", height: "1.7em", position: "relative", top: "-2px", minWidth: "23px"}} >
             <use xlinkHref="#truck" >
                 <svg viewBox="0 0 39.099998 36.599998" id="truck" >
                     <path fill="transparent" d="M39.1 25.4v4.9c0 1.5-1.2 2.7-2.7 2.7h-.9c-.7 2.2-2.7 3.6-5 3.6s-4.3-1.5-5-3.6H14.1c-.7 2.2-2.7 

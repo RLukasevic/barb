@@ -48,6 +48,8 @@ export class Main extends Component {
         modalPasswordMode: "password",
         extended: false,
         vertOffset: 0,
+        cartUpdate: 0,
+        copyOfCart: {},
     }
 
     componentDidMount() {
@@ -267,12 +269,60 @@ export class Main extends Component {
         });
     }
 
+    addToCart = (id,quantity) => {
+        let newCart = new Object(this.props.cart);
+        newCart = {...newCart, [id]: quantity};
+
+        this.props.updateCart(newCart)
+        this.setState({...this.state, cartUpdate: this.state.cartUpdate++});
+    }
+
+    deleteFromCart = (id) => {
+        let newCart = new Object(this.props.cart);
+        delete newCart[id];
+        this.props.updateCart(newCart);
+        this.setState({...this.state, cartUpdate: this.state.cartUpdate++});
+    }
+
+    listInCartPlusButton = (id) => {
+        let newCart = new Object(this.props.cart);
+        newCart[id] = newCart[id]+1
+        this.props.updateCart(newCart);
+        this.setState({...this.state, cartUpdate: this.state.cartUpdate++});
+        this.setState({...this.state, cartUpdate: this.state.cartUpdate++});
+    }
+
+    listInCartMinusButton = (id) => {
+        let newCart = new Object(this.props.cart);
+        if (newCart[id] == 1) {
+            this.deleteFromCart(id);
+            this.setState({...this.state, cartUpdate: this.state.cartUpdate++});
+        } else {
+            newCart[id] = newCart[id]-1
+            this.props.updateCart(newCart);
+            this.setState({...this.state, cartUpdate: this.state.cartUpdate++});
+        }
+        this.setState({...this.state, cartUpdate: this.state.cartUpdate++});
+    }
+
     getContent = () => {
 
         switch (this.props.pageMode) {
 
             case 'details':
-                return <ItemDetails modalShow={this.props.modalShow} cClick={this.modalHandler} favorited={this.state.favorited} favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} items={this.props.items}  />
+                return (
+                    <ItemDetails 
+                        token={this.props.token} 
+                        addToCartClick={this.addToCart} 
+                        cart={this.props.cart} 
+                        modalShow={this.props.modalShow} 
+                        cClick={this.modalHandler} 
+                        favorited={this.state.favorited} 
+                        favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} 
+                        items={this.props.items}  
+                        listInCartPlusButton={(id) => this.listInCartPlusButton(id)}
+                        listInCartMinusButton={(id) => this.listInCartMinusButton(id)}
+                    />)
 
             case 'myfavorites':
                 return <Favorites />
@@ -290,12 +340,21 @@ export class Main extends Component {
                 return <Recipes />
 
             default:
-                return <ItemsList history={this.props.history} modalShow={this.props.modalShow} toCartClick={this.addToCart} cClick={this.modalHandler} favorited={this.state.favorited} favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} items={this.props.items} />
+                return (
+                    <ItemsList 
+                        token={this.props.token} 
+                        addToCartClick={this.addToCart} 
+                        cart={this.props.cart} 
+                        history={this.props.history} 
+                        modalShow={this.props.modalShow} 
+                        cClick={this.modalHandler} 
+                        favorited={this.state.favorited} 
+                        favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} 
+                        items={this.props.items} 
+                        listInCartPlusButton={(id) => this.listInCartPlusButton(id)}
+                        listInCartMinusButton={(id) => this.listInCartMinusButton(id)}
+                    />)
         }
-    }
-
-    addToCart = () => {
-
     }
 
     render() {
@@ -337,10 +396,13 @@ export class Main extends Component {
                             {this.props.items && this.props.cart && this.props.token ?
                                 <SideCart 
                                     vertOffset={this.state.vertOffset} 
-
+                                    update={this.state.cartUpdate}
                                     cart={this.props.cart} 
-
                                     items={this.props.items}
+                                    history={this.props.history}
+                                    listInCartPlusButton={(id) => this.listInCartPlusButton(id)}
+                                    listInCartMinusButton={(id) => this.listInCartMinusButton(id)}
+                                    xClick={(id) => this.deleteFromCart(id)}
                                 /> :
                                 null}
                         </Col>

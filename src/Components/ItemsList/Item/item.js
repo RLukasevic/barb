@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import styles from './item.module.css';
 import BuyBar from '../../UI/BuyBar/BuyBar';
+import AddedToCartBuyBar from '../../UI/AddedToCartBuyBar/AddedToCartBuyBar';
 import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -29,7 +30,26 @@ const Item = props => {
             </Row>
              <Row className={styles.pricePer}><div style={{textAlign: "center"}}>{props.pricePer}</div></Row>
 
-            <BuyBar cClick={props.cClick} mode={'list'} />
+            {props.quantity > 0 && props.token ? 
+            <AddedToCartBuyBar 
+                token={props.token} 
+                vienetai={props.vienetai} 
+                quantity={props.quantity} 
+                id={props.id} 
+                mode={'list'} 
+                listInCartPlusButton={props.listInCartPlusButton}
+                listInCartMinusButton={props.listInCartMinusButton}
+            /> : 
+            <BuyBar 
+                token={props.token} 
+                addToCartClick={props.addToCartClick} 
+                id={props.id} 
+                vienetai={props.vienetai} 
+                cClick={props.cClick} 
+                mode={'list'} 
+            />
+            }
+            
 
         </Col>
     );

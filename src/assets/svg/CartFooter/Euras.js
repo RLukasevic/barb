@@ -4,7 +4,7 @@ import React from 'react';
 const Euras = props => {
 
     return (
-        <svg style={{width: "1.2em", height: "1.2em", position: "relative", color: "#fff"}} >
+        <svg style={{width: "1.2em", height: "1.2em", position: "relative"}} >
             <use xlinkHref="#euras" >
                 <svg viewBox="0 0 18.4 18" id="euras" >
                     <path fill="currentColor" d="M5.1 8L5 9l.1 1h10.3l-.9 2H5.7c1.1 2.4 3.5 4 6.3 4 2.2 

@@ -20,7 +20,13 @@ class ItemsList extends Component {
 
         let actualItems = [];
 
-        Object.keys(this.props.items).map(itemKey => {       
+        Object.keys(this.props.items).map(itemKey => {      
+            
+            let cartQuantity = 0
+
+            if (itemKey in this.props.cart) {
+                cartQuantity = this.props.cart[itemKey];
+            }
 
             let itemInstance = 
                 <Item
@@ -34,9 +40,14 @@ class ItemsList extends Component {
                     actualPrice={this.props.items[itemKey].actualPrice}
                     pricePer={this.props.items[itemKey].pricePer}
                     vienetai={this.props.items[itemKey].params.vienetai}
+                    quantity={cartQuantity}
                     fav={this.props.favorited == null ? false : this.props.favorited.includes(itemKey) ? true : false}
                     favClick={this.props.favClick}
                     cClick={this.props.cClick}
+                    addToCartClick={this.props.addToCartClick}
+                    token={this.props.token}
+                    listInCartPlusButton={this.props.listInCartPlusButton}
+                    listInCartMinusButton={this.props.listInCartMinusButton}
                 >
                 </Item>
 

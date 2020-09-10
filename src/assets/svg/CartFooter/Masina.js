@@ -4,7 +4,7 @@ import React from 'react';
 const Masina = props => {
 
     return (
-        <svg style={{width: "1.2em", height: "1.2em", position: "relative", color: "#555"}} >
+        <svg style={{width: "1.2em", height: "1.2em", position: "relative"}} >
             <use xlinkHref="#car" >
                 <svg viewBox="0 0 22 16" id="car" >
                     <path fill="currentColor" d="M17 14.5c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5 1.5.7 

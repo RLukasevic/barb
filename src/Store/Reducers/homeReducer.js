@@ -4,7 +4,7 @@ import { updateObject } from '../../shared/utility';
 const initialState = {
     items: null,
     favorited: ['null'],
-    cart: {5:3,7:4,3:1,2:3,4:3,0:3,6:3,1:3},
+    cart: {},
     error: false,
 }
 

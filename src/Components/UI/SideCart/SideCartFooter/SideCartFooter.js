@@ -43,10 +43,10 @@ const SideCartFooter = props => {
             </Row>
             <Row>
                 <Col xl={2} className={styles.footerIconCol}>
-                    <Row className={styles.footerIconGreen}>
+                    <Row className={props.cartFinalPriceNoDiscount == 0 ? styles.footerIconGrey : styles.footerIconGreen}>
                         <Euras/>
                     </Row>
-                    <Row className={styles.footerIconPrice}>
+                    <Row className={props.cartFinalPriceNoDiscount == 0 ? styles.footerIconPriceZero : styles.footerIconPrice}>
                         €{props.cartFinalPriceNoDiscount.replace('.',',')}
                     </Row>
                 </Col>
@@ -75,10 +75,10 @@ const SideCartFooter = props => {
                     </Row>
                 </Col>
                 <Col xl={2} className={styles.footerIconCol}>
-                    <Row className={styles.footerIconGreen}>
+                    <Row className={props.cartDiscountTotal == 0 ? styles.footerIconGrey : styles.footerIconGreen}>
                         <Procent/> 
                     </Row>
-                    <Row className={styles.footerIconPrice}>
+                    <Row className={props.cartDiscountTotal == 0 ? styles.footerIconPriceZero : styles.footerIconPrice}>
                         €{props.cartDiscountTotal.replace('.',',')}
                     </Row>
                 </Col>
