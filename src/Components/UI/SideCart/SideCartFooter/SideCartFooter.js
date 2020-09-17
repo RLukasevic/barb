@@ -91,8 +91,8 @@ const SideCartFooter = props => {
                     €{props.cartFinalPrice.replace('.',',')}
                 </Col>
             </Row>
-            <Row className={diff <= 0 ? styles.footerButton : styles.footerButtonDisabled}>
-                Pirkti
+            <Row >
+                <button onClick={props.buyClick} disabled={diff <= 0 ? false : true} className={diff <= 0 ? styles.footerButton : styles.footerButtonDisabled}>Pirkti</button>
             </Row>
         </Container>
     );

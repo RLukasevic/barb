@@ -1,6 +1,6 @@
-/* .wholeWrap {
-    background-color: rgb(240, 235, 218, 0.4);
-} */
+.wholeWrap {
+    min-height: 800px !important;
+} 
 
 .ribbonWrap {
     margin-bottom: 25px;
@@ -81,6 +81,7 @@
 .itemcont {
     font-family: "Open Sans";
     width: 22% !important;
+    max-width: 210px !important;
     height: 400px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;

@@ -15,6 +15,7 @@ import New from '../../Components/New/New';
 import Recipes from '../../Components/Recipes/Recipes';
 import SideCart from '../../Components/UI/SideCart/SideCart';
 import { Container, Row, Col } from 'react-bootstrap';
+import ModalCartBuy from '../../Components/Modal/modalCartBuy/modalCartBuy';
 
 
 export class Main extends Component {
@@ -147,6 +148,50 @@ export class Main extends Component {
         }
     }
 
+    mmChanger = (whatChanged) => {
+        switch (whatChanged) {
+
+            case 'Prekes':
+                if (this.state.mmActiveNow !== whatChanged) {
+                    this.setState({...this.state, mmActiveNow: 'Prekes'});
+                }
+                break;
+
+            case 'manoPrekes':
+                if (this.state.mmActiveNow !== whatChanged) {
+                    this.setState({...this.state, mmActiveNow: 'manoPrekes'});
+                }
+                break;
+
+            case 'Akcijos':
+                if (this.state.mmActiveNow !== whatChanged) {
+                    this.setState({...this.state, mmActiveNow: 'Akcijos'});
+                }
+                break;
+
+            case 'ekoIrUkis':
+                if (this.state.mmActiveNow !== whatChanged) {
+                    this.setState({...this.state, mmActiveNow: 'ekoIrUkis'});
+                }
+                break;
+
+            case 'Naujienos':
+                if (this.state.mmActiveNow !== whatChanged) {
+                    this.setState({...this.state, mmActiveNow: 'Naujienos'});
+                }
+                break;
+
+            case 'Receptai':
+                if (this.state.mmActiveNow !== whatChanged) {
+                    this.setState({...this.state, mmActiveNow: 'Receptai'});
+                }
+                break;
+             
+            default:
+                break;
+        }
+    }
+
     homeClick = () => {
         this.props.history.push('/')
     }
@@ -231,6 +276,10 @@ export class Main extends Component {
         }
     }
 
+    buyModalHandler = () => {
+        this.props.buyModalToggle();
+    }
+
     logoutHandler = () => {
         this.setState({...this.state, favorited: ['null']})
         this.props.resetFav();
@@ -270,24 +319,47 @@ export class Main extends Component {
     }
 
     addToCart = (id,quantity) => {
+        let cartFinalPrice =  Number(this.props.cartParams.cartFinalPrice);
+        let cartDiscountTotal = Number(this.props.cartParams.cartDiscountTotal);
+        let cartFinalPriceNoDiscount = Number(this.props.cartParams.cartFinalPriceNoDiscount);
         let newCart = new Object(this.props.cart);
-        newCart = {...newCart, [id]: quantity};
 
-        this.props.updateCart(newCart)
+        newCart = {...newCart, [id]: quantity};
+        cartFinalPrice += Number(this.props.items[id].actualPrice * quantity);
+        cartDiscountTotal += Number((this.props.items[id].oldPrice - this.props.items[id].actualPrice) * quantity);
+        cartFinalPriceNoDiscount += Number(this.props.items[id].oldPrice * quantity);
+
+        this.props.updateCart(newCart, cartFinalPrice.toFixed(2), cartDiscountTotal.toFixed(2), cartFinalPriceNoDiscount.toFixed(2))
         this.setState({...this.state, cartUpdate: this.state.cartUpdate++});
     }
 
     deleteFromCart = (id) => {
+        let cartFinalPrice =  Number(this.props.cartParams.cartFinalPrice);
+        let cartDiscountTotal = Number(this.props.cartParams.cartDiscountTotal);
+        let cartFinalPriceNoDiscount = Number(this.props.cartParams.cartFinalPriceNoDiscount);
         let newCart = new Object(this.props.cart);
+
+        cartFinalPrice -= Number(this.props.items[id].actualPrice * this.props.cart[id]);
+        cartDiscountTotal -= Number((this.props.items[id].oldPrice - this.props.items[id].actualPrice) * this.props.cart[id]);
+        cartFinalPriceNoDiscount -= Number(this.props.items[id].oldPrice * this.props.cart[id]);
         delete newCart[id];
-        this.props.updateCart(newCart);
+
+        this.props.updateCart(newCart, cartFinalPrice.toFixed(2), cartDiscountTotal.toFixed(2), cartFinalPriceNoDiscount.toFixed(2));
         this.setState({...this.state, cartUpdate: this.state.cartUpdate++});
     }
 
     listInCartPlusButton = (id) => {
+        let cartFinalPrice =  Number(this.props.cartParams.cartFinalPrice);
+        let cartDiscountTotal = Number(this.props.cartParams.cartDiscountTotal);
+        let cartFinalPriceNoDiscount = Number(this.props.cartParams.cartFinalPriceNoDiscount);
         let newCart = new Object(this.props.cart);
+
         newCart[id] = newCart[id]+1
-        this.props.updateCart(newCart);
+        cartFinalPrice += Number(this.props.items[id].actualPrice);
+        cartDiscountTotal += Number((this.props.items[id].oldPrice - this.props.items[id].actualPrice));
+        cartFinalPriceNoDiscount += Number(this.props.items[id].oldPrice);
+
+        this.props.updateCart(newCart, cartFinalPrice.toFixed(2), cartDiscountTotal.toFixed(2), cartFinalPriceNoDiscount.toFixed(2));
         this.setState({...this.state, cartUpdate: this.state.cartUpdate++});
         this.setState({...this.state, cartUpdate: this.state.cartUpdate++});
     }
@@ -298,8 +370,16 @@ export class Main extends Component {
             this.deleteFromCart(id);
             this.setState({...this.state, cartUpdate: this.state.cartUpdate++});
         } else {
+            let cartFinalPrice =  Number(this.props.cartParams.cartFinalPrice);
+            let cartDiscountTotal = Number(this.props.cartParams.cartDiscountTotal);
+            let cartFinalPriceNoDiscount = Number(this.props.cartParams.cartFinalPriceNoDiscount);
+
             newCart[id] = newCart[id]-1
-            this.props.updateCart(newCart);
+            cartFinalPrice -= Number(this.props.items[id].actualPrice);
+            cartDiscountTotal -= Number((this.props.items[id].oldPrice - this.props.items[id].actualPrice));
+            cartFinalPriceNoDiscount -= Number(this.props.items[id].oldPrice);
+
+            this.props.updateCart(newCart, cartFinalPrice.toFixed(2), cartDiscountTotal.toFixed(2), cartFinalPriceNoDiscount.toFixed(2));
             this.setState({...this.state, cartUpdate: this.state.cartUpdate++});
         }
         this.setState({...this.state, cartUpdate: this.state.cartUpdate++});
@@ -325,7 +405,20 @@ export class Main extends Component {
                     />)
 
             case 'myfavorites':
-                return <Favorites />
+                return (<Favorites 
+                            token={this.props.token} 
+                            addToCartClick={this.addToCart} 
+                            cart={this.props.cart} 
+                            history={this.props.history} 
+                            modalShow={this.props.modalShow} 
+                            cClick={this.modalHandler} 
+                            favorited={this.state.favorited} 
+                            favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} 
+                            items={this.props.items} 
+                            mmChanger={this.mmChanger}
+                            listInCartPlusButton={(id) => this.listInCartPlusButton(id)}
+                            listInCartMinusButton={(id) => this.listInCartMinusButton(id)}
+                        />)
 
             case 'discounts':
                 return <Discounts />
@@ -384,10 +477,16 @@ export class Main extends Component {
                     />
                 </Modal>
 
+                <Modal show={this.props.buyModalShow} cBackDrop={this.buyModalHandler}>
+                    <ModalCartBuy 
+                        loading={this.props.loading} 
+                    />
+                </Modal>
+
                 <Container  >
                     <Row >
                         <Col xl={10}>
-                            <Header homeClick={this.homeClick} mmClick={(whatClicked) => this.mmClickHandle(whatClicked)} mmActiveNow={this.state.mmActiveNow} logoutClick={this.logoutHandler} lClick={this.modalHandler} isLoggedIn={this.props.loggedIn} displayName={this.props.accountSettings.name + " " + this.props.accountSettings.lastName} />
+                            <Header homeClick={this.homeClick} mmClick={(whatClicked) => this.mmClickHandle(whatClicked)} mmActiveNow={this.state.mmActiveNow} logoutClick={this.logoutHandler} lClick={this.modalHandler} isLoggedIn={this.props.token} displayName={this.props.accountSettings.name + " " + this.props.accountSettings.lastName} />
 
                             {this.props.items ? <div>{content}</div> : <Spinner/>}  
 
@@ -403,6 +502,7 @@ export class Main extends Component {
                                     listInCartPlusButton={(id) => this.listInCartPlusButton(id)}
                                     listInCartMinusButton={(id) => this.listInCartMinusButton(id)}
                                     xClick={(id) => this.deleteFromCart(id)}
+                                    buyClick={() => this.buyModalHandler()}
                                 /> :
                                 null}
                         </Col>
@@ -417,14 +517,15 @@ export class Main extends Component {
 
 const mapStateToProps = state => {
     return {
-        loggedIn: state.auth.authData.idToken,
         loading: state.auth.loading,
         modalShow: state.auth.modalShow,
+        buyModalShow: state.auth.buyModalShow,
         token: state.auth.authData.idToken,
         items: state.home.items,
         favorited: state.home.favorited,
         accountSettings: state.auth.accountSettings,
         cart: state.home.cart,
+        cartParams: state.home.cartParams,
     }
 }
 
@@ -434,11 +535,12 @@ const mapDispatchToProps = dispatch => {
         authClearError: () => dispatch(authActions.authClearError()),
         authLogout: () => dispatch(authActions.authLogout()),
         modalToggle: () => dispatch(authActions.modalToggle()),
+        buyModalToggle: () => dispatch(authActions.buyModalToggle()),
         initItems: () => dispatch(authActions.initItems()),
         addFav: (itemId, favorited) => dispatch(authActions.addFav(itemId, favorited)),
         delFav: (itemId, favorited) => dispatch(authActions.delFav(itemId, favorited)),
         resetFav: () => dispatch(authActions.resetFav()),
-        updateCart: (newCart) => dispatch(authActions.updateCart(newCart)),
+        updateCart: (newCart, cartFinalPrice, cartDiscountTotal, cartFinalPriceNoDiscount) => dispatch(authActions.updateCart(newCart, cartFinalPrice, cartDiscountTotal, cartFinalPriceNoDiscount)),
     }
 }
 

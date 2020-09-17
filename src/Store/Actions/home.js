@@ -169,10 +169,13 @@ export const resetFav = () => {
     }
 }
 
-export const updateCart = (newCart) => {
+export const updateCart = (newCart, cartFinalPrice, cartDiscountTotal, cartFinalPriceNoDiscount) => {
 
     return {
         type: actionTypes.UPDATE_CART,
         newCart: newCart,
+        cartFinalPrice: cartFinalPrice,
+        cartDiscountTotal: cartDiscountTotal,
+        cartFinalPriceNoDiscount: cartFinalPriceNoDiscount,
     }
 }

@@ -8,9 +8,8 @@ const BuyBar = props => {
 
     const inputHandler = (event) => {
         if (isNaN(Number(event.target.value))) {
-            console.log('i am string')
+            changeQuantity(1);
         } else {
-            console.log('i am number')
             changeQuantity(Number(event.target.value));
         }
     }

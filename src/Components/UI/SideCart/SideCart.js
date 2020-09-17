@@ -9,9 +9,6 @@ import SideCartKrepselis from './SideCartKrepselis/SideCartKrepselis';
 import SideCartItem from './SideCartItem/SideCartItem';
 
 let cartItems = [];
-let cartFinalPrice = 0.29; //maiselis = 0.29
-let cartDiscountTotal = 0;
-let cartFinalPriceNoDiscount = 0;
 let copyOfCart = {};
 
 function useForceUpdate(){
@@ -172,9 +169,6 @@ const SideCart = props => {
 
     const formCartContent = () => {
         cartItems = [];
-        cartFinalPrice = 0.29; //maiselis = 0.29
-        cartDiscountTotal = 0;
-        cartFinalPriceNoDiscount = 0;
         changeCopyOfcart(props.cart)
         copyOfCart = Object(props.cart)
         if (props.items && props.cart && Object.keys(props.cart).length > 0) {
@@ -198,9 +192,6 @@ const SideCart = props => {
                     />
         
                     cartItems.push(itemInstance);
-                    cartFinalPrice += Number(props.items[itemKey].actualPrice * props.cart[itemKey]);
-                    cartDiscountTotal += Number((props.items[itemKey].oldPrice - props.items[itemKey].actualPrice) * props.cart[itemKey]);
-                    cartFinalPriceNoDiscount += Number(props.items[itemKey].oldPrice * props.cart[itemKey]);
         
                 return null;
             })
@@ -231,7 +222,12 @@ const SideCart = props => {
             </Row>
             <Row  >
                 <Col xl={12} className={styles.footer} ref={footer}>
-                    <SideCartFooter cartFinalPrice={cartFinalPrice.toFixed(2)} cartDiscountTotal={cartDiscountTotal.toFixed(2)} cartFinalPriceNoDiscount={cartFinalPriceNoDiscount.toFixed(2)} />
+                    <SideCartFooter 
+                        cartFinalPrice={props.cartParams.cartFinalPrice.toString()} 
+                        cartDiscountTotal={props.cartParams.cartDiscountTotal.toString()} 
+                        cartFinalPriceNoDiscount={props.cartParams.cartFinalPriceNoDiscount.toString()} 
+                        buyClick={props.buyClick}
+                    />
                 </Col>
             </Row>  
         </Container>
@@ -241,6 +237,7 @@ const SideCart = props => {
 const mapStateToProps = state => {
     return {
         cartredux: state.home.cart,
+        cartParams: state.home.cartParams,
     }
 }
 

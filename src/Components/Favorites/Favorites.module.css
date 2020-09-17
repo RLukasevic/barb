@@ -1,0 +1,88 @@
+.wholeWrap {
+    display: block !important;
+    min-height: 800px !important;
+}
+
+.panelsRow {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.panelsCol {
+    min-height: 130px;
+    max-width: 460px !important;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 3px;
+    margin-inline-end: 30px;
+    padding: 8px 8px 16px 16px;
+    font-family: "Sans serif";
+    color: #494949;
+}
+
+.panelTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 10px;
+    padding-left: 16px;
+}
+
+.statusRowRed {
+    margin-left: 0px !important;
+    margin-right: 15px !important;
+    margin-bottom: 15px;
+    padding-left: 8px;
+    background-color: #fff8c0;
+    border-left: red 6px solid;
+    color: #e22e39;
+}
+
+.statusRowGreen {
+    margin-left: 0px !important;
+    margin-right: 15px !important;
+    margin-bottom: 15px;
+    padding-left: 8px;
+    background-color: #b7dab6;
+    border-left: #118611 6px solid;
+    color: #494949;
+}
+
+.panelButtonRow {
+    display: block;
+    width: 40%;
+    height: 30px;
+    padding-left: 16px;
+    padding-top: 4px;
+    margin-left: 0px !important;
+    color: #fff;
+    background: #4db349;
+    font-weight: 700;
+    align-items: center !important;
+    border-radius: 3px;
+}
+
+.panelButtonRow:hover {
+    background: #287725;
+    cursor: pointer;
+}
+
+.panelButton {
+    padding-left: 16px;
+    margin-left: 16px;
+    align-items: center !important;
+    border-radius: 3px;
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+}
+
+.wavyLine {
+    height: 7px;
+    background: url(https://barbora.lt/Assets/Images/zig-zag-fat.png) center repeat-x;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

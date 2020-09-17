@@ -5,6 +5,7 @@ export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 export const AUTH_CLEAR_ERROR = 'AUTH_CLEAR_ERROR';
 
 export const MODAL_TOGGLE = 'MODAL_TOGGLE';
+export const BUY_MODAL_TOGGLE = 'BUY_MODAL_TOGGLE';
 
 export const FETCH_ITEMS_FAIL = 'FETCH_ITEMS_FAIL';
 export const SET_ITEMS = 'SET_ITEMS';

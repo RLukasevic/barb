@@ -1,0 +1,243 @@
+.wholeModalWrap {
+    display: inline-block;
+    height: 294px;
+    width: 630px; 
+}
+
+.exitButton {
+    width: 42px;
+    height: 42px;
+    background-color: #e22e39;
+    opacity: 1;
+    margin-right: 8px;
+    margin-top: 8px;
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    border: none;
+    color: white;
+}
+
+.exitButton:focus {
+    border: none;
+    outline: none;
+}
+
+.exitButton:hover {
+    background-color: rgb(181, 14, 14);
+}
+
+.headWrap {
+    height: 60px;
+    width: 630px;
+    
+    background-color: #e22e39;
+}
+
+.head {
+    padding-top: 10px;
+    height: 60px;
+    margin-left: 15px;
+}
+
+.headOption {
+    height: 42px;
+    min-height: 100%;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    color: white;
+    margin-left: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 12px;
+    font-weight: 600;
+    margin-bottom: 0px;
+    vertical-align: bottom;
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+}
+
+.headOption:hover {
+    background-color: rgb(181, 14, 14);
+    cursor: pointer;
+}
+
+.headOption:active,
+.headOption.active {
+    background-color: white;
+    color: #e22e39;
+}
+
+.headOptionActive {
+    height: 42px;
+    min-height: 100%;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    color: #e22e39;
+    background-color: white;
+    margin-left: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 12px;
+    font-weight: 600;
+    margin-bottom: 0px;
+    vertical-align: bottom;
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+}
+
+.content {
+    height: 294px;
+    width: 630px;
+    padding: 30px 90px;
+    position: relative;
+}
+
+.greetingLine {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #898989;
+}
+
+.inputController {
+    width: 100%;
+    height: 34px;
+    margin-bottom: 10px;
+}
+
+.inputLabel {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #494949;
+    text-align: right;
+    margin-bottom: 0;
+    padding-top: 7px;
+    padding-right: 10px !important;
+    padding-left: 0px !important;
+}
+
+.emailInputCol {
+    padding: 0px 10px !important;
+    height: 34px;
+}
+
+.emailInput {
+    height: 34px;
+    width: 100%;
+    padding: 0 4px;
+    outline: 0 !important;
+    font-size: .8125rem;
+    border: 1px solid #ccc;
+}
+
+.passwordInputCol {
+    padding: 0px 10px !important;
+    height: 34px;
+}
+
+.passwordInput {
+    height: 34px;
+    width: 80%;
+    padding: 0 4px;
+    outline: 0 !important;
+    font-size: .8125rem;
+    border: 1px solid #ccc;
+}
+
+.eyeButton {
+    outline: 0!important;
+    color: #fff;
+    background-color: #e22e39;
+    vertical-align: top;
+    min-width: 48px;
+    min-height: 34px;
+    text-decoration: none;
+    border: 1px solid #e22e39;
+}
+
+.eyeButton:hover {
+    color: #fff;
+    background-color: #c21b25;
+    border-color: #b91a23;
+}
+
+.eyeButton:active:focus {
+    color: #fff;
+    background-color: #a3171f;
+    border-color: #7f1218;
+}
+
+.loginButtonCol {
+    padding: 0px !important;
+}
+
+.keepLogged {
+    line-height: 20px;
+    max-width: 100%;
+    min-height: 20px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    color: #494949;
+    font-size: 14px;
+}
+
+.keepLogged:hover {
+    color: #2e2d2d;
+}
+
+.checkBox {
+    position: absolute;
+    margin-right: 5px;
+    top: 6px;
+}
+
+.loginButton {
+    outline: 0 !important;
+    min-width: 54px;
+    font-size: 14px;
+    padding: 6px 12px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    color: #fff;
+    border: 1px solid #e22e39;
+    background-color: #e22e39;
+    border-radius: 3px;
+}
+
+.loginButton:hover {
+    background-color: #c21b25;
+    border-color: #b91a23;
+}
+
+.totalPriceSumaLabel {
+    margin-top: 5px;
+}
+
+.totalPriceLabel {
+    font-size: 24px;
+    color: #e22e39;
+    margin-top: 3px;
+}
+
+.passwordRecovery {
+    margin-bottom: 30px;
+    color: #e22e39;
+    text-decoration: underline;
+}
+
+.passwordRecovery:hover {
+    color: #c21b25;
+    text-decoration: none;
+}

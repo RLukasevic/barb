@@ -5,6 +5,11 @@ const initialState = {
     items: null,
     favorited: ['null'],
     cart: {},
+    cartParams: {
+        cartFinalPrice: 0.29.toFixed(2),
+        cartDiscountTotal: 0.00.toFixed(2),
+        cartFinalPriceNoDiscount: 0.00.toFixed(2),
+    },
     error: false,
 }
 
@@ -61,9 +66,16 @@ const resetFav = (state) => {
 }
 
 const updateCart = (state,action) => {
+    console.log(action)
     return {
         ...state,
         cart: action.newCart,
+        cartParams: {
+            ...state.cartParams,
+            cartFinalPrice: action.cartFinalPrice,
+            cartDiscountTotal: action.cartDiscountTotal,
+            cartFinalPriceNoDiscount: action.cartFinalPriceNoDiscount,
+        },
     }
 }
 

@@ -29,6 +29,7 @@ const initialState = {
     error: null,
     loading: false,
     modalShow: false,
+    buyModalShow: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -39,6 +40,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.AUTH_LOGOUT: return authLogout(state)
         case actionTypes.AUTH_CLEAR_ERROR: return authClearError(state)
         case actionTypes.MODAL_TOGGLE: return modalToggle(state)
+        case actionTypes.BUY_MODAL_TOGGLE: return buyModalToggle(state)
         case actionTypes.ADDITIONAL_INFO_POST_START: return addiotonalInfoPostStart(state)
         case actionTypes.ADDITIONAL_INFO_POST_SUCCESS: return additionalInfoPostSuccess(state, action)
         case actionTypes.ACCOUNT_SETTINGS_SET: return settingsSet(state,action)
@@ -119,6 +121,13 @@ const modalToggle = state => {
     return {
         ...state,
         modalShow: !state.modalShow
+    }
+}
+
+const buyModalToggle = state => {
+    return {
+        ...state,
+        buyModalShow: !state.buyModalShow
     }
 }
 

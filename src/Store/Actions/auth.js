@@ -208,6 +208,12 @@ export const modalToggle = () => {
     };
 }
 
+export const buyModalToggle = () => {
+    return {
+        type: actionTypes.BUY_MODAL_TOGGLE,
+    }
+}
+
 export const settingsSet = (data) => {
     return {
         type: actionTypes.ACCOUNT_SETTINGS_SET,

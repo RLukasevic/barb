@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 class ItemsList extends Component {
 
     itemClicked(id) {
-        this.props.history.push('/item/' + id)
+        this.props.history.push('/item/' + id);
     }
 
     moreDiscountsClicked() {
