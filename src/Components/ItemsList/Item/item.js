@@ -28,7 +28,7 @@ const Item = props => {
                 <Col className={styles.oldPrice} >€{props.oldPrice.replace('.',',')}</Col>
                 <Col className={styles.actualPrice}>€{props.actualPrice.replace('.',',')}</Col>
             </Row>
-             <Row className={styles.pricePer}><div style={{textAlign: "center"}}>{props.pricePer}</div></Row>
+            <Row className={styles.pricePer}><div style={{textAlign: "center"}}>{props.pricePer}</div></Row>
 
             {props.quantity > 0 && props.token ? 
             <AddedToCartBuyBar 

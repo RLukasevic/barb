@@ -10,6 +10,8 @@ const initialState = {
         cartDiscountTotal: 0.00.toFixed(2),
         cartFinalPriceNoDiscount: 0.00.toFixed(2),
     },
+    orders: [],
+    buyModalShow: false,
     error: false,
 }
 
@@ -22,6 +24,11 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_FAVORITES_FAIL: return fetchFavoritesFail(state,action)
         case actionTypes.RESET_FAV: return resetFav(state)
         case actionTypes.UPDATE_CART: return updateCart(state,action)
+        case actionTypes.BUY_MODAL_TOGGLE: return buyModalToggle(state)
+        case actionTypes.BUY_FAIL: return buyFail(state,action)
+        case actionTypes.BUY_SUCCESS: return buySuccess(state,action)
+        case actionTypes.SET_ORDERS: return setOrders(state,action)
+        case actionTypes.LOGOUT_DELETE_DATA: return logoutDeletionOfData(state)
 
         default: return state;
     }
@@ -66,7 +73,6 @@ const resetFav = (state) => {
 }
 
 const updateCart = (state,action) => {
-    console.log(action)
     return {
         ...state,
         cart: action.newCart,
@@ -76,6 +82,60 @@ const updateCart = (state,action) => {
             cartDiscountTotal: action.cartDiscountTotal,
             cartFinalPriceNoDiscount: action.cartFinalPriceNoDiscount,
         },
+    }
+}
+
+const buyModalToggle = state => {
+    return {
+        ...state,
+        buyModalShow: !state.buyModalShow
+    }
+}
+
+const buyFail = (state,action) => {
+    return {
+        ...state,
+        error: action.error,
+    }
+}
+
+const buySuccess = (state,action) => {
+
+    console.log(action.data)
+    let newOrders = state.orders;
+    newOrders.push(action.data)
+    console.log(newOrders);
+
+    return {
+        ...state,
+        cart: {},
+        cartParams: {
+            cartFinalPrice: 0.29.toFixed(2),
+            cartDiscountTotal: 0.00.toFixed(2),
+            cartFinalPriceNoDiscount: 0.00.toFixed(2),
+        },
+        orders: newOrders,
+        buyModalShow: false,
+    }
+}
+
+const setOrders = (state,action) => {
+    return {
+        ...state,
+        orders: action.orders,
+    }
+}
+
+const logoutDeletionOfData = state => {
+    return {
+        ...state,
+        cartParams: {
+            cartFinalPrice: 0.29.toFixed(2),
+            cartDiscountTotal: 0.00.toFixed(2),
+            cartFinalPriceNoDiscount: 0.00.toFixed(2),
+        },
+        orders: [],
+        cart: {},
     }
 }
 

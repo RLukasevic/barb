@@ -1,7 +1,7 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
 import axiosInstance from '../../axiosFetch';
-import { fetchFavorites } from './home';
+import { fetchFavorites, setOrders, logoutDeletionOfData } from './home';
 
 export const authClearError = () => {
     return {
@@ -33,10 +33,18 @@ export const authLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
     localStorage.removeItem('userId');
+
+    return dispatch => {
+        dispatch(logoutDeletionOfData());
+        dispatch(authLogoutDataDeletion());
+    }
+};
+
+export const authLogoutDataDeletion = () => {
     return {
         type: actionTypes.AUTH_LOGOUT,
     };
-};
+}
 
 export const authAutoLogout = (timeout) => {
     return dispatch => {
@@ -87,6 +95,7 @@ export const auth = (mydata, mode) => {
                 .then(res => {
                     let name = Object.keys(res.data)[0]
                     dispatch(settingsSet(res.data[name]));
+                    dispatch(setOrders(res.data[name].orders));
                     dispatch(modalToggle());
                 })
                 .catch(e => {
@@ -192,6 +201,7 @@ export const authCheckState = () => {
                 .then(res => {
                     let name = Object.keys(res.data)[0]
                     dispatch(settingsSet(res.data[name]));
+                    dispatch(setOrders(res.data[name].orders));
                 })
                 .catch(e => {
                     console.log(e)
@@ -206,12 +216,6 @@ export const modalToggle = () => {
     return {
         type: actionTypes.MODAL_TOGGLE,
     };
-}
-
-export const buyModalToggle = () => {
-    return {
-        type: actionTypes.BUY_MODAL_TOGGLE,
-    }
 }
 
 export const settingsSet = (data) => {

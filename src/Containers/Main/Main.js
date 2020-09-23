@@ -16,6 +16,7 @@ import Recipes from '../../Components/Recipes/Recipes';
 import SideCart from '../../Components/UI/SideCart/SideCart';
 import { Container, Row, Col } from 'react-bootstrap';
 import ModalCartBuy from '../../Components/Modal/modalCartBuy/modalCartBuy';
+import Orders from '../Orders/Orders';
 
 
 export class Main extends Component {
@@ -41,6 +42,15 @@ export class Main extends Component {
             getOfferEmailChecked: false,
             getMobileAppOfferChecked: false,
             getSmsOfferChecked: false
+        },
+
+        buyModalData: {
+            miestas: this.props.accountSettings.city,
+            gatve: this.props.accountSettings.adress,
+            butas:  this.props.accountSettings.appartmentHouseNumber,
+            vardas: this.props.accountSettings.name,
+            pavarde:    this.props.accountSettings.lastName,
+            telefonas:  this.props.accountSettings.phone,
         },
 
         favorited: ['null'],
@@ -206,12 +216,52 @@ export class Main extends Component {
         }
     }
 
+    buyModalSubmitHandler = (event) => {
+        event.preventDefault();
+
+        let itemsInCart = [];
+
+        Object.keys(this.props.cart).map(itemKey => {
+            console.log(this.props.items[itemKey])
+            itemsInCart.push(
+                {
+                    itemId: itemKey,
+                    itemName: this.props.items[itemKey].name,
+                    quantity: this.props.cart[itemKey],
+                }
+            )
+        })
+
+        this.props.initBuy(this.state.buyModalData, this.props.cartParams.cartFinalPrice, itemsInCart);
+    }
+
     onChangeHandler = (event, mode, inputName) => {
         const newControls = {
             ...this.state[mode], 
             [inputName]: event.target.value
         };
         this.setState({[mode]: newControls});
+    }
+
+    buyModalChangeHandler = (event, inputName) => {
+        const newBuyModalData = {
+                ...this.state.buyModalData,
+                [inputName]: event.target.value,
+            };
+        this.setState({buyModalData: newBuyModalData});
+    }
+
+    setBuyModalData = () => {
+        let temp = {
+            miestas: this.props.accountSettings.city,
+            gatve: this.props.accountSettings.adress,
+            butas:  this.props.accountSettings.appartmentHouseNumber,
+            vardas: this.props.accountSettings.name,
+            pavarde:    this.props.accountSettings.lastName,
+            telefonas:  this.props.accountSettings.phone,
+        };
+
+        this.setState({...this.state, buyModalData: temp});
     }
 
     favClickHandler = (itemId, mode) => {
@@ -415,6 +465,7 @@ export class Main extends Component {
                             favorited={this.state.favorited} 
                             favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} 
                             items={this.props.items} 
+                            orders={this.props.orders}
                             mmChanger={this.mmChanger}
                             listInCartPlusButton={(id) => this.listInCartPlusButton(id)}
                             listInCartMinusButton={(id) => this.listInCartMinusButton(id)}
@@ -431,6 +482,9 @@ export class Main extends Component {
 
             case 'recipes':
                 return <Recipes />
+
+            case 'history':
+                return <Orders/>
 
             default:
                 return (
@@ -479,7 +533,10 @@ export class Main extends Component {
 
                 <Modal show={this.props.buyModalShow} cBackDrop={this.buyModalHandler}>
                     <ModalCartBuy 
-                        loading={this.props.loading} 
+                        loading={this.props.loading}
+                        changeHandler={this.buyModalChangeHandler} 
+                        presetData={this.setBuyModalData}
+                        cSubmit={this.buyModalSubmitHandler}
                     />
                 </Modal>
 
@@ -519,12 +576,13 @@ const mapStateToProps = state => {
     return {
         loading: state.auth.loading,
         modalShow: state.auth.modalShow,
-        buyModalShow: state.auth.buyModalShow,
+        buyModalShow: state.home.buyModalShow,
         token: state.auth.authData.idToken,
         items: state.home.items,
         favorited: state.home.favorited,
         accountSettings: state.auth.accountSettings,
         cart: state.home.cart,
+        orders: state.home.orders,
         cartParams: state.home.cartParams,
     }
 }
@@ -537,6 +595,7 @@ const mapDispatchToProps = dispatch => {
         modalToggle: () => dispatch(authActions.modalToggle()),
         buyModalToggle: () => dispatch(authActions.buyModalToggle()),
         initItems: () => dispatch(authActions.initItems()),
+        initBuy: (data,price,cart) => dispatch(authActions.initBuy(data,price,cart)),
         addFav: (itemId, favorited) => dispatch(authActions.addFav(itemId, favorited)),
         delFav: (itemId, favorited) => dispatch(authActions.delFav(itemId, favorited)),
         resetFav: () => dispatch(authActions.resetFav()),

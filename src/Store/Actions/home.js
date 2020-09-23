@@ -1,20 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axiosFetch';
 
-// export const addIngredient = (name) => {
-//     return {
-//         type: actionTypes.ADD_ING,
-//         ingredientName: name,
-//     };
-// };
-
-// export const removeIngredient = (name) => {
-//     return {
-//         type: actionTypes.REMOVE_ING,
-//         ingredientName: name,
-//     };
-//};
-
 export const setItems = (items) => {
 
     return {
@@ -39,7 +25,7 @@ export const initItems = () => {
         } )
         .catch(e => {
             console.log(e)
-            dispatch(fetchItemsFail());
+            dispatch(fetchItemsFail(e));
         } )
     };
 };
@@ -177,5 +163,115 @@ export const updateCart = (newCart, cartFinalPrice, cartDiscountTotal, cartFinal
         cartFinalPrice: cartFinalPrice,
         cartDiscountTotal: cartDiscountTotal,
         cartFinalPriceNoDiscount: cartFinalPriceNoDiscount,
+    }
+}
+
+export const initBuy = (data,price,cart) => {
+    return dispatch => {
+
+        let token = localStorage.getItem('token');
+        let localId = localStorage.getItem('userId')
+        let queryParams = '.json/' + '?auth=' + token + '&orderBy="localId"&equalTo="' + localId + '"'
+        axios.get('/accounts'+ queryParams)
+        .then(res => {
+            let name = Object.keys(res.data)[0]
+
+            if (res.data[name].orders === undefined) {
+                console.log('wtf')
+                queryParams = '/' + name + '/orders' + '.json?auth=' + token;
+                let orderId = String(localId).substr(0,9) + '1';
+                let timeStamp = new Date()
+                let orderData = {
+                    [orderId]: {
+                        id: orderId,
+                        customerData: data,
+                        orderSumPrice: price,
+                        orderData: cart,
+                        timeStamp: timeStamp,
+                    },
+                }
+
+                axios.put('/accounts' + queryParams, orderData)
+                .then(res => {
+                    console.log(res.data);
+                    dispatch(buySuccess(res.data));
+                })
+                .catch(e => {
+                    console.log(e);
+                    dispatch(buyFail(e));
+                })
+
+            } else {
+                console.log('kekw')
+                queryParams = '/' + name + '/orders' + '.json?auth=' + token;
+                let ordersLength = Object.keys(res.data[name].orders).length
+                let latestOrderId = Object.keys(res.data[name].orders)[ordersLength-1];
+                let actualIdOfLatestOrderId = Number(latestOrderId.substr(String(localId).substr(0,9).length));
+                let newOrderId = String(localId).substr(0,9) + (actualIdOfLatestOrderId+1);
+                let timeStamp = new Date();
+                let orderData = {
+                    [newOrderId]: {
+                        id: newOrderId,
+                        customerData: data,
+                        orderSumPrice: price,
+                        orderData: cart,
+                        timeStamp: timeStamp,
+                    },
+                }
+
+                axios.patch('/accounts' + queryParams, orderData)
+                .then(res => {
+                    console.log(res.data);
+                    dispatch(buySuccess(res.data));
+                })
+                .catch(e => {
+                    console.log(e);
+                    dispatch(buyFail(e));
+                })
+            }
+        })
+        .catch(e => {
+            console.log(e);
+            dispatch(buyFail(e));
+        });
+    };
+}
+
+export const buyFail = (e) => {
+    return {
+        type: actionTypes.BUY_FAIL,
+        error: e,
+    }
+}
+
+export const buySuccess = (data) => {
+    return {
+        type: actionTypes.BUY_SUCCESS,
+        data: data,
+    }
+}
+
+export const buyModalToggle = () => {
+    return {
+        type: actionTypes.BUY_MODAL_TOGGLE,
+    }
+}
+
+export const setOrders = (orders) => {
+    let newOrdersArr = [];
+
+    Object.keys(orders).map(key => {
+        newOrdersArr.push({[key]: orders[key]})
+    })
+
+    return {
+        type: actionTypes.SET_ORDERS,
+        orders: newOrdersArr,
+    }
+}
+
+export const logoutDeletionOfData = () => {
+    return {
+        type: actionTypes.LOGOUT_DELETE_DATA,
     }
 }

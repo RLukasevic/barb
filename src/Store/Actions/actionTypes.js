@@ -3,6 +3,7 @@ export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 export const AUTH_CLEAR_ERROR = 'AUTH_CLEAR_ERROR';
+export const LOGOUT_DELETE_DATA = 'LOGOUT_DELETE_DATA';
 
 export const MODAL_TOGGLE = 'MODAL_TOGGLE';
 export const BUY_MODAL_TOGGLE = 'BUY_MODAL_TOGGLE';
@@ -20,3 +21,7 @@ export const FETCH_FAVORITES_SUCC = 'FETCH_FAVORITES_SUCC';
 export const FETCH_FAVORITES_FAIL = 'FETCH_FAVORITES_FAIL';
 
 export const UPDATE_CART = "UPDATE_CART";
+
+export const BUY_FAIL = "BUY_FAIL";
+export const BUY_SUCCESS = "BUY_SUCCESS";
+export const SET_ORDERS = "SET_ORDERS";

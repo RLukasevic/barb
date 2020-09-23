@@ -5,16 +5,16 @@ import styles from './Favorites.module.css';
 
 class Favorites extends Component {
 
-    state = {
-        prikimuIstorijaCount: 0,
-    }
-
     componentDidMount() {
         this.props.mmChanger('manoPrekes');
     }
 
     itemClicked(id) {
         this.props.history.push('/item/' + id)
+    }
+
+    buyHistoryButtonClicked() {
+        this.props.history.push('/history')
     }
 
     render() {
@@ -69,10 +69,15 @@ class Favorites extends Component {
                         <Row className={styles.panelTitle}>
                             Pirkimų istorija
                         </Row>
+                        {this.props.orders.length > 0 ?
+                        <Row className={styles.statusRowGreen}>
+                            Pirkimų istorijoje yra {this.props.orders.length} čekiai, paspauskite mygtuką, kad peržiūrėti istoriją
+                        </Row>
+                         :
                         <Row className={styles.statusRowRed}>
                             Kol kas čia nieko nėra. Atlikite užsakymą ir jis iškart atsidurs pirkimų istorijoje!
-                        </Row>
-                        <Row className={styles.panelButtonRow} style={this.state.prikimuIstorijaCount > 0 ? {display:"block"} : {display:"none"}}>
+                        </Row>}
+                        <Row onClick={() => this.buyHistoryButtonClicked()} className={styles.panelButtonRow} style={this.props.orders.length > 0 ? {display:"block"} : {display:"none"}}>
                             <span className={styles.panelButton}>Atidaryti</span>
                         </Row>
                     </Col>
