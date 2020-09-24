@@ -38,19 +38,23 @@
     border-radius: 20px;
 }
 
-.idText {
-    padding-top: 3px;
-    padding-left: 2px;
-    padding-right: 4px;
-    font-size: 12px;
-}
-
 .id {
     width: 200px;
     background-color: #ee0011;
     color: #fff;
     margin-left: -10px !important;
-    border-radius: 5px;
+    border-radius: 5px; 
+}
+
+.idText {
+    padding-top: 3px;
+    padding-left: 2px;
+    padding-right: 4px;
+    font-size: 18px;
+}
+
+.idValue {
+    padding-top: 5px;
 }
 
 .status {

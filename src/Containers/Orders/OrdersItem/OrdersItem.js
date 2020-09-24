@@ -50,7 +50,7 @@ const OrdersItem = props => {
                     {carousel}
                 </Carousel>
             </Row>
-            <Row className={styles.id}><span className={styles.idText}>Čekio numeris: </span>{props.id}</Row>
+            <Row className={styles.id}><span className={styles.idText}>Čekio Nr: </span><span className={styles.idValue}>{props.id}</span></Row>
             <Row className={styles.status}>Status: Delivering</Row>
             <Row className={styles.date}>Data: {String(props.itemsInOrder.timeStamp).substr(0,10)} | {String(props.itemsInOrder.timeStamp).substr(11,5)}</Row>
             <Row className={styles.price}>Total price: €{props.itemsInOrder.orderSumPrice.replace('.',',')}</Row>
