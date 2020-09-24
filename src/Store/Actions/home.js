@@ -49,13 +49,14 @@ export const addFav = (itemId, favs) => {
         let token = localStorage.getItem('token');
         let localId = localStorage.getItem('userId')
         let queryParams = '.json/' + '?auth=' + token + '&orderBy="localId"&equalTo="' + localId + '"'
+        dispatch(updateFav(payload))            // Performance call
         axios.get('/accounts'+ queryParams)
         .then(res => {
             let name = Object.keys(res.data)[0]
             queryParams = '/' + name + '.json?auth=' + token
             axios.patch('/accounts' + queryParams, payload)
             .then(res => {
-                dispatch(updateFav(res.data))
+                dispatch(updateFav(res.data))  // Calling update with actual data in db
             })
             .catch(e => {
                 console.log('error = ', e);
@@ -89,13 +90,14 @@ export const delFav = (itemId, favs) => {
         let token = localStorage.getItem('token');
         let localId = localStorage.getItem('userId')
         let queryParams = '.json/' + '?auth=' + token + '&orderBy="localId"&equalTo="' + localId + '"'
+        dispatch(updateFav(payload))            // Performance call
         axios.get('/accounts'+ queryParams)
         .then(res => {
             let name = Object.keys(res.data)[0]
             queryParams = '/' + name + '.json?auth=' + token
             axios.patch('/accounts' + queryParams, payload)
             .then(res => {
-                dispatch(updateFav(res.data))
+                dispatch(updateFav(res.data))  // Calling update with actual data in db
             })
             .catch(e => {
                 console.log(e);

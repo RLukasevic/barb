@@ -52,8 +52,7 @@ export class Main extends Component {
             pavarde:    this.props.accountSettings.lastName,
             telefonas:  this.props.accountSettings.phone,
         },
-
-        favorited: ['null'],
+        
         modalActiveNow: "login",
         mmActiveNow: "Prekes",
         modalPasswordMode: "password",
@@ -67,12 +66,6 @@ export class Main extends Component {
         if(!this.props.items) {
             this.props.initItems();
         } 
-
-        if(this.props.favorited) {
-            setTimeout(() => {
-                this.setState({...this.state, favorited: new Array(...this.props.favorited)}) // increasing ui responsibility by using local state as well as store state
-              }, 800)
-        }
 
         window.addEventListener('scroll', this.handleScroll, true);
     }
@@ -277,9 +270,6 @@ export class Main extends Component {
         switch(mode) {
             case 'ADD':
                 if (this.props.token) {
-                    let newStateFav = new Array(...this.state.favorited);
-                    newStateFav.push(itemId);
-                    this.setState({...this.state, favorited: new Array(...newStateFav)})
                     this.props.addFav(itemId, newFav)
                 } else {
                     this.modalHandler('login');
@@ -288,15 +278,6 @@ export class Main extends Component {
 
             case 'DEL':
                 if (this.props.token) {
-                    let newStateArr = new Array(...this.state.favorited);
-
-                    if (newStateArr.length === 1) {       
-                        newStateArr[0] = 'null';
-                    } else {
-                        let index = newStateArr.indexOf(itemId);
-                        newStateArr.splice(index,1);
-                    }
-                    this.setState({...this.state, favorited: new Array(...newStateArr)})
                     this.props.delFav(itemId, newFav)
                 } else {
                     this.modalHandler('login');
@@ -447,7 +428,7 @@ export class Main extends Component {
                         cart={this.props.cart} 
                         modalShow={this.props.modalShow} 
                         cClick={this.modalHandler} 
-                        favorited={this.state.favorited} 
+                        favorited={this.props.favorited} 
                         favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} 
                         items={this.props.items}  
                         listInCartPlusButton={(id) => this.listInCartPlusButton(id)}
@@ -462,7 +443,7 @@ export class Main extends Component {
                             history={this.props.history} 
                             modalShow={this.props.modalShow} 
                             cClick={this.modalHandler} 
-                            favorited={this.state.favorited} 
+                            favorited={this.props.favorited} 
                             favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} 
                             items={this.props.items} 
                             orders={this.props.orders}
@@ -495,7 +476,7 @@ export class Main extends Component {
                         history={this.props.history} 
                         modalShow={this.props.modalShow} 
                         cClick={this.modalHandler} 
-                        favorited={this.state.favorited} 
+                        favorited={this.props.favorited} 
                         favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} 
                         items={this.props.items} 
                         listInCartPlusButton={(id) => this.listInCartPlusButton(id)}

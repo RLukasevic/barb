@@ -29,8 +29,6 @@ const Item = props => {
     useEffect(() => {
 
         if (props.favorited && props.favorited.includes(id) && fav === false) {
-            console.log(props.favorited[0])
-            console.log('fav = ', fav)
             changeFav(true);
         } 
 
@@ -45,13 +43,9 @@ const Item = props => {
 
     const favHandler = () => {
         if (fav) {
-            console.log(props.favorited[0])
-            console.log('fav = ', fav)
             props.favClick(id , 'DEL');
             changeFav(false);
         } else {
-            console.log(props.favorited[0])
-            console.log('fav = ', fav)
             props.favClick(id , 'ADD');
             changeFav(true);
             update()
