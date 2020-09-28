@@ -146,6 +146,7 @@ export const additionalInfoPost = (mydata, token, localId) => {
         let url = '/accounts.json?auth=' + token;
 
         const userData = {
+            userEmail: mydata.email,
             butoNumeris: mydata.butoNumeris,
             city: mydata.city,
             displayName: mydata.name + ' ' + mydata.lastName,
@@ -174,6 +175,52 @@ export const additionalInfoPost = (mydata, token, localId) => {
             dispatch(authFail(e.response.data.error.message));
             console.log(e);
         } )
+    }
+}
+
+export const additionalInfoPatch = (mydata, token, localId) => {        // Used in AccountSettings calls
+    return dispatch => {
+        let url = '/accounts.json?auth=' + token;
+
+        const userData = {
+            userEmail: mydata.email,
+            butoNumeris: mydata.butoNumeris,
+            city: mydata.city,
+            displayName: mydata.name + ' ' + mydata.lastName,
+            gatve: mydata.gatve,
+            lastName: mydata.lastName,
+            name: mydata.name,
+            params: {
+                getMobileAppOfferChecked: mydata.getMobileAppOfferChecked,
+                getOfferEmailChecked: mydata.getOfferEmailChecked,
+                getPersonalOfferEmailChecked: mydata.getPersonalOfferEmailChecked,
+                getSmsOfferChecked: mydata.getSmsOfferChecked,
+                policy: mydata.policyChecked,
+            },
+            phone: mydata.phone,
+        };
+
+        let queryParams = '.json/' + '?auth=' + token + '&orderBy="localId"&equalTo="' + localId + '"'
+        axiosInstance.get('/accounts'+ queryParams)
+        .then(res => {
+            let name = Object.keys(res.data)[0]
+
+            queryParams = '/' + name + '.json?auth=' + token;
+            url = '/accounts' + queryParams;
+
+            axiosInstance.patch(url, userData)
+            .then (res => {
+                dispatch(additionalInfoPostSuccess(res.data));
+                dispatch(userDataChangeStandardSuccess());
+                dispatch(userDataModalToggle());
+            } )
+            .catch(e => {
+                dispatch(userDataChangeStandardFail(e.response.data.error.message));
+            } )
+
+        }).catch(e => {
+            console.log(e)
+        })
     }
 }
 
@@ -222,5 +269,242 @@ export const settingsSet = (data) => {
     return {
         type: actionTypes.ACCOUNT_SETTINGS_SET,
         settings: data,
+    }
+}
+
+export const userDataModalToggle = () => {
+    return {
+        type: actionTypes.USER_DATA_MODAL_TOGGLE,
+    }
+}
+
+export const userDataChangeStandard = (data) => {
+    return dispatch => {
+        dispatch(authStart());
+        let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCkPNwi2DRyLPZiaBdVDW5gD_HijaFyk-U';
+
+        const authData = {
+            email: data.email,
+            password: data.password,
+            returnSecureToken: true,
+        };
+
+        axios.post(url, authData)
+        .then(res => {
+            dispatch(checkCredentialsSuccess());
+            const expirationDate = new Date(new Date().getTime() + res.data.expiresIn * 1000);
+            localStorage.setItem('token', res.data.idToken);
+            localStorage.setItem('expirationDate', expirationDate);
+            localStorage.setItem('userId', res.data.localId);
+            dispatch(authSuccess(res.data));
+            dispatch(authAutoLogout(res.data.expiresIn));
+            dispatch(additionalInfoPatch(data, res.data.idToken, res.data.localId)) 
+        } )
+        .catch(e => {
+            dispatch(checkCredentialsFail(e.response.data.error.message));
+            console.log('CREDENTIALS');
+        } )
+    }
+}
+
+export const userDataChangeStandardSuccess = () => {
+    return {
+        type: actionTypes.USER_DATA_CHANGE_STANDARD_SUCCESS,
+    };
+}
+
+export const userDataChangeStandardFail = (error) => {
+    return {
+        type: actionTypes.USER_DATA_CHANGE_STANDARD_FAIL,
+        error: error,
+    };
+}
+
+export const userDataChangeEmail = (data) => {
+    return dispatch => {
+        dispatch(authStart());
+        let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCkPNwi2DRyLPZiaBdVDW5gD_HijaFyk-U';
+
+        const authData = {
+            email: data.email,
+            password: data.password,
+            returnSecureToken: true,
+        };
+
+        axios.post(url, authData)
+        .then(res => {
+            dispatch(checkCredentialsSuccess());
+
+            url = 'https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyCkPNwi2DRyLPZiaBdVDW5gD_HijaFyk-U';
+            let payload = {
+                idToken: res.data.idToken,
+                email: data.newEmail,
+                returnSecureToken: true,
+            }
+            axios.post(url,payload)
+            .then(res => {
+                dispatch(changeEmail(data.newEmail));
+                dispatch(userDataChangeEmailSuccess());
+                dispatch(changeEmailInDbStorage(data.newEmail, res.data.idToken, res.data.localId));
+                dispatch(updateToken(res.data));
+                dispatch(authAutoLogout(res.data.expiresIn));
+            })
+            .catch(e => {
+                dispatch(userDataChangeEmailFail(e.response.data.error.message));
+                console.log(e)
+            })
+        } )
+        .catch(e => {
+            dispatch(checkCredentialsFail(e.response.data.error.message));
+            console.log(e);
+        } )
+    }
+}
+
+export const changeEmail = (newEmail) => {
+    return {
+        type: actionTypes.CHANGE_EMAIL,
+        data: newEmail,
+    }
+}
+
+export const updateToken = (data) => {
+    const expirationDate = new Date(new Date().getTime() + data.expiresIn * 1000);
+    localStorage.setItem('token', data.idToken);
+    localStorage.setItem('expirationDate', expirationDate);
+
+    return {
+        type:actionTypes.UPDATE_TOKEN,
+        token: data.idToken,
+    }
+}
+
+export const userDataChangeEmailSuccess = () => {
+    return {
+        type: actionTypes.USER_DATA_CHANGE_EMAIL_SUCCESS,
+    };
+}
+
+export const userDataChangeEmailFail = (error) => {
+    return {
+        type: actionTypes.USER_DATA_CHANGE_EMAIL_FAIL,
+        error: error,
+    };
+}
+
+export const userDataChangePassword = (data) => {
+    return dispatch => {
+        dispatch(authStart());
+        let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCkPNwi2DRyLPZiaBdVDW5gD_HijaFyk-U';
+
+        const authData = {
+            email: data.email,
+            password: data.password,
+            returnSecureToken: true,
+        };
+
+        axios.post(url, authData)
+        .then(res => {
+            dispatch(checkCredentialsSuccess());
+
+            url = 'https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyCkPNwi2DRyLPZiaBdVDW5gD_HijaFyk-U';
+            let payload = {
+                idToken: res.data.idToken,
+                password: data.newPassword,
+                returnSecureToken: true,
+            }
+            axios.post(url,payload)
+            .then(res => {
+                dispatch(userDataChangePasswordSuccess());
+                dispatch(updateToken(res.data));
+                dispatch(authAutoLogout(res.data.expiresIn));
+                dispatch(userDataModalToggle());
+            })
+            .catch(e => {
+                dispatch(userDataChangePasswordFail(e.response.data.error.message));
+                console.log(e)
+            })
+        } )
+        .catch(e => {
+            dispatch(checkCredentialsFail(e.response.data.error.message));
+            console.log(e);
+        } )
+    }
+}
+
+export const userDataChangePasswordSuccess = () => {
+    return {
+        type: actionTypes.USER_DATA_CHANGE_PASSWORD_SUCCESS,
+    }
+}
+
+export const userDataChangePasswordFail = (error) => {
+    return {
+        type: actionTypes.USER_DATA_CHANGE_PASSWORD_FAIL,
+        error: error,
+    }
+}
+
+export const checkCredentialsSuccess = () => {
+    return {
+        type: actionTypes.CHECK_CREDENTIALS_SUCCESS,
+    }
+}
+
+export const checkCredentialsFail = (error) => {
+    return {
+        type: actionTypes.CHECK_CREDENTIALS_FAIL,
+        error: error,
+    }
+}
+
+export const changeEmailInDbStorage = (newEmail, token, localId) => {
+    return dispatch => {
+        let url = '/accounts.json?auth=' + token;
+
+        let tempData = {
+            userEmail: newEmail,
+        };
+
+        let queryParams = '.json/' + '?auth=' + token + '&orderBy="localId"&equalTo="' + localId + '"'
+        axiosInstance.get('/accounts'+ queryParams)
+        .then(res => {
+            let name = Object.keys(res.data)[0]
+
+            queryParams = '/' + name + '.json?auth=' + token;
+            url = '/accounts' + queryParams;
+
+            axiosInstance.patch(url, tempData)
+            .then (res => {
+                dispatch(changeEmailInDbStorageSuccess(res.data));
+                dispatch(userDataModalToggle());
+            } )
+            .catch(e => {
+                dispatch(changeEmailInDbStorageFail(e.response.data.error.message));
+            } )
+
+        }).catch(e => {
+            console.log(e)
+        })
+    }
+}
+
+export const changeEmailInDbStorageSuccess = (data) => {
+    return {
+        type: actionTypes.CHANGE_EMAIL_IN_DB_STORAGE_SUCCESS,
+        data: data,
+    }
+}
+
+export const changeEmailInDbStorageFail = (error) => {
+    return {
+        type: actionTypes.CHANGE_EMAIL_IN_DB_STORAGE_FAIL,
+        error: error,
+    }
+}
+
+export const successfulChangeClose = () => {
+    return {
+        type: actionTypes.SUCCESSFUL_CHANGE_CLOSE,
     }
 }

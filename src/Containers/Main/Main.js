@@ -4,6 +4,8 @@ import Header from '../../Components/Header/header';
 import ItemsList from '../../Components/ItemsList/itemsList';
 import Modal from '../../Components/Modal/modal';
 import ModalLogReg from '../../Components/Modal/modalLogReg/modalLogReg';
+import ModalChangeUserData from '../../Components/Modal/modalChangeUserData/modalChangeUserData';
+import ModalChangeSuccessful from '../../Components/Modal/modalChangeUserData/modalChangeSuccessful/modalChangeSuccessful';
 import Spinner from '../../Components/UI/Spinner/Spinner';
 import ItemDetails from '../../Components/itemDetails/itemDetails';
 import { connect } from 'react-redux';
@@ -17,6 +19,7 @@ import SideCart from '../../Components/UI/SideCart/SideCart';
 import { Container, Row, Col } from 'react-bootstrap';
 import ModalCartBuy from '../../Components/Modal/modalCartBuy/modalCartBuy';
 import Orders from '../Orders/Orders';
+import AccountSettings from '../../Components/AccountSettings/AccountSettings';
 
 
 export class Main extends Component {
@@ -44,18 +47,38 @@ export class Main extends Component {
             getSmsOfferChecked: false
         },
 
+        changeUserData: {
+            email: null,
+            newEmail: '',
+            password: '',
+            newPassword: '',
+            city: null,
+            gatve: null,
+            butoNumeris: null,
+            name: null,
+            lastName: null,
+            phone: null,
+
+            policyChecked: false,
+            getPersonalOfferEmailChecked: false,
+            getOfferEmailChecked: false,
+            getMobileAppOfferChecked: false,
+            getSmsOfferChecked: false,
+        },
+
         buyModalData: {
-            miestas: this.props.accountSettings.city,
-            gatve: this.props.accountSettings.adress,
-            butas:  this.props.accountSettings.appartmentHouseNumber,
-            vardas: this.props.accountSettings.name,
-            pavarde:    this.props.accountSettings.lastName,
-            telefonas:  this.props.accountSettings.phone,
+            miestas: '',
+            gatve: '',
+            butas:  '',
+            vardas: '',
+            pavarde: '',
+            telefonas: '',
         },
         
         modalActiveNow: "login",
         mmActiveNow: "Prekes",
         modalPasswordMode: "password",
+        modalUserDataMode: 'standard',
         extended: false,
         vertOffset: 0,
         cartUpdate: 0,
@@ -106,6 +129,38 @@ export class Main extends Component {
 
             case 'rememberMe':
                 this.setState({...this.state, signInData: {...this.state.signInData, keepLoggedInChecked: !this.state.signInData.keepLoggedInChecked}});
+                break;
+             
+            default:
+                break;
+        }   
+    }
+
+    handleChangeInfoChecks = (whatChecked) => {
+        switch (whatChecked) {
+
+            case 'policy':
+                this.setState({...this.state, changeUserData: {...this.state.changeUserData, policyChecked: !this.state.changeUserData.policyChecked}});
+                break;
+
+            case 'personalOfferEmail':
+                this.setState({...this.state, changeUserData: {...this.state.changeUserData, getPersonalOfferEmailChecked: !this.state.changeUserData.getPersonalOfferEmailChecked, getOfferEmailChecked: false, getMobileAppOfferChecked: false, getSmsOfferChecked: false, keepLoggedInChecked: false}});
+                break;
+
+            case 'offerEmail':
+                this.setState({...this.state, changeUserData: {...this.state.changeUserData, getOfferEmailChecked: !this.state.changeUserData.getOfferEmailChecked, getPersonalOfferEmailChecked: true}});
+                break;
+
+            case 'mobileAppOffer':
+                this.setState({...this.state, changeUserData: {...this.state.changeUserData, getMobileAppOfferChecked: !this.state.changeUserData.getMobileAppOfferChecked, getPersonalOfferEmailChecked: true}});
+                break;
+
+            case 'smsOffer':
+                this.setState({...this.state, changeUserData: {...this.state.changeUserData, getSmsOfferChecked: !this.state.changeUserData.getSmsOfferChecked, getPersonalOfferEmailChecked: true}});
+                break;
+
+            case 'rememberMe':
+                this.setState({...this.state, changeUserData: {...this.state.changeUserData, keepLoggedInChecked: !this.state.changeUserData.keepLoggedInChecked, getPersonalOfferEmailChecked: true}});
                 break;
              
             default:
@@ -233,7 +288,7 @@ export class Main extends Component {
             ...this.state[mode], 
             [inputName]: event.target.value
         };
-        this.setState({[mode]: newControls});
+        this.setState({...this.state, [mode]: newControls});
     }
 
     buyModalChangeHandler = (event, inputName) => {
@@ -248,13 +303,35 @@ export class Main extends Component {
         let temp = {
             miestas: this.props.accountSettings.city,
             gatve: this.props.accountSettings.adress,
-            butas:  this.props.accountSettings.appartmentHouseNumber,
+            butas: this.props.accountSettings.appartmentHouseNumber,
             vardas: this.props.accountSettings.name,
-            pavarde:    this.props.accountSettings.lastName,
-            telefonas:  this.props.accountSettings.phone,
+            pavarde: this.props.accountSettings.lastName,
+            telefonas: this.props.accountSettings.phone,
         };
 
         this.setState({...this.state, buyModalData: temp});
+    }
+
+    setChangeData = () => {
+        let temp = {
+            email: this.props.accountSettings.email,
+            newEmail: '',
+            password: '',
+            newPassword: '',
+            city: this.props.accountSettings.city,
+            gatve: this.props.accountSettings.adress,
+            butoNumeris: this.props.accountSettings.appartmentHouseNumber,
+            name: this.props.accountSettings.name,
+            lastName: this.props.accountSettings.lastName,
+            phone: this.props.accountSettings.phone,
+            policyChecked: this.props.accountSettings.policyChecked,
+            getPersonalOfferEmailChecked: this.props.accountSettings.getPersonalOfferEmailChecked,
+            getOfferEmailChecked: this.props.accountSettings.getOfferEmailChecked,
+            getMobileAppOfferChecked: this.props.accountSettings.getMobileAppOfferChecked,
+            getSmsOfferChecked: this.props.accountSettings.getSmsOfferChecked
+        };
+
+        this.setState({...this.state, changeUserData: temp});
     }
 
     favClickHandler = (itemId, mode) => {
@@ -311,8 +388,106 @@ export class Main extends Component {
         this.props.buyModalToggle();
     }
 
+    userDataModalHandler = (mode) => {
+        switch (mode) {
+            case 'standard':
+                this.setState({...this.state, modalUserDataMode: 'standard'});
+                this.props.userDataModalToggle();
+                break;
+            case 'emailChange':
+                this.setState({...this.state, modalUserDataMode: 'emailChange'});
+                this.props.userDataModalToggle();
+                break;
+            case 'passwordChange':
+                this.setState({...this.state, modalUserDataMode: 'passwordChange'});
+                this.props.userDataModalToggle();
+                break;
+            default:
+                this.setState({...this.state, changeUserData: {...this.state.changeUserData, email: '', password: '', newPassword: ''}});
+                this.props.userDataModalToggle();           // Used when clicking BackDrop
+                break;
+        }
+    }
+
+    userDataChangeSubmit = (mode,event) => {
+        let temp;
+        switch (mode) {
+            case 'standard':
+                temp = {
+                    email: this.state.changeUserData.email,
+                    password: this.state.changeUserData.password,
+                    city: this.state.changeUserData.city,
+                    gatve: this.state.changeUserData.gatve,
+                    butoNumeris: this.state.changeUserData.butoNumeris,
+                    name: this.state.changeUserData.name,
+                    lastName: this.state.changeUserData.lastName,
+                    phone: this.state.changeUserData.phone,
+        
+                    policyChecked: this.state.changeUserData.policyChecked,
+                    getPersonalOfferEmailChecked: this.state.changeUserData.getPersonalOfferEmailChecked,
+                    getOfferEmailChecked: this.state.changeUserData.getOfferEmailChecked,
+                    getMobileAppOfferChecked: this.state.changeUserData.getMobileAppOfferChecked,
+                    getSmsOfferChecked: this.state.changeUserData.getSmsOfferChecked,
+                }
+
+                this.props.userDataChangeStandard(temp);
+                break;
+            case 'emailChange':
+                temp = {
+                    email: this.state.changeUserData.email,
+                    newEmail: this.state.changeUserData.newEmail,
+                    password: this.state.changeUserData.password,
+                }
+
+                this.props.userDataChangeEmail(temp);
+                break;
+            case 'passwordChange':
+                temp = {
+                    email: this.state.changeUserData.email,
+                    password: this.state.changeUserData.password,
+                    newPassword: this.state.changeUserData.newPassword,
+                }
+
+                this.props.userDataChangePassword(temp);
+                break;
+            default:
+                break;
+        }
+    }
+
+    closeSuccModal = () => {
+        this.setState({
+            ...this.state, 
+            changeUserData: {
+                ...this.state.changeUserData, 
+                newEmail: '',
+                password: '',
+                newPassword: '',
+            },
+        });
+        this.props.successfulChangeClose();
+    }
+
     logoutHandler = () => {
+        let temp = {
+            email: '',
+            password: '',
+            newPassword: '',
+            city: '',
+            gatve: '',
+            butoNumeris: '',
+            name: '',
+            lastName: '',
+            phone: '',
+
+            policyChecked: false,
+            getPersonalOfferEmailChecked: false,
+            getOfferEmailChecked: false,
+            getMobileAppOfferChecked: false,
+            getSmsOfferChecked: false,
+        }
         this.setState({...this.state, favorited: ['null']})
+        this.setState({...this.state, changeUserData: temp});
         this.props.resetFav();
         this.props.authLogout();
     }
@@ -426,7 +601,6 @@ export class Main extends Component {
                         token={this.props.token} 
                         addToCartClick={this.addToCart} 
                         cart={this.props.cart} 
-                        modalShow={this.props.modalShow} 
                         cClick={this.modalHandler} 
                         favorited={this.props.favorited} 
                         favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} 
@@ -441,7 +615,6 @@ export class Main extends Component {
                             addToCartClick={this.addToCart} 
                             cart={this.props.cart} 
                             history={this.props.history} 
-                            modalShow={this.props.modalShow} 
                             cClick={this.modalHandler} 
                             favorited={this.props.favorited} 
                             favClick={(itemId, mode) => this.favClickHandler(itemId, mode)} 
@@ -453,7 +626,17 @@ export class Main extends Component {
                         />)
 
             case 'discounts':
-                return <Discounts />
+                return <AccountSettings
+                            cCheckBox={this.handleChangeInfoChecks}
+                            data={this.state.changeUserData}
+                            presetData={this.setChangeData}
+                            userDataModalHandler={this.userDataModalHandler}
+                            changeHandler={this.onChangeHandler}
+                            loading={this.props.loading}
+                            handleModalButtonPress={this.handleModalButtonPress} 
+                            handleModalButtonRelease={this.handleModalButtonRelease} 
+                            modalPasswordMode={this.state.modalPasswordMode} 
+                        /> /*<Discounts />*/
 
             case 'ekoirukis':
                 return <EkoIrUkis />
@@ -521,6 +704,24 @@ export class Main extends Component {
                     />
                 </Modal>
 
+                <ModalChangeSuccessful 
+                    show={this.props.successfulChangeShow}
+                    cBackDrop={this.closeSuccModal}
+                />
+
+                <ModalChangeUserData
+                    show={this.props.userDataModalShow}
+                    cBackDrop={this.userDataModalHandler}
+                    handleModalButtonPress={this.handleModalButtonPress} 
+                    handleModalButtonRelease={this.handleModalButtonRelease}
+                    data={this.state.changeUserData}
+                    mode={this.state.modalUserDataMode} 
+                    modalPasswordMode={this.state.modalPasswordMode} 
+                    loading={this.props.loading}
+                    changeHandler={this.onChangeHandler} 
+                    cSubmit={this.userDataChangeSubmit}
+                />
+
                 <Container  >
                     <Row >
                         <Col xl={10}>
@@ -558,6 +759,8 @@ const mapStateToProps = state => {
         loading: state.auth.loading,
         modalShow: state.auth.modalShow,
         buyModalShow: state.home.buyModalShow,
+        userDataModalShow: state.auth.userDataModalShow,
+        successfulChangeShow: state.auth.successfulChangeShow,
         token: state.auth.authData.idToken,
         items: state.home.items,
         favorited: state.home.favorited,
@@ -581,6 +784,11 @@ const mapDispatchToProps = dispatch => {
         delFav: (itemId, favorited) => dispatch(authActions.delFav(itemId, favorited)),
         resetFav: () => dispatch(authActions.resetFav()),
         updateCart: (newCart, cartFinalPrice, cartDiscountTotal, cartFinalPriceNoDiscount) => dispatch(authActions.updateCart(newCart, cartFinalPrice, cartDiscountTotal, cartFinalPriceNoDiscount)),
+        userDataModalToggle: () => dispatch(authActions.userDataModalToggle()),
+        userDataChangeStandard: (data) => dispatch(authActions.userDataChangeStandard(data)),
+        userDataChangeEmail: (data) => dispatch(authActions.userDataChangeEmail(data)),
+        userDataChangePassword: (data) => dispatch(authActions.userDataChangePassword(data)),
+        successfulChangeClose: () => dispatch(authActions.successfulChangeClose()),
     }
 }
 
