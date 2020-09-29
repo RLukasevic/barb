@@ -17,6 +17,10 @@ class Favorites extends Component {
         this.props.history.push('/history')
     }
 
+    accountSettingsButtonClicked() {
+        this.props.history.push('/account')
+    }
+
     render() {
 
         let actualItems = [];
@@ -79,6 +83,14 @@ class Favorites extends Component {
                         </Row>}
                         <Row onClick={() => this.buyHistoryButtonClicked()} className={styles.panelButtonRow} style={this.props.orders.length > 0 ? {display:"block"} : {display:"none"}}>
                             <span className={styles.panelButton}>Atidaryti</span>
+                        </Row>
+                    </Col>
+                    <Col className={styles.panelsCol}>
+                        <Row className={styles.panelTitleSettings}>
+                            Norite pakeisti paskyros nustatymus?
+                        </Row>
+                        <Row onClick={() => this.accountSettingsButtonClicked()} className={styles.panelButtonRowRed}>
+                            <div className={styles.panelButtonSettings}>Nustatymai</div>
                         </Row>
                     </Col>
                 </Row>

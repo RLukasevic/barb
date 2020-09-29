@@ -626,17 +626,7 @@ export class Main extends Component {
                         />)
 
             case 'discounts':
-                return <AccountSettings
-                            cCheckBox={this.handleChangeInfoChecks}
-                            data={this.state.changeUserData}
-                            presetData={this.setChangeData}
-                            userDataModalHandler={this.userDataModalHandler}
-                            changeHandler={this.onChangeHandler}
-                            loading={this.props.loading}
-                            handleModalButtonPress={this.handleModalButtonPress} 
-                            handleModalButtonRelease={this.handleModalButtonRelease} 
-                            modalPasswordMode={this.state.modalPasswordMode} 
-                        /> /*<Discounts />*/
+                return <Discounts />
 
             case 'ekoirukis':
                 return <EkoIrUkis />
@@ -649,6 +639,19 @@ export class Main extends Component {
 
             case 'history':
                 return <Orders/>
+
+            case 'account': 
+                return <AccountSettings
+                            cCheckBox={this.handleChangeInfoChecks}
+                            data={this.state.changeUserData}
+                            presetData={this.setChangeData}
+                            userDataModalHandler={this.userDataModalHandler}
+                            changeHandler={this.onChangeHandler}
+                            loading={this.props.loading}
+                            handleModalButtonPress={this.handleModalButtonPress} 
+                            handleModalButtonRelease={this.handleModalButtonRelease} 
+                            modalPasswordMode={this.state.modalPasswordMode} 
+                        />
 
             default:
                 return (

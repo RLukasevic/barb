@@ -24,6 +24,7 @@ class App extends Component {
         <Route path='/new' exact render={(props) => (<Main {...props} pageMode={'new'} />)}  />
         <Route path='/recipes' exact render={(props) => (<Main {...props} pageMode={'recipes'} />)}  />
         <Route path='/history' exact render={(props) => (<Main {...props} pageMode={'history'} />)} />
+        <Route path='/account' exact render={(props) => (<Main {...props} pageMode={'account'} />)} />
         <Redirect to='/' />        
       </Switch>
     );
