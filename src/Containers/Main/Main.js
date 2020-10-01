@@ -20,7 +20,9 @@ import { Container, Row, Col } from 'react-bootstrap';
 import ModalCartBuy from '../../Components/Modal/modalCartBuy/modalCartBuy';
 import Orders from '../Orders/Orders';
 import AccountSettings from '../../Components/AccountSettings/AccountSettings';
+import SideDrawer from '../../Components/UI/SideDrawer/sideDrawer';
 
+let calcOffset;
 
 export class Main extends Component {
     state = { 
@@ -73,6 +75,14 @@ export class Main extends Component {
             vardas: '',
             pavarde: '',
             telefonas: '',
+        },
+
+        sideDrawer: {
+            startX: 0,
+            xOffset: 0,
+            swiping: false,
+            showing: false,
+            status: false,
         },
         
         modalActiveNow: "login",
@@ -676,6 +686,7 @@ export class Main extends Component {
 
         return (
             <div className={styles.wholeWrap} >
+                <SideDrawer >
                 <Modal show={this.props.modalShow} cBackDrop={this.modalHandler} modalActiveNow={this.state.modalActiveNow} extended={this.state.extended} >
                     <ModalLogReg 
                     cBackDrop={this.modalHandler} 
@@ -750,7 +761,7 @@ export class Main extends Component {
                         </Col>
                     </Row>
                 </Container>
-
+            </SideDrawer>                        
             </div>
         );
 
