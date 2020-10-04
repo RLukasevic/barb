@@ -6,7 +6,8 @@
     left: -280px;
     top: 0;
     z-index: 900;
-    background-color: rgb(252, 223, 223);
+    background-color: #fff;
+    /*background-color: rgb(252, 223, 223);*/
     padding: 32px 16px;
     box-sizing: border-box;
     transition: transform 0.3s ease-out;
@@ -26,21 +27,54 @@
     transform: translateX(-100%);
 }
 
+.accountOptions {
+    margin-top: 30px;
+}
+
+.mainMenu {
+    margin-top: 20px;
+}
+
 .customRow {
     padding-left: 0px !important;
     display: block !important;
-    padding-top: 10px;
+    padding-top: 13px;
+    height: 50px;
+    background-color: #fff;
+    color: rgb(70, 68, 68);
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-align: center !important;
+    font-size: 16px;
+}
+
+.customRowActive {
+    padding-left: 0px !important;
+    display: block !important;
+    padding-top: 12px;
     height: 50px;
     background-color: #e22e39;
     color: #fff;
     font-weight: 800;
     margin-bottom: 20px;
     text-align: center !important;
-    font-size: 20px;
-    border-radius: 20px;
+    font-size: 16px
 }
 
 .customRow:hover {
     cursor: pointer;
-    background-color: #c21b25;
+    background-color: #e22e39;
+    color: #fff;
+}
+
+.separationStripe {
+    background-image: url(https://barbora.lt/Assets/Images/scroll-box-top.png);
+    background-repeat: no-repeat;
+    background-position: center 0;
+    display: block !important;
+    margin-bottom: 0px;
+    position: relative;
+    z-index: 1200;
+    width: 110%;
+    height: 5px;
 }

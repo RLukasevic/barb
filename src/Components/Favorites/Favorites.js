@@ -18,7 +18,11 @@ class Favorites extends Component {
     }
 
     accountSettingsButtonClicked() {
-        this.props.history.push('/account')
+        if (this.props.token) {
+            this.props.history.push('/account') 
+        } else {
+            this.props.authModalHandler();
+        }
     }
 
     render() {

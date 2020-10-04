@@ -187,9 +187,14 @@ export class Main extends Component {
                 break;
 
             case 'manoPrekes':
-                this.setState({...this.state, mmActiveNow: 'manoPrekes'});
-                this.props.history.push('/myfavorites')
-                break;
+                if (this.props.token) {
+                    this.setState({...this.state, mmActiveNow: 'manoPrekes'});
+                    this.props.history.push('/myfavorites')
+                    break;
+                } else {
+                    this.modalHandler();
+                    break;
+                }
 
             case 'Akcijos':
                 this.setState({...this.state, mmActiveNow: 'Akcijos'});
@@ -633,6 +638,7 @@ export class Main extends Component {
                             mmChanger={this.mmChanger}
                             listInCartPlusButton={(id) => this.listInCartPlusButton(id)}
                             listInCartMinusButton={(id) => this.listInCartMinusButton(id)}
+                            authModalHandler={() => this.modalHandler()}
                         />)
 
             case 'discounts':
@@ -686,7 +692,12 @@ export class Main extends Component {
 
         return (
             <div className={styles.wholeWrap} >
-                <SideDrawer >
+                <SideDrawer 
+                    token={this.props.token} 
+                    authModalHandler={this.modalHandler}
+                    logoutClicked={this.logoutHandler}
+                    history={this.props.history}
+                >
                 <Modal show={this.props.modalShow} cBackDrop={this.modalHandler} modalActiveNow={this.state.modalActiveNow} extended={this.state.extended} >
                     <ModalLogReg 
                     cBackDrop={this.modalHandler} 

@@ -6,7 +6,7 @@ class New extends Component {
     render() {
 
         return (
-            <div>
+            <div style={{"minHeight": "800px"}}>
                 <h4>Not Ready Yet</h4>
             </div>
         );
