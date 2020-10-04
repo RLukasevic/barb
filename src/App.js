@@ -16,15 +16,15 @@ class App extends Component {
 
     let routes = (
       <Switch>
-        <Route path='/' exact component={Main} />
         <Route path='/item/:id' render={(props) => (<Main {...props} pageMode={'details'} />)}  />
-        <Route path='/myfavorites' exact render={(props) => (<Main {...props} pageMode={'myfavorites'} />)}  />
-        <Route path='/discounts' exact render={(props) => (<Main {...props} pageMode={'discounts'} />)}  />
-        <Route path='/ekoirukis' exact render={(props) => (<Main {...props} pageMode={'ekoirukis'} />)}  />
-        <Route path='/new' exact render={(props) => (<Main {...props} pageMode={'new'} />)}  />
-        <Route path='/recipes' exact render={(props) => (<Main {...props} pageMode={'recipes'} />)}  />
-        <Route path='/history' exact render={(props) => (<Main {...props} pageMode={'history'} />)} />
-        <Route path='/account' exact render={(props) => (<Main {...props} pageMode={'account'} />)} />
+        <Route path='/myfavorites' render={(props) => (<Main {...props} pageMode={'myfavorites'} />)}  />
+        <Route path='/discounts' render={(props) => (<Main {...props} pageMode={'discounts'} />)}  />
+        <Route path='/ekoirukis' render={(props) => (<Main {...props} pageMode={'ekoirukis'} />)}  />
+        <Route path='/new' render={(props) => (<Main {...props} pageMode={'new'} />)}  />
+        <Route path='/recipes' render={(props) => (<Main {...props} pageMode={'recipes'} />)}  />
+        <Route path='/history' render={(props) => (<Main {...props} pageMode={'history'} />)} />
+        <Route path='/account' render={(props) => (<Main {...props} pageMode={'account'} />)} />
+        <Route path='/' exact component={Main} />
         <Redirect to='/' />        
       </Switch>
     );

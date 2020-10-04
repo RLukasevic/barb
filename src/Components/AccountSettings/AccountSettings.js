@@ -15,6 +15,8 @@ const AccountSettings = props => {
             if (props.data['email'] !== props.storeEmail) {
                 props.presetData();
             }
+
+            props.mmChanger('manoPrekes');
         })
     })
 

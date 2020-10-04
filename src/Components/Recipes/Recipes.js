@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 
 class Recipes extends Component {
 
+    componentDidMount() {
+        this.props.mmChanger('Receptai');
+    }
+
 
     render() {
 

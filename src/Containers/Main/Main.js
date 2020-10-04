@@ -642,19 +642,29 @@ export class Main extends Component {
                         />)
 
             case 'discounts':
-                return <Discounts />
+                return <Discounts 
+                            mmChanger={this.mmChanger}
+                        />
 
             case 'ekoirukis':
-                return <EkoIrUkis />
+                return <EkoIrUkis 
+                            mmChanger={this.mmChanger}
+                        />
 
             case 'new':
-                return <New />
+                return <New 
+                            mmChanger={this.mmChanger}
+                        />
 
             case 'recipes':
-                return <Recipes />
+                return <Recipes 
+                            mmChanger={this.mmChanger}
+                        />
 
             case 'history':
-                return <Orders/>
+                return <Orders
+                            mmChanger={this.mmChanger}
+                        />
 
             case 'account': 
                 return <AccountSettings
@@ -662,6 +672,7 @@ export class Main extends Component {
                             data={this.state.changeUserData}
                             presetData={this.setChangeData}
                             userDataModalHandler={this.userDataModalHandler}
+                            mmChanger={this.mmChanger}
                             changeHandler={this.onChangeHandler}
                             loading={this.props.loading}
                             handleModalButtonPress={this.handleModalButtonPress} 

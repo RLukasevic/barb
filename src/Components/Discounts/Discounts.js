@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 class Discounts extends Component {
 
+    componentDidMount() {
+        this.props.mmChanger('Akcijos');
+    }
 
     render() {
 

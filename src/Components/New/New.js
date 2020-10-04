@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 class New extends Component {
 
+    componentDidMount() {
+        this.props.mmChanger('Naujienos');
+    }
 
     render() {
 

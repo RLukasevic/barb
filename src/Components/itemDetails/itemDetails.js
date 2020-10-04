@@ -27,6 +27,7 @@ const Item = props => {
 
 
     useEffect(() => {
+        console.log('JA TUT BLEAT')
 
         if (props.favorited && props.favorited.includes(id) && fav === false) {
             changeFav(true);

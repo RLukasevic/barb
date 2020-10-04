@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 
 class EkoIrUkis extends Component {
 
+    componentDidMount() {
+        this.props.mmChanger('ekoIrUkis');
+    }
+
 
     render() {
 
