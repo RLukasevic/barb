@@ -6,6 +6,8 @@ import styles from './modalLogReg.module.css';
 
 
 const modalLogReg = props => {
+    console.log('email',props.loginData.email.valid)
+    console.log('pw',props.loginData.password.valid)
     return(
         <div className={styles.wholeModalWrap} style={props.extended ? {"height": "724px"} : null}>
             <div className={styles.headWrap}>
@@ -19,6 +21,8 @@ const modalLogReg = props => {
                 {props.loading ? <Spinner /> :
                 (props.activeNow === 'login' ? 
                     <ModalLoginModule 
+                    loginData={props.loginData}
+                    error={props.error}
                     handleModalButtonPress={props.handleModalButtonPress} 
                     handleModalButtonRelease={props.handleModalButtonRelease} 
                     modalPasswordMode={props.modalPasswordMode}
@@ -28,6 +32,8 @@ const modalLogReg = props => {
                     changeHandler={props.changeHandler} /> : 
 
                     <ModalRegisterModule 
+                    registerData={props.registerData}
+                    error={props.error}
                     handleModalButtonPress={props.handleModalButtonPress} 
                     handleModalButtonRelease={props.handleModalButtonRelease} 
                     modalPasswordMode={props.modalPasswordMode} 

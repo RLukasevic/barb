@@ -6,13 +6,32 @@ import { Row, Col } from 'react-bootstrap';
 const modalLoginModule = props => {
 
     return (
-        <form onSubmit={props.cSubmit}  >
+        <form >
+            {props.loginData.email.touched || props.loginData.password.touched ? null :
+                <Row sm={12} >
+                    <Col sm={8} >
+                        <label className={styles.greetingLine} >Sveiki, aciu, kad vel pas mus uzsukote!</label>
+                    </Col>
+                </Row>
+            }
 
-            <Row sm={12} >
-                <Col sm={8} >
-                    <label className={styles.greetingLine} >Sveiki, aciu, kad vel pas mus uzsukote!</label>
-                </Col>
-            </Row>
+            {props.error ? 
+                <Row sm={12}>
+                    <Col sm={8}>
+                        {props.error === "EMAIL_NOT_FOUND" ?
+                            <label className={styles.error}>Paskyra su jūsų e-mail`u neegzistuoja</label>
+                            :
+                            <label className={styles.error}>Neteisingas slaptažodis</label>
+                        }
+                    </Col>
+                </Row>
+
+                : null
+            }
+
+            {!props.loginData.email.valid && props.loginData.email.touched ? 
+                <Row className={styles.notValid}>El. Paštas turi atitikti pavyzdį *****@***.**</Row> : null
+            }
 
             <Row sm={12} className={styles.inputController}  >
                 <Col sm={4} className={styles.inputLabel} >
@@ -23,6 +42,10 @@ const modalLoginModule = props => {
                     <input onChange={(event) => props.changeHandler(event, 'signInData' , 'email')} className={styles.emailInput} type="email" name="email" id="email" placeholder="vardenis@pastas.lt" />
                 </Col>
             </Row>
+
+            {!props.loginData.password.valid && props.loginData.password.touched ? 
+                <Row className={styles.notValid}>Slaptažodis turi būti ne trumpesnis nei 6 simboliai</Row> : null
+            }
 
             <Row sm={12} className={styles.inputController}  >
                 <Col sm={4} className={styles.inputLabel} >
@@ -66,12 +89,18 @@ const modalLoginModule = props => {
 
             <Row sm={12} >
                 <Col className={styles.loginButtonCol} sm={{ span: 8, offset: 4 }} >
-                    <button className={styles.loginButton} onSubmit={props.cSubmit}  >Prisijungti</button>
+                    <button 
+                        className={props.loginData.formIsValid ? styles.loginButton : styles.loginButtonDisabled} 
+                        onClick={props.cSubmit} 
+                        disabled={props.loginData.formIsValid ? false : true}  
+                    >
+                        Prisijungti
+                    </button>
                 </Col>
             </Row>
 
             <Row sm={12} >
-                <Col className={styles.loginButtonCol} sm={{ span: 8, offset: 4 }} >
+                <Col onClick={props.cSubmit} className={styles.loginButtonCol} sm={{ span: 8, offset: 4 }} >
                     <a href="/" className={styles.passwordRecovery} >Priminti slaptazodi</a>
                 </Col>
             </Row>

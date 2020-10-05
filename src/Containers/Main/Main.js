@@ -21,27 +21,104 @@ import ModalCartBuy from '../../Components/Modal/modalCartBuy/modalCartBuy';
 import Orders from '../Orders/Orders';
 import AccountSettings from '../../Components/AccountSettings/AccountSettings';
 import SideDrawer from '../../Components/UI/SideDrawer/sideDrawer';
+import { validate } from '../../shared/utility';
 
 let calcOffset;
 
 export class Main extends Component {
     state = { 
         signInData: {
-            email: '',
-            password: '',
+            email: {
+                value: '',
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                    isEmail: true,
+                },
+            },
+            password: {
+                value: '',
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                    minLength: 6,
+                },
+            },
+            formIsValid: false,
             keepLoggedInChecked: false,
         },
 
         signUpData: {
-            email: '',
-            password: '',
-            city: '',
-            gatve: '',
-            butoNumeris: '',
-            name: '',
-            lastName: '',
-            phone: '',
+            email: {
+                value: '',
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                    isEmail: true,
+                },
+            },
+            password: {
+                value: '',
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                    minLength: 6,
+                },
+            },
+            city: {
+                value: '',
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                },
+            },
+            gatve: {
+                value: '',
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                },
+            },
+            butoNumeris: {
+                value: '',
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                },
+            },
+            name: {
+                value: '',
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                },
+            },
+            lastName: {
+                value: '',
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                },
+            },
+            phone: {
+                value: '',
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                },
+            },
 
+            formIsValid: false,
             policyChecked: false,
             getPersonalOfferEmailChecked: false,
             getOfferEmailChecked: false,
@@ -299,10 +376,33 @@ export class Main extends Component {
     }
 
     onChangeHandler = (event, mode, inputName) => {
+
+        let newValid = validate(event.target.value, this.state[mode][inputName].validation)
+        const tempForm = {...this.state[mode]}
+        let formIsValid = true;
+        for(let inputID in tempForm) {
+            if (inputID === inputName) {
+                formIsValid = newValid && formIsValid;
+            } else {
+                if (tempForm[inputID].valid === undefined) {
+                    formIsValid = formIsValid;
+                } else {
+                    formIsValid = tempForm[inputID].valid && formIsValid ;
+                }
+            }
+        }
+
         const newControls = {
             ...this.state[mode], 
-            [inputName]: event.target.value
+            [inputName]: {
+                ...this.state[mode][inputName],
+                value: event.target.value,
+                valid: newValid,
+                touched: true,
+            },
+            formIsValid: formIsValid,
         };
+
         this.setState({...this.state, [mode]: newControls});
     }
 
@@ -711,6 +811,8 @@ export class Main extends Component {
                 >
                 <Modal show={this.props.modalShow} cBackDrop={this.modalHandler} modalActiveNow={this.state.modalActiveNow} extended={this.state.extended} >
                     <ModalLogReg 
+                    loginData={this.state.signInData}
+                    registerData={this.state.signUpData}
                     cBackDrop={this.modalHandler} 
                     cHeaderOption={this.modalActiveToggle} 
                     activeNow={this.state.modalActiveNow} 
@@ -728,6 +830,7 @@ export class Main extends Component {
                     cSubmit={this.SubmitHandler}
                     changeHandler={this.onChangeHandler}
                     loading={this.props.loading}
+                    error={this.props.error}
                     />
                 </Modal>
 
@@ -793,6 +896,7 @@ export class Main extends Component {
 const mapStateToProps = state => {
     return {
         loading: state.auth.loading,
+        error: state.auth.error,
         modalShow: state.auth.modalShow,
         buyModalShow: state.home.buyModalShow,
         userDataModalShow: state.auth.userDataModalShow,

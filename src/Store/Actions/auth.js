@@ -75,8 +75,8 @@ export const auth = (mydata, mode) => {
             let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCkPNwi2DRyLPZiaBdVDW5gD_HijaFyk-U';
 
             const authData = {
-                email: mydata.email,
-                password: mydata.password,
+                email: mydata.email.value,
+                password: mydata.password.value,
                 returnSecureToken: true,
             };
 
@@ -114,8 +114,8 @@ export const auth = (mydata, mode) => {
             let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCkPNwi2DRyLPZiaBdVDW5gD_HijaFyk-U';
 
             const authData = {
-                email: mydata.email,
-                password: mydata.password,
+                email: mydata.email.value,
+                password: mydata.password.value,
                 returnSecureToken: true,
             };
 
@@ -146,14 +146,14 @@ export const additionalInfoPost = (mydata, token, localId) => {
         let url = '/accounts.json?auth=' + token;
 
         const userData = {
-            userEmail: mydata.email,
-            butoNumeris: mydata.butoNumeris,
-            city: mydata.city,
-            displayName: mydata.name + ' ' + mydata.lastName,
+            userEmail: mydata.email.value,
+            butoNumeris: mydata.butoNumeris.value,
+            city: mydata.city.value,
+            displayName: mydata.name.value + ' ' + mydata.lastName.value,
             favorited: ['null'],
-            gatve: mydata.gatve,
-            lastName: mydata.lastName,
-            name: mydata.name,
+            gatve: mydata.gatve.value,
+            lastName: mydata.lastName.value,
+            name: mydata.name.value,
             params: {
                 getMobileAppOfferChecked: mydata.getMobileAppOfferChecked,
                 getOfferEmailChecked: mydata.getOfferEmailChecked,
@@ -161,7 +161,7 @@ export const additionalInfoPost = (mydata, token, localId) => {
                 getSmsOfferChecked: mydata.getSmsOfferChecked,
                 policy: mydata.policyChecked,
             },
-            phone: mydata.phone,
+            phone: mydata.phone.value,
             localId: localId,
         };
 

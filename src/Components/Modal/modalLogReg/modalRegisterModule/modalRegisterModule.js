@@ -6,7 +6,21 @@ import { Row, Col } from 'react-bootstrap';
 const modalRegisterModule = props => {
 
     return (
-        <form onSubmit={props.cSubmit}  >
+        <form className={styles.wholeWrap}  >
+
+            {props.error ? 
+                <Row sm={12}>
+                    <Col sm={8}>
+                            <label className={styles.error}>{props.error}</label>
+                    </Col>
+                </Row>
+
+                : null
+            }
+
+            {!props.registerData.email.valid && props.registerData.email.touched ? 
+                <Row className={styles.notValid}>El. Paštas turi atitikti pavyzdį *****@***.**</Row> : null
+            }
 
             <Row sm={12} className={styles.inputController}  >
                 <Col sm={5} className={styles.inputLabel} >
@@ -17,6 +31,10 @@ const modalRegisterModule = props => {
                     <input onChange={(event) => props.changeHandler(event, 'signUpData' , 'email')} className={styles.emailInput} type="email" name="email" id="email" placeholder="vardenis@pastas.lt" />
                 </Col>
             </Row>
+
+            {!props.registerData.password.valid && props.registerData.password.touched ? 
+                <Row className={styles.notValid}>Slaptažodis turi būti ne trumpesnis nei 6 simboliai</Row> : null
+            }
 
             <Row sm={12} className={styles.inputController}  >
                 <Col sm={5} className={styles.inputLabel} >
@@ -162,7 +180,13 @@ const modalRegisterModule = props => {
 
             <Row sm={12} >
                 <Col className={styles.loginButtonCol} sm={{ span: 7, offset: 5 }} >
-                    <button className={styles.loginButton}  >Registruotis</button>
+                    <button 
+                        className={props.registerData.formIsValid ? styles.loginButton : styles.loginButtonDisabled} 
+                        disabled={props.registerData.formIsValid ? false : true}
+                        onClick={props.cSubmit} 
+                    >
+                        Registruotis
+                    </button>
                 </Col>
             </Row>
 
