@@ -44,6 +44,15 @@
     border: 1px solid #ccc;
 }
 
+.emailInputNotValid {
+    height: 34px;
+    width: 100%;
+    padding: 0 4px;
+    outline: 0 !important;
+    font-size: .8125rem;
+    border: 2px solid #c21b25;
+}
+
 .passwordInputCol {
     padding: 0px 10px !important;
     height: 34px;
@@ -56,6 +65,15 @@
     outline: 0 !important;
     font-size: .8125rem;
     border: 1px solid #ccc;
+}
+
+.passwordInputNotValid {
+    height: 34px;
+    width: 80%;
+    padding: 0 4px;
+    outline: 0 !important;
+    font-size: .8125rem;
+    border: 2px solid #c21b25;
 }
 
 .eyeButton {
@@ -146,4 +164,15 @@
 .passwordRecovery:hover {
     color: #c21b25;
     text-decoration: none;
+}
+
+.notValid {
+    width: 450px;
+    display: block;
+    margin-top: 5px;
+    margin-left: 80px !important;
+    text-align: center !important;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #e22e39;
 }

@@ -39,7 +39,15 @@ const modalLoginModule = props => {
                 </Col>
 
                 <Col sm={8} className={styles.emailInputCol} >
-                    <input onChange={(event) => props.changeHandler(event, 'signInData' , 'email')} className={styles.emailInput} type="email" name="email" id="email" placeholder="vardenis@pastas.lt" />
+                    <input 
+                        onChange={(event) => props.changeHandler(event, 'signInData' , 'email')} 
+                        onClick={(event) => props.changeHandler(event, 'signInData', 'email')}
+                        className={!props.loginData.email.valid && props.loginData.email.touched ? styles.emailInputNotValid : styles.emailInput} 
+                        type="email" 
+                        name="email" 
+                        id="email" 
+                        placeholder="vardenis@pastas.lt" 
+                    />
                 </Col>
             </Row>
 
@@ -53,7 +61,15 @@ const modalLoginModule = props => {
                 </Col>
 
                 <Col sm={8} className={styles.passwordInputCol} >
-                    <input onChange={(event) => props.changeHandler(event, 'signInData' , 'password')} className={styles.passwordInput} type={props.modalPasswordMode} id="pwd" name="pwd" placeholder="*******" />
+                    <input 
+                        onChange={(event) => props.changeHandler(event, 'signInData' , 'password')} 
+                        onClick={(event) => props.changeHandler(event, 'signInData', 'password')}
+                        className={!props.loginData.password.valid && props.loginData.password.touched ? styles.passwordInputNotValid : styles.passwordInput} 
+                        type={props.modalPasswordMode} 
+                        id="pwd" 
+                        name="pwd" 
+                        placeholder="*******" 
+                    />
                     <button type='button' className={styles.eyeButton} onMouseDown={props.handleModalButtonPress} onMouseUp={props.handleModalButtonRelease} >
 
                         <svg display={props.modalPasswordMode === "password" ? 'inline-block' : 'none'} style={{"width": "1em", "height": "1em"}} >

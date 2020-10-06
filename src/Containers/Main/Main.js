@@ -127,16 +127,90 @@ export class Main extends Component {
         },
 
         changeUserData: {
-            email: null,
-            newEmail: '',
-            password: '',
-            newPassword: '',
-            city: null,
-            gatve: null,
-            butoNumeris: null,
-            name: null,
-            lastName: null,
-            phone: null,
+            email: {
+                value: null,
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                    isEmail: true,
+                },
+            },
+            newEmail: {
+                value: '',
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                    isEmail: true,
+                },
+            },
+            password: {
+                value: '',
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                    minLength: 6,
+                },
+            },
+            newPassword: {
+                value: '',
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                    minLength: 6,
+                },
+            },
+            city: {
+                value: null,
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                },
+            },
+            gatve: {
+                value: null,
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                },
+            },
+            butoNumeris: {
+                value: null,
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                },
+            },
+            name: {
+                value: null,
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                },
+            },
+            lastName: {
+                value: null,
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                },
+            },
+            phone: {
+                value: null,
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                },
+            },
 
             policyChecked: false,
             getPersonalOfferEmailChecked: false,
@@ -429,16 +503,91 @@ export class Main extends Component {
 
     setChangeData = () => {
         let temp = {
-            email: this.props.accountSettings.email,
-            newEmail: '',
-            password: '',
-            newPassword: '',
-            city: this.props.accountSettings.city,
-            gatve: this.props.accountSettings.adress,
-            butoNumeris: this.props.accountSettings.appartmentHouseNumber,
-            name: this.props.accountSettings.name,
-            lastName: this.props.accountSettings.lastName,
-            phone: this.props.accountSettings.phone,
+            email: {
+                value: this.props.accountSettings.email,
+                valid: true,
+                touched: true,
+                validation: {
+                    required: true,
+                    isEmail: true,
+                },
+            },
+            newEmail: {
+                value: '',
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                    isEmail: true,
+                },
+            },
+            password: {
+                value: '',
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                    minLength: 6,
+                },
+            },
+            newPassword: {
+                value: '',
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                    minLength: 6,
+                },
+            },
+            city: {
+                value: this.props.accountSettings.city,
+                valid: true,
+                touched: true,
+                validation: {
+                    required: true,
+                },
+            },
+            gatve: {
+                value: this.props.accountSettings.adress,
+                valid: true,
+                touched: true,
+                validation: {
+                    required: true,
+                },
+            },
+            butoNumeris: {
+                value: this.props.accountSettings.appartmentHouseNumber,
+                valid: true,
+                touched: true,
+                validation: {
+                    required: true,
+                },
+            },
+            name: {
+                value: this.props.accountSettings.name,
+                valid: true,
+                touched: true,
+                validation: {
+                    required: true,
+                },
+            },
+            lastName: {
+                value: this.props.accountSettings.lastName,
+                valid: true,
+                touched: true,
+                validation: {
+                    required: true,
+                },
+            },
+            phone: {
+                value: this.props.accountSettings.phone,
+                valid: true,
+                touched: true,
+                validation: {
+                    required: true,
+                },
+            },
+
             policyChecked: this.props.accountSettings.policyChecked,
             getPersonalOfferEmailChecked: this.props.accountSettings.getPersonalOfferEmailChecked,
             getOfferEmailChecked: this.props.accountSettings.getOfferEmailChecked,
@@ -529,14 +678,14 @@ export class Main extends Component {
         switch (mode) {
             case 'standard':
                 temp = {
-                    email: this.state.changeUserData.email,
-                    password: this.state.changeUserData.password,
-                    city: this.state.changeUserData.city,
-                    gatve: this.state.changeUserData.gatve,
-                    butoNumeris: this.state.changeUserData.butoNumeris,
-                    name: this.state.changeUserData.name,
-                    lastName: this.state.changeUserData.lastName,
-                    phone: this.state.changeUserData.phone,
+                    email: this.state.changeUserData.email.value,
+                    password: this.state.changeUserData.password.value,
+                    city: this.state.changeUserData.city.value,
+                    gatve: this.state.changeUserData.gatve.value,
+                    butoNumeris: this.state.changeUserData.butoNumeris.value,
+                    name: this.state.changeUserData.name.value,
+                    lastName: this.state.changeUserData.lastName.value,
+                    phone: this.state.changeUserData.phone.value,
         
                     policyChecked: this.state.changeUserData.policyChecked,
                     getPersonalOfferEmailChecked: this.state.changeUserData.getPersonalOfferEmailChecked,
@@ -549,18 +698,18 @@ export class Main extends Component {
                 break;
             case 'emailChange':
                 temp = {
-                    email: this.state.changeUserData.email,
-                    newEmail: this.state.changeUserData.newEmail,
-                    password: this.state.changeUserData.password,
+                    email: this.state.changeUserData.email.value,
+                    newEmail: this.state.changeUserData.newEmail.value,
+                    password: this.state.changeUserData.password.value,
                 }
 
                 this.props.userDataChangeEmail(temp);
                 break;
             case 'passwordChange':
                 temp = {
-                    email: this.state.changeUserData.email,
-                    password: this.state.changeUserData.password,
-                    newPassword: this.state.changeUserData.newPassword,
+                    email: this.state.changeUserData.email.value,
+                    password: this.state.changeUserData.password.value,
+                    newPassword: this.state.changeUserData.newPassword.value,
                 }
 
                 this.props.userDataChangePassword(temp);
@@ -575,9 +724,24 @@ export class Main extends Component {
             ...this.state, 
             changeUserData: {
                 ...this.state.changeUserData, 
-                newEmail: '',
-                password: '',
-                newPassword: '',
+                newEmail: {
+                    ...this.state.changeUserData.newEmail,
+                    value: '',
+                    valid: false,
+                    touched: false,
+                },
+                password: {
+                    ...this.state.changeUserData.password,
+                    value: '',
+                    valid: false,
+                    touched: false,
+                },
+                newPassword: {
+                    ...this.state.changeUserData.newPassword,
+                    value: '',
+                    valid: false,
+                    touched: false,
+                },
             },
         });
         this.props.successfulChangeClose();
@@ -585,15 +749,90 @@ export class Main extends Component {
 
     logoutHandler = () => {
         let temp = {
-            email: '',
-            password: '',
-            newPassword: '',
-            city: '',
-            gatve: '',
-            butoNumeris: '',
-            name: '',
-            lastName: '',
-            phone: '',
+            email: {
+                value: null,
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                    isEmail: true,
+                },
+            },
+            newEmail: {
+                value: '',
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                    isEmail: true,
+                },
+            },
+            password: {
+                value: '',
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                    minLength: 6,
+                },
+            },
+            newPassword: {
+                value: '',
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                    minLength: 6,
+                },
+            },
+            city: {
+                value: null,
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                },
+            },
+            gatve: {
+                value: null,
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                },
+            },
+            butoNumeris: {
+                value: null,
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                },
+            },
+            name: {
+                value: null,
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                },
+            },
+            lastName: {
+                value: null,
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                },
+            },
+            phone: {
+                value: null,
+                valid: false,
+                touched: false,
+                validation: {
+                    required: true,
+                },
+            },
 
             policyChecked: false,
             getPersonalOfferEmailChecked: false,
@@ -849,6 +1088,7 @@ export class Main extends Component {
                 />
 
                 <ModalChangeUserData
+                    error={this.props.userCredentialsError}
                     show={this.props.userDataModalShow}
                     cBackDrop={this.userDataModalHandler}
                     handleModalButtonPress={this.handleModalButtonPress} 
@@ -897,6 +1137,7 @@ const mapStateToProps = state => {
     return {
         loading: state.auth.loading,
         error: state.auth.error,
+        userCredentialsError: state.auth.userCredentialsError,
         modalShow: state.auth.modalShow,
         buyModalShow: state.home.buyModalShow,
         userDataModalShow: state.auth.userDataModalShow,

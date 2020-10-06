@@ -28,7 +28,15 @@ const modalRegisterModule = props => {
                 </Col>
 
                 <Col sm={7} className={styles.emailInputCol} >
-                    <input onChange={(event) => props.changeHandler(event, 'signUpData' , 'email')} className={styles.emailInput} type="email" name="email" id="email" placeholder="vardenis@pastas.lt" />
+                    <input 
+                        onChange={(event) => props.changeHandler(event, 'signUpData' , 'email')} 
+                        onClick={(event) => props.changeHandler(event, 'signUpData', 'email')}
+                        className={!props.registerData.email.valid && props.registerData.email.touched ? styles.emailInputNotValid : styles.emailInput} 
+                        type="email" 
+                        name="email" 
+                        id="email" 
+                        placeholder="vardenis@pastas.lt" 
+                    />
                 </Col>
             </Row>
 
@@ -42,7 +50,15 @@ const modalRegisterModule = props => {
                 </Col>
 
                 <Col sm={7} className={styles.passwordInputCol} >
-                    <input onChange={(event) => props.changeHandler(event, 'signUpData' , 'password')} className={styles.passwordInput} type={props.modalPasswordMode} id="pwd" name="pwd" placeholder="*******" />
+                    <input 
+                        onChange={(event) => props.changeHandler(event, 'signUpData' , 'password')} 
+                        onClick={(event) => props.changeHandler(event, 'signUpData', 'password')}
+                        className={!props.registerData.password.valid && props.registerData.password.touched ? styles.passwordInputNotValid : styles.passwordInput} 
+                        type={props.modalPasswordMode} 
+                        id="pwd" 
+                        name="pwd" 
+                        placeholder="*******" 
+                    />
                     <button type='button' className={styles.eyeButton} onMouseDown={props.handleModalButtonPress} onMouseUp={props.handleModalButtonRelease} >
 
                         <svg display={props.modalPasswordMode === "password" ? 'inline-block' : 'none'} style={{"width": "1em", "height": "1em"}} >
@@ -73,7 +89,15 @@ const modalRegisterModule = props => {
                 </Col>
 
                 <Col sm={7} className={styles.emailInputCol} >
-                    <input onChange={(event) => props.changeHandler(event, 'signUpData' , 'city')} className={styles.emailInput} type="text" name="miestas" id="miestas" placeholder="Vilniaus miestas / rajonas" />
+                    <input 
+                        onChange={(event) => props.changeHandler(event, 'signUpData' , 'city')} 
+                        onClick={(event) => props.changeHandler(event, 'signUpData', 'city')}
+                        className={!props.registerData.city.valid && props.registerData.city.touched ? styles.emailInputNotValid : styles.emailInput} 
+                        type="text" 
+                        name="miestas" 
+                        id="miestas" 
+                        placeholder="Vilniaus miestas / rajonas" 
+                    />
                 </Col>
             </Row>
 
@@ -83,7 +107,15 @@ const modalRegisterModule = props => {
                 </Col>
 
                 <Col sm={7} className={styles.emailInputCol} >
-                    <input onChange={(event) => props.changeHandler(event, 'signUpData' , 'gatve')} className={styles.emailInput} type="text" name="gatve" id="gatve" placeholder="Pradekite vesti ir issirinkite is saraso" />
+                    <input 
+                        onChange={(event) => props.changeHandler(event, 'signUpData' , 'gatve')} 
+                        onClick={(event) => props.changeHandler(event, 'signUpData', 'gatve')}
+                        className={!props.registerData.gatve.valid && props.registerData.gatve.touched ? styles.emailInputNotValid : styles.emailInput} 
+                        type="text" 
+                        name="gatve" 
+                        id="gatve" 
+                        placeholder="Pradekite vesti ir issirinkite is saraso" 
+                    />
                 </Col>
             </Row>
 
@@ -93,7 +125,15 @@ const modalRegisterModule = props => {
                 </Col>
 
                 <Col sm={7} className={styles.emailInputCol} >
-                    <input onChange={(event) => props.changeHandler(event, 'signUpData' , 'butoNumeris')} className={styles.emailInput} type="text" name="butas" id="butas" placeholder="00" />
+                    <input 
+                        onChange={(event) => props.changeHandler(event, 'signUpData' , 'butoNumeris')} 
+                        onClick={(event) => props.changeHandler(event, 'signUpData', 'butoNumeris')}
+                        className={!props.registerData.butoNumeris.valid && props.registerData.butoNumeris.touched ? styles.emailInputNotValid : styles.emailInput} 
+                        type="text" 
+                        name="butas" 
+                        id="butas" 
+                        placeholder="00" 
+                    />
                 </Col>
             </Row>
 
@@ -103,7 +143,15 @@ const modalRegisterModule = props => {
                 </Col>
 
                 <Col sm={7} className={styles.emailInputCol} >
-                    <input onChange={(event) => props.changeHandler(event, 'signUpData' , 'name')} className={styles.emailInput} type="text" name="vardas" id="vardas" placeholder="Vardenis" />
+                    <input 
+                        onChange={(event) => props.changeHandler(event, 'signUpData' , 'name')} 
+                        onClick={(event) => props.changeHandler(event, 'signUpData', 'name')}
+                        className={!props.registerData.name.valid && props.registerData.name.touched ? styles.emailInputNotValid : styles.emailInput} 
+                        type="text" 
+                        name="vardas" 
+                        id="vardas" 
+                        placeholder="Vardenis" 
+                    />
                 </Col>
             </Row>
 
@@ -113,7 +161,15 @@ const modalRegisterModule = props => {
                 </Col>
 
                 <Col sm={7} className={styles.emailInputCol} >
-                    <input onChange={(event) => props.changeHandler(event, 'signUpData' , 'lastName')} className={styles.emailInput} type="text" name="pavarde" id="pavarde" placeholder="Pavardenis" />
+                    <input 
+                        onChange={(event) => props.changeHandler(event, 'signUpData' , 'lastName')} 
+                        onClick={(event) => props.changeHandler(event, 'signUpData', 'lastName')}
+                        className={!props.registerData.lastName.valid && props.registerData.lastName.touched ? styles.emailInputNotValid : styles.emailInput} 
+                        type="text" 
+                        name="pavarde" 
+                        id="pavarde" 
+                        placeholder="Pavardenis" 
+                    />
                 </Col>
             </Row>
 
@@ -123,7 +179,15 @@ const modalRegisterModule = props => {
                 </Col>
 
                 <Col sm={7} className={styles.emailInputCol} >
-                    <input onChange={(event) => props.changeHandler(event, 'signUpData' , 'phone')} className={styles.emailInput} type="text" name="phone" id="phone" placeholder="+37060000000" />
+                    <input 
+                        onChange={(event) => props.changeHandler(event, 'signUpData' , 'phone')} 
+                        onClick={(event) => props.changeHandler(event, 'signUpData', 'phone')}
+                        className={!props.registerData.phone.valid && props.registerData.phone.touched ? styles.emailInputNotValid : styles.emailInput} 
+                        type="text" 
+                        name="phone" 
+                        id="phone" 
+                        placeholder="+37060000000" 
+                    />
                 </Col>
             </Row>
 

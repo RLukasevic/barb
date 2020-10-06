@@ -10,13 +10,34 @@ const modalChangeUserData = props => {
 
     if (props.mode === 'standard') {
     content =   <div>
+                    {props.error ? 
+                        <Row sm={12}>
+                            <Col sm={8}>
+                                    <label className={styles.error}>Neteisingas slaptažodis</label>
+                            </Col>
+                        </Row>
+
+                        : null
+                    }
+
+                    {!props.data.password.valid && props.data.password.touched ? 
+                        <Row className={styles.notValid}>Slaptažodis turi būti ne trumpesnis nei 6 simboliai</Row> : null
+                    }
                     <Row sm={12} className={styles.inputController}  >
                         <Col sm={5} className={styles.inputLabel} style={{"margin-top": "40px"}} >
                             <label htmlFor="pwd">Slaptazodis</label>
                         </Col>
 
                         <Col sm={7} className={styles.passwordInputCol} style={{"margin-top": "40px"}} >
-                            <input onChange={(event) => props.changeHandler(event, 'changeUserData' , 'password')} value={props.data.password} className={styles.passwordInput} type={props.modalPasswordMode} id="pwd" name="pwd" placeholder="*******" />
+                            <input 
+                                onChange={(event) => props.changeHandler(event, 'changeUserData' , 'password')} 
+                                value={props.data.password.value} 
+                                className={!props.data.password.valid && props.data.password.touched ? styles.passwordInputNotValid : styles.passwordInput} 
+                                type={props.modalPasswordMode} 
+                                id="pwd" 
+                                name="pwd" 
+                                placeholder="*******" 
+                            />
                             <button type='button' className={styles.eyeButton} onMouseDown={props.handleModalButtonPress} onMouseUp={props.handleModalButtonRelease} >
 
                                 <svg display={props.modalPasswordMode === "password" ? 'inline-block' : 'none'} style={{"width": "1em", "height": "1em"}} >
@@ -43,7 +64,13 @@ const modalChangeUserData = props => {
 
                     <Row sm={12} >
                         <Col className={styles.loginButtonCol} sm={{ span: 7, offset: 5 }} >
-                            <button className={styles.loginButton} onClick={() => props.cSubmit('standard')} >Testi</button>
+                            <button 
+                                className={props.data.password.valid ? styles.loginButton : styles.loginButtonDisabled} 
+                                disabled={props.data.password.valid ? false : true}  
+                                onClick={() => props.cSubmit('standard')} 
+                            >
+                                Testi
+                            </button>
                         </Col>
                     </Row>
 
@@ -52,15 +79,40 @@ const modalChangeUserData = props => {
 
     if (props.mode === 'emailChange') {
     content =   <div >
+                    {props.error ? 
+                        <Row sm={12}>
+                            <Col sm={8}>
+                                    <label className={styles.error}>Neteisingas slaptažodis</label>
+                            </Col>
+                        </Row>
+
+                        : null
+                    }
+
+                    {!props.data.newEmail.valid && props.data.newEmail.touched ? 
+                        <Row className={styles.notValid}>El. Paštas turi atitikti pavyzdį *****@***.**</Row> : null
+                    }
                     <Row sm={12} className={styles.inputController}  >
                         <Col sm={5} className={styles.inputLabel} >
                             <label htmlFor="email">Naujas El. Pastas:</label>
                         </Col>
 
                         <Col sm={7} className={styles.emailInputCol} >
-                            <input onChange={(event) => props.changeHandler(event, 'changeUserData' , 'newEmail')} value={props.data.newEmail} className={styles.emailInput} type="email" name="email" id="email" placeholder="vardenis@pastas.lt" />
+                            <input 
+                                onChange={(event) => props.changeHandler(event, 'changeUserData' , 'newEmail')} 
+                                value={props.data.newEmail.value} 
+                                className={!props.data.newEmail.valid && props.data.newEmail.touched ? styles.emailInputNotValid : styles.emailInput} 
+                                type="email" 
+                                name="email" 
+                                id="email" 
+                                placeholder="vardenis@pastas.lt" 
+                            />
                         </Col>
                     </Row>
+
+                    {!props.data.password.valid && props.data.password.touched ? 
+                        <Row className={styles.notValid}>Slaptažodis turi būti ne trumpesnis nei 6 simboliai</Row> : null
+                    }
 
                     <Row sm={12} className={styles.inputController}  >
                         <Col sm={5} className={styles.inputLabel} >
@@ -68,7 +120,15 @@ const modalChangeUserData = props => {
                         </Col>
 
                         <Col sm={7} className={styles.passwordInputCol} >
-                            <input onChange={(event) => props.changeHandler(event, 'changeUserData' , 'password')} value={props.data.password} className={styles.passwordInput} type={props.modalPasswordMode} id="pwd" name="pwd" placeholder="*******" />
+                            <input 
+                                onChange={(event) => props.changeHandler(event, 'changeUserData' , 'password')} 
+                                value={props.data.password.value} 
+                                className={!props.data.password.valid && props.data.password.touched ? styles.emailInputNotValid : styles.emailInput}  
+                                type={props.modalPasswordMode} 
+                                id="pwd" 
+                                name="pwd" 
+                                placeholder="*******" 
+                            />
                             <button type='button' className={styles.eyeButton} onMouseDown={props.handleModalButtonPress} onMouseUp={props.handleModalButtonRelease} >
 
                                 <svg display={props.modalPasswordMode === "password" ? 'inline-block' : 'none'} style={{"width": "1em", "height": "1em"}} >
@@ -95,7 +155,13 @@ const modalChangeUserData = props => {
 
                     <Row sm={12} >
                         <Col className={styles.loginButtonCol} sm={{ span: 7, offset: 5 }} >
-                            <button className={styles.loginButton} onClick={() => props.cSubmit('emailChange')} >Testi</button>
+                            <button 
+                                className={props.data.password.valid && props.data.newEmail.valid ? styles.loginButton : styles.loginButtonDisabled} 
+                                disabled={props.data.password.valid && props.data.newEmail.valid ? false : true}  
+                                onClick={() => props.cSubmit('emailChange')} 
+                            >
+                                Testi
+                            </button>
                         </Col>
                     </Row>
 
@@ -104,13 +170,35 @@ const modalChangeUserData = props => {
 
     if (props.mode === 'passwordChange') {
     content =   <div >
+                    {props.error ? 
+                        <Row sm={12}>
+                            <Col sm={8}>
+                                    <label className={styles.error}>Neteisingas slaptažodis</label>
+                            </Col>
+                        </Row>
+
+                        : null
+                    }
+
+                    {!props.data.newPassword.valid && props.data.newPassword.touched ? 
+                        <Row className={styles.notValid}>Slaptažodis turi būti ne trumpesnis nei 6 simboliai</Row> : null
+                    }
+
                     <Row sm={12} className={styles.inputController}  >
                         <Col sm={5} className={styles.inputLabel} >
                             <label htmlFor="newpwd">Naujas Slaptazodis</label>
                         </Col>
 
                         <Col sm={7} className={styles.passwordInputCol} >
-                            <input onChange={(event) => props.changeHandler(event, 'changeUserData' , 'newPassword')} value={props.data.newPassword} className={styles.passwordInput} type={props.modalPasswordMode} id="newpwd" name="newpwd" placeholder="*******" />
+                            <input 
+                                onChange={(event) => props.changeHandler(event, 'changeUserData' , 'newPassword')} 
+                                value={props.data.newPassword.value} 
+                                className={!props.data.newPassword.valid && props.data.newPassword.touched ? styles.emailInputNotValid : styles.emailInput} 
+                                type={props.modalPasswordMode} 
+                                id="newpwd" 
+                                name="newpwd" 
+                                placeholder="*******" 
+                            />
                             <button type='button' className={styles.eyeButton} onMouseDown={props.handleModalButtonPress} onMouseUp={props.handleModalButtonRelease} >
 
                                 <svg display={props.modalPasswordMode === "password" ? 'inline-block' : 'none'} style={{"width": "1em", "height": "1em"}} >
@@ -135,13 +223,25 @@ const modalChangeUserData = props => {
                         </Col>
                     </Row>
 
+                    {!props.data.password.valid && props.data.password.touched ? 
+                        <Row className={styles.notValid}>Slaptažodis turi būti ne trumpesnis nei 6 simboliai</Row> : null
+                    }
+
                     <Row sm={12} className={styles.inputController}  >
                         <Col sm={5} className={styles.inputLabel} >
                             <label htmlFor="pwd">Senas Slaptazodis</label>
                         </Col>
 
                         <Col sm={7} className={styles.passwordInputCol} >
-                            <input onChange={(event) => props.changeHandler(event, 'changeUserData' , 'password')} value={props.data.password} className={styles.passwordInput} type={props.modalPasswordMode} id="pwd" name="pwd" placeholder="*******" />
+                            <input 
+                                onChange={(event) => props.changeHandler(event, 'changeUserData' , 'password')} 
+                                value={props.data.password.value} 
+                                className={!props.data.password.valid && props.data.password.touched ? styles.emailInputNotValid : styles.emailInput} 
+                                type={props.modalPasswordMode} 
+                                id="pwd" 
+                                name="pwd" 
+                                placeholder="*******" 
+                            />
                             <button type='button' className={styles.eyeButton} onMouseDown={props.handleModalButtonPress} onMouseUp={props.handleModalButtonRelease} >
 
                                 <svg display={props.modalPasswordMode === "password" ? 'inline-block' : 'none'} style={{"width": "1em", "height": "1em"}} >
@@ -168,7 +268,13 @@ const modalChangeUserData = props => {
 
                     <Row sm={12} >
                         <Col className={styles.loginButtonCol} sm={{ span: 7, offset: 5 }} >
-                            <button className={styles.loginButton} onClick={() => props.cSubmit('passwordChange')} >Testi</button>
+                            <button 
+                                className={props.data.password.valid && props.data.newPassword.valid ? styles.loginButton : styles.loginButtonDisabled} 
+                                disabled={props.data.password.valid && props.data.newPassword.valid ? false : true}  
+                                onClick={() => props.cSubmit('passwordChange')} 
+                            >
+                                Testi
+                            </button>
                         </Col>
                     </Row>
 
@@ -182,7 +288,7 @@ const modalChangeUserData = props => {
             style={{
                 transform: props.show ? 'translateY(0)' : 'translateY(-100vh)', 
                 opacity: props.show ? '1': '0' ,  
-                height: "200px",
+                minHeight: "280px",
                 }}>
                     {content}
             </div>

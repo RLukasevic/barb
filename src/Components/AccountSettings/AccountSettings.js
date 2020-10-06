@@ -8,11 +8,11 @@ const AccountSettings = props => {
 
     useEffect(() => {
         Object.keys(props.data).map(key => {
-            if (props.data[key] === null) {
+            if (props.data[key].value === null) {
                 console.log('kek')
                 props.presetData();
             }
-            if (props.data['email'] !== props.storeEmail) {
+            if (props.data['email'].value !== props.storeEmail) {
                 props.presetData();
             }
 
@@ -33,17 +33,17 @@ const AccountSettings = props => {
 
             <Row sm={12} className={styles.inputController}  >
                 <Col sm={3} className={styles.inputLabel} >
-                    <label htmlFor="miestas">Miestas:</label>
+                    <label htmlFor="city">Miestas:</label>
                 </Col>
 
                 <Col sm={7} className={styles.emailInputCol} >
                     <input 
                         onChange={(event) => props.changeHandler(event, 'changeUserData' , 'city')} 
-                        defaultValue={props.data.city} 
-                        className={styles.emailInput} 
+                        defaultValue={props.data.city.value} 
+                        className={!props.data.city.valid && props.data.city.touched ? styles.emailInputNotValid : styles.emailInput} 
                         type="text"
-                        name="gatve" 
-                        id="miestas" 
+                        name="city" 
+                        id="city" 
                         placeholder="Vilniaus miestas / rajonas" 
                     />
                 </Col>
@@ -57,8 +57,8 @@ const AccountSettings = props => {
                 <Col sm={7} className={styles.emailInputCol} >
                     <input 
                         onChange={(event) => props.changeHandler(event, 'changeUserData' , 'gatve')} 
-                        defaultValue={props.data.gatve}
-                        className={styles.emailInput} 
+                        defaultValue={props.data.gatve.value}
+                        className={!props.data.gatve.valid && props.data.gatve.touched ? styles.emailInputNotValid : styles.emailInput} 
                         type="text" 
                         name="gatve" 
                         id="gatve" 
@@ -75,8 +75,8 @@ const AccountSettings = props => {
                 <Col sm={7} className={styles.emailInputCol} >
                     <input 
                         onChange={(event) => props.changeHandler(event, 'changeUserData' , 'butoNumeris')} 
-                        defaultValue={props.data.butoNumeris} 
-                        className={styles.emailInput} 
+                        defaultValue={props.data.butoNumeris.value} 
+                        className={!props.data.butoNumeris.valid && props.data.butoNumeris.touched ? styles.emailInputNotValid : styles.emailInput}  
                         type="text" 
                         name="butas" 
                         id="butas" 
@@ -93,8 +93,8 @@ const AccountSettings = props => {
                 <Col sm={7} className={styles.emailInputCol} >
                     <input 
                         onChange={(event) => props.changeHandler(event, 'changeUserData' , 'name')} 
-                        defaultValue={props.data.name} 
-                        className={styles.emailInput} 
+                        defaultValue={props.data.name.value} 
+                        className={!props.data.name.valid && props.data.name.touched ? styles.emailInputNotValid : styles.emailInput} 
                         type="text" 
                         name="vardas" 
                         id="vardas" 
@@ -111,8 +111,8 @@ const AccountSettings = props => {
                 <Col sm={7} className={styles.emailInputCol} >
                     <input 
                         onChange={(event) => props.changeHandler(event, 'changeUserData' , 'lastName')} 
-                        defaultValue={props.data.lastName} 
-                        className={styles.emailInput} 
+                        defaultValue={props.data.lastName.value} 
+                        className={!props.data.lastName.valid && props.data.lastName.touched ? styles.emailInputNotValid : styles.emailInput} 
                         type="text" 
                         name="pavarde" 
                         id="pavarde" 
@@ -129,8 +129,8 @@ const AccountSettings = props => {
                 <Col sm={7} className={styles.emailInputCol} >
                     <input 
                         onChange={(event) => props.changeHandler(event, 'changeUserData' , 'phone')} 
-                        defaultValue={props.data.phone} 
-                        className={styles.emailInput} 
+                        defaultValue={props.data.phone.value} 
+                        className={!props.data.phone.valid && props.data.phone.touched ? styles.emailInputNotValid : styles.emailInput} 
                         type="text" 
                         name="phone" 
                         id="phone" 
@@ -186,7 +186,27 @@ const AccountSettings = props => {
 
             <Row sm={12} >
                 <Col className={styles.loginButtonCol} sm={{ span: 7, offset: 5 }} >
-                    <button className={styles.loginButton} onClick={() => props.userDataModalHandler('standard')} >Atnaujinti</button>
+                    <button 
+                        className={
+                            props.data.email.valid && 
+                            props.data.city.valid && 
+                            props.data.gatve.valid && 
+                            props.data.butoNumeris.valid &&
+                            props.data.name.valid && 
+                            props.data.lastName.valid &&
+                            props.data.phone.valid ? styles.loginButton : styles.loginButtonDisabled} 
+                        disabled={
+                            props.data.email.valid && 
+                            props.data.city.valid && 
+                            props.data.gatve.valid && 
+                            props.data.butoNumeris.valid &&
+                            props.data.name.valid && 
+                            props.data.lastName.valid &&
+                            props.data.phone.valid ? false : true}  
+                        onClick={() => props.userDataModalHandler('standard')} 
+                    >
+                        Atnaujinti
+                    </button>
                 </Col>
             </Row>
         </div>
