@@ -1,4 +1,38 @@
+@media (min-width: 240px) {
+    .cartWrap {
+        display: none !important;
+    }
 
+    .footer {
+        display: none;
+    }
+
+    .krepselisWrap {
+        display: none;
+    }
+    
+    .ProductWholewrap {
+        display: none !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .cartWrap {
+        display: flex !important;
+    }
+
+    .footer {
+        display: block;
+    }
+
+    .krepselisWrap {
+        display: block;
+    }
+
+    .ProductWholewrap {
+        display: flex !important;
+    }
+}
 
 
 .cartWrap {

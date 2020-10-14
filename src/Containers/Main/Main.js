@@ -21,6 +21,7 @@ import ModalCartBuy from '../../Components/Modal/modalCartBuy/modalCartBuy';
 import Orders from '../Orders/Orders';
 import AccountSettings from '../../Components/AccountSettings/AccountSettings';
 import SideDrawer from '../../Components/UI/SideDrawer/sideDrawer';
+import MobileCart from '../../Components/MobileCart/MobileCart';
 import { validate } from '../../shared/utility';
 
 let calcOffset;
@@ -909,6 +910,7 @@ export class Main extends Component {
     }
 
     listInCartPlusButton = (id) => {
+        console.log('clickedplus ', id)
         let cartFinalPrice =  Number(this.props.cartParams.cartFinalPrice);
         let cartDiscountTotal = Number(this.props.cartParams.cartDiscountTotal);
         let cartFinalPriceNoDiscount = Number(this.props.cartParams.cartFinalPriceNoDiscount);
@@ -925,6 +927,7 @@ export class Main extends Component {
     }
 
     listInCartMinusButton = (id) => {
+        console.log('clickedminus ', id)
         let newCart = new Object(this.props.cart);
         if (newCart[id] == 1) {
             this.deleteFromCart(id);
@@ -981,9 +984,17 @@ export class Main extends Component {
                         />)
 
             case 'discounts':
-                return <Discounts 
-                            mmChanger={this.mmChanger}
-                        />
+                return <MobileCart 
+                items={this.props.items}
+                cart={this.props.cart}
+                history={this.props.history}
+                xClick={this.deleteFromCart}
+                minusClick={this.listInCartMinusButton}
+                plusClick={this.listInCartPlusButton}
+            />
+                // <Discounts 
+                //             mmChanger={this.mmChanger}
+                //         />
 
             case 'ekoirukis':
                 return <EkoIrUkis 
@@ -1017,6 +1028,16 @@ export class Main extends Component {
                             handleModalButtonPress={this.handleModalButtonPress} 
                             handleModalButtonRelease={this.handleModalButtonRelease} 
                             modalPasswordMode={this.state.modalPasswordMode} 
+                        />
+
+            case 'mobcart':
+                return <MobileCart 
+                            items={this.props.items}
+                            cart={this.props.cart}
+                            history={this.props.history}
+                            xClick={this.deleteFromCart}
+                            minusClick={this.listInCartMinusButton}
+                            plusClick={this.listInCartPlusButton}
                         />
 
             default:

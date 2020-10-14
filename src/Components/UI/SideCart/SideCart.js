@@ -91,7 +91,7 @@ const SideCart = props => {
     }
 
     let bottomArrowPadding = {
-        top: productsSectionHeight + vertOffset - 37 + "px",
+        top: productsSectionHeight + vertOffset - 32 + "px",
         display: "flex",
     }
 

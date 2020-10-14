@@ -24,6 +24,7 @@ class App extends Component {
         <Route path='/recipes' render={(props) => (<Main {...props} pageMode={'recipes'} />)}  />
         <Route path='/history' render={(props) => (<Main {...props} pageMode={'history'} />)} />
         <Route path='/account' render={(props) => (<Main {...props} pageMode={'account'} />)} />
+        <Route path='/mobcart' render={(props) => (<Main {...props} pageMode={'mobcart'} />)} />
         <Route path='/' exact component={Main} />
         <Redirect to='/' />        
       </Switch>

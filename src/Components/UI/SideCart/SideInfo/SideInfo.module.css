@@ -1,3 +1,14 @@
+@media (min-width: 240px) {
+    .InfoWrap {
+        display: none !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .InfoWrap {
+        display: flex !important;
+    }
+}
 
 .InfoWrap {
     margin-top: 24px;
