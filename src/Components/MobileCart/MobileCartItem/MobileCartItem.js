@@ -14,9 +14,9 @@ const MobileCartItem = props => {
 
     return (
         <Row xs={12} sm={12} md={12}>
-            <div className={styles.xButton} >
+            <Col xs={1} className={styles.xButton} >
                 <SideCartX xClick={props.xClick} id={props.id} />
-            </div>
+            </Col>
             <Row className={styles.itemWholeRow}>
                 <Col xs={4} sm={4} md={4}>
                     <img src={props.img} alt={props.alt} className={styles.image}/>

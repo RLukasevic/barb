@@ -46,6 +46,9 @@
 }
 
 .xButton {
-    position: absolute;
-    right: 40px;
+    position: sticky;
+    left: 90%;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    z-index: 5;
 }

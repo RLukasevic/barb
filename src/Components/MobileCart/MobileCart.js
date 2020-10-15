@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './MobileCart.module.css';
 import { Row, Col, Container } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import MobileCartItem from './MobileCartItem/MobileCartItem';
 
 let cartItems = [];
@@ -19,6 +20,9 @@ const MobileCart = props => {
 
     let mobileCartItems;
 
+    const minKrepselis = 10;
+    let diff = Number(minKrepselis - props.cartParams.cartFinalPrice).toFixed(2);
+
     useEffect(() => {
 
         if(props.update !== cartUpdate) {
@@ -27,11 +31,16 @@ const MobileCart = props => {
             update();
         }
 
-        if(props.cart !== copyOfCartState) {
+        if(props.cartredux !== copyOfCartState) {
             formCartContent();
+            update();
         }
 
     });
+
+    const click = () => {
+        console.log('click')
+    }
 
     const update = useForceUpdate();
 
@@ -74,28 +83,38 @@ const MobileCart = props => {
                             Galutine kaina
                         </Col>
                         <Col xs={4} sm={4} md={4} className={styles.cartParamValue}>
-                            €23.14
+                            € {props.cartParams.cartFinalPrice.toString().replace('.',',')}
                         </Col>
                     </Row>
-                    <Row className={styles.cartParamMinKrepselis}>
-                        <Col xs={8} sm={8} md={8}>
-                            Iki minimalaus krepšelio Jums trūksta:
-                        </Col>
-                        <Col xs={4} sm={4} md={4} className={styles.cartParamValue}>
-                            €5.85
-                        </Col>
-                    </Row>
+                    {diff > 0 ? 
+                        <Row className={styles.cartParamMinKrepselis}>
+                            <Col xs={8} sm={8} md={8}>
+                                Iki minimalaus krepšelio Jums trūksta:
+                            </Col>
+                            <Col xs={4} sm={4} md={4} className={styles.cartParamValue}>
+                                € {diff.replace('.',',')}
+                            </Col>
+                        </Row>
+                        :
+                        <Row className={styles.cartParamMinKrepselisGreen}>
+                            <Col xs={8} sm={8} md={8}>
+                                Prekes Jums pristatysime NEMOKAMAI!
+                            </Col>
+                        </Row>
+                    }
                     <Row className={styles.cartParamVisoPrekiu}>
                         <Col xs={8} sm={8} md={8}>
                             Viso prekių :
                         </Col>
                         <Col xs={4} sm={4} md={4}>
-                            4
+                            {Object.keys(props.cartredux).length}
                         </Col>
                     </Row>
                 </Col>
-                <Col xs={4} sm={4} md={4} className={styles.cartBuyButtonCol}>
-                    Pirkti
+                <Col xs={4} sm={4} md={4} >
+                    <button className={diff <= 0 ? styles.cartBuyButtonCol : styles.cartBuyButtonColDisabled} disabled={diff <= 0 ? false : true} onClick={() => props.buyClick()}>
+                        Pirkti
+                    </button>
                 </Col>
             </Row>
             <Row>
@@ -107,4 +126,11 @@ const MobileCart = props => {
     );
 }
 
-export default MobileCart;
+const mapStateToProps = state => {
+    return {
+        cartredux: state.home.cart,
+        cartParams: state.home.cartParams,
+    }
+}
+
+export default connect(mapStateToProps,null)(MobileCart);

@@ -13,21 +13,39 @@
 }
 
 .cartBuyButtonCol {
-    max-width: 40% !important;
+    max-width: 100% !important;
+    width: 100% !important;
     height: 40px !important;
     color: #fff;
     background-color: #e22e39;
     margin-left: 10px;
     margin-bottom: 10px;
     margin-top: 15px;
-    padding-top: 8px;
     text-align: center;
     border-radius: 5px;
     font-weight: 700;
+    outline: none;
+    border: none;
+}
+
+.cartBuyButtonColDisabled {
+    display: block !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    height: 40px !important;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: 700;
+    outline: none;
 }
 
 .cartBuyButtonCol:hover {
     background-color: rgb(181, 14, 14);
+    outline: none;
+    border: none;
 }
 
 .cartParamGalutineKaina {
@@ -40,6 +58,14 @@
 .cartParamMinKrepselis {
     display: block;
     font-weight: 700;
+    font-size: .8125rem;
+    line-height: 22px;
+}
+
+.cartParamMinKrepselisGreen {
+    display: block;
+    font-weight: 700;
+    color: green;
     font-size: .8125rem;
     line-height: 22px;
 }

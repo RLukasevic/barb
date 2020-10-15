@@ -241,10 +241,4 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        updateCart: (newCart) => dispatch(authActions.updateCart(newCart)),
-    }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(SideCart);
+export default connect(mapStateToProps,null)(SideCart);
