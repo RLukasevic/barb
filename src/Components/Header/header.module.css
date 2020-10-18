@@ -260,7 +260,6 @@
     padding: 10px 0px 10px;
     font-weight: 500;
     color: #494949;
-    display: inline-block ;
     text-align: center !important;
     line-height: 1.15;
 }
@@ -298,4 +297,121 @@
 
 .categoriesItemSaldF {
     padding-left: 15px !important;
+}
+
+@media (min-width: 1200px) {
+    .smallLogo {
+        display: none !important;
+    }
+
+    .burgerButtonCol {
+        display: none;
+    }
+
+    .cart {
+        display: none;
+    }
+}
+
+@media (max-width: 1199px) {
+    .wholeContainer {
+        max-width: 100% !important;
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+        padding-top: 40px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .rightSideWrap {
+        display: none;
+    }
+
+    .categoriesWrap {
+        display: none !important;
+    }
+
+    .mainMenu {
+        position: fixed;
+        top: 0 ;
+        width: 100%;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        height: 40px !important;
+        border-left-width: 0px;
+        z-index: 5;
+    }
+
+    .burgerButton {
+        padding-top: 3px;
+        display: inline-block;
+        width: 20px;
+        height: 27px;
+        background: url(https:/barbora.lt/Assets/Images/icons/menu.png) no-repeat;
+        vertical-align: bottom;
+        outline: none;
+        border: none;
+    }
+
+    .smallLogo {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        padding-bottom: 9px;
+    }
+
+    .cart {
+        color: white;
+        background-color: rgb(181, 14, 14);
+        border-radius: 10px;
+        padding-left: 7px !important;
+        padding-right: 0px !important;
+        max-width: 125px !important;
+        height: 32px;
+        font-size: 1.2em;
+    }
+
+    .burgerButton:focus {
+        outline: none;
+    }
+
+    .mainMenuFirstCol {
+        display: none !important;
+    }
+
+    .mainMenuFirstColActive {
+        display: none !important;
+    }
+
+    .mainMenuCol {
+        display: none !important;
+    }
+
+    .mainMenuColActive {
+        display: none !important;
+    }
+
+    .searchBar {
+        display: none !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .basketIcon {
+        display: none !important;
+    }
+
+    .cart {
+        color: white;
+        background-color: rgb(181, 14, 14);
+        border-radius: 10px;
+        text-align: center;
+        padding-top: 5px;
+        padding-right: 8px !important;
+        max-width: 125px !important;
+        height: 32px;
+        font-size: 1.2em;
+    }
 }

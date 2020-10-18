@@ -237,6 +237,7 @@ export class Main extends Component {
             status: false,
         },
         
+        sideDrawerShow: false,
         modalActiveNow: "login",
         mmActiveNow: "Prekes",
         modalPasswordMode: "password",
@@ -949,6 +950,14 @@ export class Main extends Component {
         this.setState({...this.state, cartUpdate: this.state.cartUpdate++});
     }
 
+    sideDrawerShowHandle = (mode) => {
+        if (mode === 'turnon') {
+            this.setState({...this.state, sideDrawerShow: true});
+        } else {
+            this.setState({...this.state, sideDrawerShow: false});
+        }
+    }
+
     getContent = () => {
 
         switch (this.props.pageMode) {
@@ -1071,6 +1080,8 @@ export class Main extends Component {
                     authModalHandler={this.modalHandler}
                     logoutClicked={this.logoutHandler}
                     history={this.props.history}
+                    sideDrawerShowHandle={this.sideDrawerShowHandle}
+                    sideDrawerShow={this.state.sideDrawerShow}
                 >
                 <Modal show={this.props.modalShow} cBackDrop={this.modalHandler} modalActiveNow={this.state.modalActiveNow} extended={this.state.extended} >
                     <ModalLogReg 
@@ -1125,10 +1136,21 @@ export class Main extends Component {
                     cSubmit={this.userDataChangeSubmit}
                 />
 
-                <Container  >
+                <Container className={styles.container} >
                     <Row >
                         <Col xl={10}>
-                            <Header homeClick={this.homeClick} mmClick={(whatClicked) => this.mmClickHandle(whatClicked)} mmActiveNow={this.state.mmActiveNow} logoutClick={this.logoutHandler} lClick={this.modalHandler} isLoggedIn={this.props.token} displayName={this.props.accountSettings.name + " " + this.props.accountSettings.lastName} />
+                            <Header 
+                                homeClick={this.homeClick} 
+                                mmClick={(whatClicked) => this.mmClickHandle(whatClicked)} 
+                                mmActiveNow={this.state.mmActiveNow} 
+                                logoutClick={this.logoutHandler} 
+                                lClick={this.modalHandler} 
+                                isLoggedIn={this.props.token} 
+                                history={this.props.history}
+                                displayName={this.props.accountSettings.name + " " + this.props.accountSettings.lastName} 
+                                cartTotalPrice={this.props.cartParams.cartFinalPrice}
+                                sideDrawerShowHandle={this.sideDrawerShowHandle}
+                            />
 
                             {this.props.items ? <div>{content}</div> : <Spinner/>}  
 

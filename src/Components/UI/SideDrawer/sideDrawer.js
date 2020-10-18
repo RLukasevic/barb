@@ -25,6 +25,17 @@ const SideDrawer = (props) => {
         mergedStyles = [styles.SideDrawer, styles.Open];
     }
 
+    useEffect(() => {
+        if (props.sideDrawerShow === true && swiping === false && showing === false && status === false) {
+            console.log('wtf ', props.sideDrawerShow)
+            changeXOffset(-280);
+            changeStatus(true);
+            changeShowing(true);
+            changeStartX(0);
+            changeSwiping(false);
+        }
+    })
+
     const handleTouchStart = (event) => {
         changeSwiping(true);
         if(status === true) {
@@ -63,22 +74,26 @@ const SideDrawer = (props) => {
             changeXOffset(280)
             changeStatus(false)
             changeShowing(false)
+            props.sideDrawerShowHandle();
         }
         if (xOffset <= -101) {
             changeXOffset(-280)
             changeStatus(true)
             changeShowing(true)
+            props.sideDrawerShowHandle();
         }
         
         if (-100 < xOffset && xOffset < 100) {
             changeXOffset(0);
             changeStatus(false)
             changeShowing(false)
+            props.sideDrawerShowHandle();
         }
         changeStartX(0);
     }
 
     const backDropClick = () => {
+        props.sideDrawerShowHandle();
         changeStartX(0);
         changeXOffset(0);
         changeSwiping(false);
@@ -194,7 +209,7 @@ const SideDrawer = (props) => {
                         </div>
                     }
                     <div className={styles.mainMenu} >
-                        <Row className={location.pathname === '/' || location.pathname === '/item' ? styles.customRowActive : styles.customRow} onClick={() => redirClick('prekes')} >
+                        <Row className={location.pathname === '/' || location.pathname === '/item' || location.pathname === '/mobcart' ? styles.customRowActive : styles.customRow} onClick={() => redirClick('prekes')} >
                             Prekes
                         </Row>
                         <Row className={location.pathname === '/myfavorites' ? styles.customRowActive : styles.customRow} onClick={() => redirClick('manoPrekes')}>

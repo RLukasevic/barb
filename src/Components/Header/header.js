@@ -6,12 +6,18 @@ import appleIcon from '../../assets/icons/apple-icon.png';
 import androidIcon from '../../assets/icons/android-icon.png';
 import HomeIcon from '../../assets/svg/HomeIcon';
 import BarbLogo from '../../assets/svg/BarbLogo';
+import BarbLogoSmall from '../../assets/svg/BarbLogoSmall';
+import Basket from '../../assets/svg/Basket';
 import { Container, Row, Col } from 'react-bootstrap';
 
 const Header = props => {
 
+    const enterCart = () => {
+        props.history.push('/mobcart');
+    }
+
     return (
-        <Container >
+        <Container className={styles.wholeContainer} >
             <Row className="show-grid" >
 
                 <Col md={4} className={styles.logo} >
@@ -60,6 +66,24 @@ const Header = props => {
             </Row>
         
             <Row className={"show-grid " + styles.mainMenu} >
+                {/* MOBILE (>1200px) */}
+
+                <Col xs={1} className={styles.burgerButtonCol} onClick={() => props.sideDrawerShowHandle('turnon')} >
+                    <button className={styles.burgerButton} />
+                </Col>
+
+                <Col xs={1} className={styles.smallLogo} onClick={() => props.homeClick()} >
+                    <BarbLogoSmall homeClick={props.homeClick} />
+                </Col>
+
+                {props.isLoggedIn ? 
+                    <Col xs={{span: "2", offset: "7"}} className={styles.cart} onClick={() => enterCart()} >
+                        <span className={styles.basketIcon}><Basket /></span>{props.cartTotalPrice > 99.99 ? '>100€' : '€ ' + props.cartTotalPrice.replace('.',',')}
+                    </Col>
+                    : null
+                }
+
+                {/* DESKTOP (1200px+) */}
                 <Col >
                     <Row onClick={() => props.mmClick('Prekes')} className={props.mmActiveNow === 'Prekes' ? styles.mainMenuFirstColActive : styles.mainMenuFirstCol}>
                         Prekes
