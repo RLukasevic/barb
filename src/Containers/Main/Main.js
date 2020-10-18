@@ -994,19 +994,9 @@ export class Main extends Component {
                         />)
 
             case 'discounts':
-                return <MobileCart 
-                items={this.props.items}
-                update={this.state.cartUpdate}
-                cart={this.props.cart}
-                history={this.props.history}
-                xClick={this.deleteFromCart}
-                minusClick={this.listInCartMinusButton}
-                plusClick={this.listInCartPlusButton}
-                buyClick={() => this.buyModalHandler()}
-            />
-                // <Discounts 
-                //             mmChanger={this.mmChanger}
-                //         />
+                return  <Discounts 
+                            mmChanger={this.mmChanger}
+                        />
 
             case 'ekoirukis':
                 return <EkoIrUkis 
@@ -1045,11 +1035,13 @@ export class Main extends Component {
             case 'mobcart':
                 return <MobileCart 
                             items={this.props.items}
+                            update={this.state.cartUpdate}
                             cart={this.props.cart}
                             history={this.props.history}
                             xClick={this.deleteFromCart}
                             minusClick={this.listInCartMinusButton}
                             plusClick={this.listInCartPlusButton}
+                            buyClick={() => this.buyModalHandler()}
                         />
 
             default:
