@@ -5,8 +5,25 @@
 
 @media (max-width: 1199px) {
     .container {
-        max-width: 100% !important;
-        padding-right: 0px !important;
+        min-width: 100% !important;
         padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .wholeWrap {
+        width: 100% !important ;
+    }
+
+    .mainRow {
+        width: 100% !important;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .mainCol {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
     }
 }

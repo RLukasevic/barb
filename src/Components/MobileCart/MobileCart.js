@@ -38,10 +38,6 @@ const MobileCart = props => {
 
     });
 
-    const click = () => {
-        console.log('click')
-    }
-
     const update = useForceUpdate();
 
     const formCartContent = () => {
@@ -54,7 +50,7 @@ const MobileCart = props => {
                     <MobileCartItem
                         key={itemKey}
                         id={itemKey}
-                        img={props.items[itemKey].img}
+                        img={props.items[itemKey].imgCart}
                         alt={props.items[itemKey].alt}
                         name={props.items[itemKey].name}
                         actualPrice={props.items[itemKey].actualPrice}
@@ -75,38 +71,38 @@ const MobileCart = props => {
     }
 
     return (
-        <Container>
+        <Container className={styles.container}>
             <Row className={styles.cartParamRow}>
                 <Col xs={12} sm={12} md={12} className={styles.cartParamCol}>
                     <Row className={styles.cartParamGalutineKaina}>
-                        <Col xs={8} sm={8} md={8}>
+                        <Col xs={6} sm={6} md={6}>
                             Galutine kaina
                         </Col>
-                        <Col xs={4} sm={4} md={4} className={styles.cartParamValue}>
+                        <Col xs={6} sm={6} md={6} className={styles.cartParamValue}>
                             € {props.cartParams.cartFinalPrice.toString().replace('.',',')}
                         </Col>
                     </Row>
                     {diff > 0 ? 
                         <Row className={styles.cartParamMinKrepselis}>
-                            <Col xs={8} sm={8} md={8}>
+                            <Col xs={6} sm={6} md={6}>
                                 Iki minimalaus krepšelio Jums trūksta:
                             </Col>
-                            <Col xs={4} sm={4} md={4} className={styles.cartParamValue}>
+                            <Col xs={6} sm={6} md={6} className={styles.cartParamValue}>
                                 € {diff.replace('.',',')}
                             </Col>
                         </Row>
                         :
                         <Row className={styles.cartParamMinKrepselisGreen}>
-                            <Col xs={8} sm={8} md={8}>
+                            <Col xs={12} sm={12} md={12}>
                                 Prekes Jums pristatysime NEMOKAMAI!
                             </Col>
                         </Row>
                     }
                     <Row className={styles.cartParamVisoPrekiu}>
-                        <Col xs={8} sm={8} md={8}>
+                        <Col xs={6} sm={6} md={6}>
                             Viso prekių :
                         </Col>
-                        <Col xs={4} sm={4} md={4}>
+                        <Col xs={6} sm={6} md={6}>
                             {Object.keys(props.cartredux).length}
                         </Col>
                     </Row>
@@ -117,11 +113,17 @@ const MobileCart = props => {
                     </button>
                 </Col>
             </Row>
-            <Row>
-                <Col xs={12} sm={12} md={12}>
-                    {cartItems}
-                </Col>
-            </Row>
+            {Object.keys(props.cart).length > 0 ? 
+                <Row className={styles.itemsRow}>
+                    <Col xs={12} sm={12} md={12} className={styles.itemsCol}>
+                        {cartItems}
+                    </Col>
+                </Row>
+            :
+                <Row className={styles.emptyCartNotice}>
+                    Krepšelis tuščias, pridėkite produktų ir jie atsiras čia.
+                </Row>
+            }
         </Container>
     );
 }

@@ -78,7 +78,7 @@ const Header = props => {
 
                 {props.isLoggedIn ? 
                     <Col xs={{span: "2", offset: "7"}} className={styles.cart} onClick={() => enterCart()} >
-                        <span className={styles.basketIcon}><Basket /></span>{props.cartTotalPrice > 99.99 ? '>100€' : '€ ' + props.cartTotalPrice.replace('.',',')}
+                        <span className={styles.basketIcon}><Basket /></span>{props.cartTotalPrice > 99.99 ? '>100€' : '€' + props.cartTotalPrice.replace('.',',')}
                     </Col>
                     : null
                 }

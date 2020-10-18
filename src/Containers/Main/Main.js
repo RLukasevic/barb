@@ -1129,8 +1129,8 @@ export class Main extends Component {
                 />
 
                 <Container className={styles.container} >
-                    <Row >
-                        <Col xl={10}>
+                    <Row className={styles.mainRow}>
+                        <Col xs={12} xl={10} className={styles.mainCol}>
                             <Header 
                                 homeClick={this.homeClick} 
                                 mmClick={(whatClicked) => this.mmClickHandle(whatClicked)} 
