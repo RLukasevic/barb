@@ -63,7 +63,6 @@ const SideCart = props => {
 
         for (let i; i >= products.current.children.length; i++) {
             combinedHeight += products.children[i].scrollHeight
-            console.log(combinedHeight)
         }
 
         if (!showBottomArrow && 

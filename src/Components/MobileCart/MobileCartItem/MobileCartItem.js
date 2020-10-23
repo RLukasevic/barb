@@ -10,8 +10,6 @@ const MobileCartItem = props => {
 
     let price = Number(props.actualPrice * props.quantity).toFixed(2).replace('.',',')
 
-    console.log(props.id)
-
     return (
         <Row xs={12} sm={12} md={12} className={styles.wholeRow}>
             <Col xs={1} className={styles.xButton} >

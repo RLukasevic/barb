@@ -59,7 +59,7 @@ export const addFav = (itemId, favs) => {
                 dispatch(updateFav(res.data))  // Calling update with actual data in db
             })
             .catch(e => {
-                console.log('error = ', e);
+                console.log(e);
                 //dispatch(favFail())
             })
         })
@@ -179,7 +179,6 @@ export const initBuy = (data,price,cart) => {
             let name = Object.keys(res.data)[0]
 
             if (res.data[name].orders === undefined) {
-                console.log('wtf')
                 queryParams = '/' + name + '/orders' + '.json?auth=' + token;
                 let orderId = String(localId).substr(0,9) + '1';
                 let timeStamp = new Date()
@@ -195,7 +194,6 @@ export const initBuy = (data,price,cart) => {
 
                 axios.put('/accounts' + queryParams, orderData)
                 .then(res => {
-                    console.log(res.data);
                     dispatch(buySuccess(res.data));
                 })
                 .catch(e => {
@@ -204,7 +202,6 @@ export const initBuy = (data,price,cart) => {
                 })
 
             } else {
-                console.log('kekw')
                 queryParams = '/' + name + '/orders' + '.json?auth=' + token;
                 let ordersLength = Object.keys(res.data[name].orders).length
                 let latestOrderId = Object.keys(res.data[name].orders)[ordersLength-1];
@@ -223,7 +220,6 @@ export const initBuy = (data,price,cart) => {
 
                 axios.patch('/accounts' + queryParams, orderData)
                 .then(res => {
-                    console.log(res.data);
                     dispatch(buySuccess(res.data));
                 })
                 .catch(e => {

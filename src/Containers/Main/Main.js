@@ -438,7 +438,6 @@ export class Main extends Component {
         let itemsInCart = [];
 
         Object.keys(this.props.cart).map(itemKey => {
-            console.log(this.props.items[itemKey])
             itemsInCart.push(
                 {
                     itemId: itemKey,
@@ -912,7 +911,6 @@ export class Main extends Component {
     }
 
     listInCartPlusButton = (id) => {
-        console.log('clickedplus ', id)
         let cartFinalPrice =  Number(this.props.cartParams.cartFinalPrice);
         let cartDiscountTotal = Number(this.props.cartParams.cartDiscountTotal);
         let cartFinalPriceNoDiscount = Number(this.props.cartParams.cartFinalPriceNoDiscount);
@@ -929,7 +927,6 @@ export class Main extends Component {
     }
 
     listInCartMinusButton = (id) => {
-        console.log('clickedminus ', id)
         let newCart = new Object(this.props.cart);
         if (newCart[id] == 1) {
             this.deleteFromCart(id);

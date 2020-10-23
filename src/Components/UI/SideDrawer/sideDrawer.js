@@ -29,7 +29,6 @@ const SideDrawer = (props) => {
 
     useEffect(() => {
         if (props.sideDrawerShow === true && swiping === false && showing === false && status === false) {
-            console.log('wtf ', props.sideDrawerShow)
             changeXOffset(-sideDrawerWidth);
             changeStatus(true);
             changeShowing(true);
@@ -104,9 +103,7 @@ const SideDrawer = (props) => {
     }
 
     const clickAuth = (mode) => {
-        console.log(mode)
         if (mode === 'register') {
-            console.log('registering');
             props.authModalHandler('register','side');
         } else {
             props.authModalHandler('login')

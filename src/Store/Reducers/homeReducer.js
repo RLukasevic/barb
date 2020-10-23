@@ -101,10 +101,8 @@ const buyFail = (state,action) => {
 
 const buySuccess = (state,action) => {
 
-    console.log(action.data)
     let newOrders = state.orders;
     newOrders.push(action.data)
-    console.log(newOrders);
 
     return {
         ...state,

@@ -142,7 +142,6 @@ export const auth = (mydata, mode) => {
 export const additionalInfoPost = (mydata, token, localId) => {
     return dispatch => {
         dispatch(additionalInfoPostStart())
-        console.log('token = ' , token);
         let url = '/accounts.json?auth=' + token;
 
         const userData = {
@@ -167,7 +166,6 @@ export const additionalInfoPost = (mydata, token, localId) => {
 
         axiosInstance.post(url, userData)       // Additional request to db , saving additional parameters of the account (checkboxes) and adress etc.
         .then (res => {
-            console.log('res = ', res);
             dispatch(additionalInfoPostSuccess(res.data));
             dispatch(modalToggle());
         } )
@@ -302,7 +300,6 @@ export const userDataChangeStandard = (data) => {
         } )
         .catch(e => {
             dispatch(checkCredentialsFail(e.response.data.error.message));
-            console.log('CREDENTIALS');
         } )
     }
 }
