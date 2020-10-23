@@ -34,7 +34,7 @@ class Orders extends Component {
 
         return (
             <Container className={styles.wholeWrap}>
-                <Row className="show-grid" >
+                <Row xs={1} className="show-grid" className={styles.itemsRow} >
                     {actualItems}
                 </Row>
             </Container>

@@ -87,7 +87,7 @@
 
 .pricePerRow {
     display: block !important;
-    text-align: center !important;
+    /* text-align: center !important; */
     font-size: .6875rem;
     line-height: 1.2;
     color: #999;
@@ -225,7 +225,9 @@
     -webkit-border-radius: 3px;
     border-radius: 3px;
     width: 100%;
-    margin-right: 2%;
+    min-width: 100px;
+    max-width: 45% !important;
+    margin-left: 10px;
     text-align: center;
 }
 
@@ -294,6 +296,10 @@
     opacity: 0.5;
 }
 
+.image {
+
+}
+
 .descItemRowContentOpacity {
     font-family: "Open Sans";
     color: #494949;
@@ -304,4 +310,32 @@
     margin-inline-start: 40px;
     text-align: justify;
     opacity: 0.5;
+}
+
+@media (max-width: 425px) {
+    .image {
+        max-width: 290px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .nameRow {
+        margin-left: -5px !important;
+    }
+
+    .pricesContainer {
+        margin-left: -5px !important;
+    }
+
+    .buyBarRow {
+        margin-left: -5px !important;
+    }
+
+    .paramRowContainer {
+        margin-left: -5px !important;
+    }
+
+    .descStatsRowTitle {
+        margin-left: -5px !important;
+    }
 }

@@ -6,18 +6,18 @@ import { Row, Col } from 'react-bootstrap';
 const modalLoginModule = props => {
 
     return (
-        <form >
+        <form style={{width: "100%"}} >
             {props.loginData.email.touched || props.loginData.password.touched ? null :
-                <Row sm={12} >
-                    <Col sm={8} >
+                <Row xs={12} >
+                    <Col xs={8} >
                         <label className={styles.greetingLine} >Sveiki, aciu, kad vel pas mus uzsukote!</label>
                     </Col>
                 </Row>
             }
 
             {props.error ? 
-                <Row sm={12}>
-                    <Col sm={8}>
+                <Row xs={12}>
+                    <Col xs={8}>
                         {props.error === "EMAIL_NOT_FOUND" ?
                             <label className={styles.error}>Paskyra su jūsų e-mail`u neegzistuoja</label>
                             :
@@ -33,12 +33,12 @@ const modalLoginModule = props => {
                 <Row className={styles.notValid}>El. Paštas turi atitikti pavyzdį *****@***.**</Row> : null
             }
 
-            <Row sm={12} className={styles.inputController}  >
-                <Col sm={4} className={styles.inputLabel} >
+            <Row xs={12} className={styles.inputController}  >
+                <Col xs={4} className={styles.inputLabel} >
                     <label htmlFor="email">El. Pastas:</label>
                 </Col>
 
-                <Col sm={8} className={styles.emailInputCol} >
+                <Col xs={8} className={styles.emailInputCol} >
                     <input 
                         onChange={(event) => props.changeHandler(event, 'signInData' , 'email')} 
                         onClick={(event) => props.changeHandler(event, 'signInData', 'email')}
@@ -55,12 +55,12 @@ const modalLoginModule = props => {
                 <Row className={styles.notValid}>Slaptažodis turi būti ne trumpesnis nei 6 simboliai</Row> : null
             }
 
-            <Row sm={12} className={styles.inputController}  >
-                <Col sm={4} className={styles.inputLabel} >
+            <Row xs={12} className={styles.inputController}  >
+                <Col xs={4} className={styles.inputLabel} >
                     <label htmlFor="pwd">Slaptazodis</label>
                 </Col>
 
-                <Col sm={8} className={styles.passwordInputCol} >
+                <Col xs={8} className={styles.passwordInputCol} >
                     <input 
                         onChange={(event) => props.changeHandler(event, 'signInData' , 'password')} 
                         onClick={(event) => props.changeHandler(event, 'signInData', 'password')}
@@ -94,8 +94,8 @@ const modalLoginModule = props => {
                 </Col>
             </Row>
 
-            <Row sm={12} >
-                <Col className={styles.loginButtonCol} sm={{ span: 8, offset: 4 }} >
+            <Row xs={12} >
+                <Col className={styles.loginButtonCol} xs={{ span: 8, offset: 4 }} >
                     <input className={styles.checkBox} type="checkbox" id="rememberMe" checked={props.keepLoggedInChecked} onClick={() => props.cCheckBox('rememberMe')} />
                     <label className={styles.keepLogged} htmlFor="rememberMe"  >
                         Likite prisiregistrave
@@ -103,8 +103,8 @@ const modalLoginModule = props => {
                 </Col>
             </Row>
 
-            <Row sm={12} >
-                <Col className={styles.loginButtonCol} sm={{ span: 8, offset: 4 }} >
+            <Row xs={12} >
+                <Col className={styles.loginButtonCol} xs={{ span: 8, offset: 4 }} >
                     <button 
                         className={props.loginData.formIsValid ? styles.loginButton : styles.loginButtonDisabled} 
                         onClick={props.cSubmit} 
@@ -115,8 +115,8 @@ const modalLoginModule = props => {
                 </Col>
             </Row>
 
-            <Row sm={12} >
-                <Col onClick={props.cSubmit} className={styles.loginButtonCol} sm={{ span: 8, offset: 4 }} >
+            <Row xs={12} >
+                <Col onClick={props.cSubmit} className={styles.loginButtonCol} xs={{ span: 8, offset: 4 }} >
                     <a href="/" className={styles.passwordRecovery} >Priminti slaptazodi</a>
                 </Col>
             </Row>

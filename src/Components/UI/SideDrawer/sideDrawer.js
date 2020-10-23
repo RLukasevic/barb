@@ -15,6 +15,8 @@ const SideDrawer = (props) => {
     const [showing, changeShowing] = useState(false);
     const [status, changeStatus] = useState(false);
 
+    const sideDrawerWidth = 220;
+
     let location = useLocation();
     if (location.pathname.includes('item')) {
         location.pathname = '/item'
@@ -28,7 +30,7 @@ const SideDrawer = (props) => {
     useEffect(() => {
         if (props.sideDrawerShow === true && swiping === false && showing === false && status === false) {
             console.log('wtf ', props.sideDrawerShow)
-            changeXOffset(-280);
+            changeXOffset(-sideDrawerWidth);
             changeStatus(true);
             changeShowing(true);
             changeStartX(0);
@@ -39,7 +41,7 @@ const SideDrawer = (props) => {
     const handleTouchStart = (event) => {
         changeSwiping(true);
         if(status === true) {
-            changeStartX(event.touches[0].clientX - 280);
+            changeStartX(event.touches[0].clientX - sideDrawerWidth);
         } else {
             changeStartX(event.touches[0].clientX);
         }
@@ -49,35 +51,35 @@ const SideDrawer = (props) => {
         let calcOffset = startX - event.touches[0].clientX;
         changeXOffset(calcOffset)
 
-        if (calcOffset > 280) {
+        if (calcOffset > sideDrawerWidth) {
             changeShowing(false)
         }
 
-        if (calcOffset < 280) {
+        if (calcOffset < sideDrawerWidth) {
             changeShowing(showing)
         }
 
-        if (calcOffset < -280) {
+        if (calcOffset < -sideDrawerWidth) {
             changeShowing(true)
         }
-        if (calcOffset > 280) {
-            changeXOffset(280)
+        if (calcOffset > sideDrawerWidth) {
+            changeXOffset(sideDrawerWidth)
         }
-        if (calcOffset < -280) {
-            changeXOffset(-280)
+        if (calcOffset < -sideDrawerWidth) {
+            changeXOffset(-sideDrawerWidth)
         }
     }
 
     const handleTouchEnd = () => {
         changeSwiping(false);
         if (xOffset >= 101) {
-            changeXOffset(280)
+            changeXOffset(sideDrawerWidth)
             changeStatus(false)
             changeShowing(false)
             props.sideDrawerShowHandle();
         }
         if (xOffset <= -101) {
-            changeXOffset(-280)
+            changeXOffset(-sideDrawerWidth)
             changeStatus(true)
             changeShowing(true)
             props.sideDrawerShowHandle();
@@ -102,10 +104,12 @@ const SideDrawer = (props) => {
     }
 
     const clickAuth = (mode) => {
+        console.log(mode)
         if (mode === 'register') {
-            props.authModalHandler('register');
+            console.log('registering');
+            props.authModalHandler('register','side');
         } else {
-            props.authModalHandler()
+            props.authModalHandler('login')
         }
         backDropClick();
     }
@@ -179,7 +183,7 @@ const SideDrawer = (props) => {
             <div className={mergedStyles.join(' ')} style={{left: -xOffset + "px"}} >
                 <Col xl={12} md={12} sm={12}>
                     <Row>
-                        <BarbLogo/> 
+                        <BarbLogo homeClick={() => redirClick('prekes')} /> 
                     </Row>
                     {props.token ?
 
@@ -202,7 +206,7 @@ const SideDrawer = (props) => {
                             <Row className={styles.customRow} onClick={() => clickAuth()} >
                                 Login
                             </Row>
-                            <Row className={styles.customRow} onClick={() => clickAuth('register')} >
+                            <Row className={styles.customRow} onClick={() => props.authModalHandler('register', backDropClick())} >
                                 Register
                             </Row> 
                             <Row className={styles.separationStripe} />

@@ -7,34 +7,34 @@ const BuyBar = props => {
     return (
         <div>
             {props.mode === 'list' ?
-                <Container xl={12} className={styles.wholeWrap}>
+                <Container xs={12} xl={12} className={styles.wholeWrap}>
                     <Row className={styles.controlRow} xl={12}>
-                        <Col xl={2} className={styles.buttonMinusCol} onClick={() => props.listInCartMinusButton(props.id)}>
+                        <Col xs={2} xl={2} className={styles.buttonMinusCol} onClick={() => props.listInCartMinusButton(props.id)}>
                             <span className={styles.buttonMinus} >-</span>
                         </Col>
-                        <Col xl={3} className={styles.quantityCol}>
+                        <Col xs={3} xl={3} className={styles.quantityCol}>
                             <span className={styles.quantity}>{props.quantity}</span>
                         </Col>
-                        <Col xl={4} className={styles.vntCol}>
+                        <Col xs={4} xl={4} className={styles.vntCol}>
                             <span className={styles.vnt}>{props.vienetai}</span>
                         </Col>
-                        <Col xl={2} className={styles.buttonPlusCol}  onClick={() => props.listInCartPlusButton(props.id)}>
+                        <Col xs={2} xl={2} className={styles.buttonPlusCol}  onClick={() => props.listInCartPlusButton(props.id)}>
                             <span className={styles.buttonPlus} >+</span>
                         </Col>
                     </Row>
                 </Container> :
-                <Container xl={12} className={styles.wholeWrapNorm}>
+                <Container xs={12} xl={12} className={styles.wholeWrapNorm}>
                     <Row className={styles.controlRow} xl={12}>
-                        <Col xl={2} className={styles.buttonMinusCol}  onClick={() => props.listInCartMinusButton(props.id)}>
+                        <Col xs={2} xl={2} className={styles.buttonMinusCol}  onClick={() => props.listInCartMinusButton(props.id)}>
                             <span className={styles.buttonMinus} >-</span>
                         </Col>
-                        <Col xl={3} className={styles.quantityCol}>
+                        <Col xs={3} xl={3} className={styles.quantityCol}>
                             <span className={styles.quantity}>{props.quantity}</span>
                         </Col>
-                        <Col xl={4} className={styles.vntCol}>
+                        <Col xs={4} xl={4} className={styles.vntCol}>
                             <span className={styles.vnt}>{props.vienetai}</span>
                         </Col>
-                        <Col xl={2} className={styles.buttonPlusCol}  onClick={() => props.listInCartPlusButton(props.id)}>
+                        <Col xs={2} xl={2} className={styles.buttonPlusCol}  onClick={() => props.listInCartPlusButton(props.id)}>
                             <span className={styles.buttonPlus} >+</span>
                         </Col>
                     </Row>

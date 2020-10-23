@@ -9,8 +9,8 @@ const modalRegisterModule = props => {
         <form className={styles.wholeWrap}  >
 
             {props.error ? 
-                <Row sm={12}>
-                    <Col sm={8}>
+                <Row xs={12}>
+                    <Col xs={8}>
                             <label className={styles.error}>{props.error}</label>
                     </Col>
                 </Row>
@@ -22,12 +22,12 @@ const modalRegisterModule = props => {
                 <Row className={styles.notValid}>El. Paštas turi atitikti pavyzdį *****@***.**</Row> : null
             }
 
-            <Row sm={12} className={styles.inputController}  >
-                <Col sm={5} className={styles.inputLabel} >
+            <Row xs={12} className={styles.inputController}  >
+                <Col xs={5} className={styles.inputLabel} >
                     <label htmlFor="email">El. Pastas:</label>
                 </Col>
 
-                <Col sm={7} className={styles.emailInputCol} >
+                <Col xs={7} className={styles.emailInputCol} >
                     <input 
                         onChange={(event) => props.changeHandler(event, 'signUpData' , 'email')} 
                         onClick={(event) => props.changeHandler(event, 'signUpData', 'email')}
@@ -44,12 +44,12 @@ const modalRegisterModule = props => {
                 <Row className={styles.notValid}>Slaptažodis turi būti ne trumpesnis nei 6 simboliai</Row> : null
             }
 
-            <Row sm={12} className={styles.inputController}  >
-                <Col sm={5} className={styles.inputLabel} >
+            <Row xs={12} className={styles.inputController}  >
+                <Col xs={5} className={styles.inputLabel} >
                     <label htmlFor="pwd">Slaptazodis</label>
                 </Col>
 
-                <Col sm={7} className={styles.passwordInputCol} >
+                <Col xs={7} className={styles.passwordInputCol} >
                     <input 
                         onChange={(event) => props.changeHandler(event, 'signUpData' , 'password')} 
                         onClick={(event) => props.changeHandler(event, 'signUpData', 'password')}
@@ -83,12 +83,12 @@ const modalRegisterModule = props => {
                 </Col>
             </Row>
 
-            <Row sm={12} className={styles.inputController}  >
-                <Col sm={5} className={styles.inputLabel} >
-                    <label htmlFor="miestas">Miestas:</label>
+            <Row xs={12} className={styles.inputController}  >
+                <Col xs={5} className={styles.inputLabel} >
+                    <label htmlFor="miestas">Miestas</label>
                 </Col>
 
-                <Col sm={7} className={styles.emailInputCol} >
+                <Col xs={7} className={styles.emailInputCol} >
                     <input 
                         onChange={(event) => props.changeHandler(event, 'signUpData' , 'city')} 
                         onClick={(event) => props.changeHandler(event, 'signUpData', 'city')}
@@ -101,12 +101,12 @@ const modalRegisterModule = props => {
                 </Col>
             </Row>
 
-            <Row sm={12} className={styles.inputController}  >
-                <Col sm={5} className={styles.inputLabel} >
+            <Row xs={12} className={styles.inputController}  >
+                <Col xs={5} sm={5} className={styles.inputLabel} >
                     <label htmlFor="gatve">Gatve ir namo numeris</label>
                 </Col>
 
-                <Col sm={7} className={styles.emailInputCol} >
+                <Col xs={7} sm={7} className={styles.emailInputCol} >
                     <input 
                         onChange={(event) => props.changeHandler(event, 'signUpData' , 'gatve')} 
                         onClick={(event) => props.changeHandler(event, 'signUpData', 'gatve')}
@@ -119,12 +119,12 @@ const modalRegisterModule = props => {
                 </Col>
             </Row>
 
-            <Row sm={12} className={styles.inputController}  >
-                <Col sm={5} className={styles.inputLabel} >
+            <Row xs={12} className={styles.inputController}  >
+                <Col xs={5} className={styles.inputLabel} >
                     <label htmlFor="butas">Buto numeris</label>
                 </Col>
 
-                <Col sm={7} className={styles.emailInputCol} >
+                <Col xs={7} className={styles.emailInputCol} >
                     <input 
                         onChange={(event) => props.changeHandler(event, 'signUpData' , 'butoNumeris')} 
                         onClick={(event) => props.changeHandler(event, 'signUpData', 'butoNumeris')}
@@ -137,12 +137,12 @@ const modalRegisterModule = props => {
                 </Col>
             </Row>
 
-            <Row sm={12} className={styles.inputController}  >
-                <Col sm={5} className={styles.inputLabel} >
+            <Row xs={12} className={styles.inputController}  >
+                <Col xs={5} className={styles.inputLabel} >
                     <label htmlFor="vardas">Vardas</label>
                 </Col>
 
-                <Col sm={7} className={styles.emailInputCol} >
+                <Col xs={7} className={styles.emailInputCol} >
                     <input 
                         onChange={(event) => props.changeHandler(event, 'signUpData' , 'name')} 
                         onClick={(event) => props.changeHandler(event, 'signUpData', 'name')}
@@ -155,12 +155,12 @@ const modalRegisterModule = props => {
                 </Col>
             </Row>
 
-            <Row sm={12} className={styles.inputController}  >
-                <Col sm={5} className={styles.inputLabel} >
+            <Row xs={12} className={styles.inputController}  >
+                <Col xs={5} className={styles.inputLabel} >
                     <label htmlFor="pavarde">Pavarde</label>
                 </Col>
 
-                <Col sm={7} className={styles.emailInputCol} >
+                <Col xs={7} className={styles.emailInputCol} >
                     <input 
                         onChange={(event) => props.changeHandler(event, 'signUpData' , 'lastName')} 
                         onClick={(event) => props.changeHandler(event, 'signUpData', 'lastName')}
@@ -173,12 +173,12 @@ const modalRegisterModule = props => {
                 </Col>
             </Row>
 
-            <Row sm={12} className={styles.inputController}  >
-                <Col sm={5} className={styles.inputLabel} >
+            <Row xs={12} className={styles.inputController}  >
+                <Col xs={5} className={styles.inputLabel} >
                     <label htmlFor="phone">Telefonas</label>
                 </Col>
 
-                <Col sm={7} className={styles.emailInputCol} >
+                <Col xs={7} className={styles.emailInputCol} >
                     <input 
                         onChange={(event) => props.changeHandler(event, 'signUpData' , 'phone')} 
                         onClick={(event) => props.changeHandler(event, 'signUpData', 'phone')}
@@ -191,8 +191,8 @@ const modalRegisterModule = props => {
                 </Col>
             </Row>
 
-            <Row sm={12} >
-                <Col className={styles.loginButtonCol} sm={{ span: 7, offset: 5 }} >
+            <Row xs={12} >
+                <Col className={styles.loginButtonCol} xs={{ span: 9, offset: 3 }} sm={{ span: 7, offset: 5 }} >
                     <input className={styles.checkBox} type="checkbox" id="policy" checked={props.policyChecked} onClick={() => props.cCheckBox('policy')} />
                     <label className={styles.keepLogged} htmlFor="policy" >
                         Susipazinau ir sutinku su pirkimo taisyklemis ir privatumo politika
@@ -200,8 +200,8 @@ const modalRegisterModule = props => {
                 </Col>
             </Row>
 
-            <Row sm={12} >
-                <Col className={styles.loginButtonCol} sm={{ span: 7, offset: 5 }} >
+            <Row xs={12} >
+                <Col className={styles.loginButtonCol} xs={{ span: 9, offset: 3 }} sm={{ span: 7, offset: 5 }} >
                         <input className={styles.checkBox} type="checkbox" id="getPersonalOfferEmail" checked={props.getPersonalOfferEmailChecked} onClick={() => props.cCheckBox('personalOfferEmail')} />
                         <label className={styles.keepLogged}  htmlFor="getPersonalOfferEmail" >
                             Sutinku gauti asmeninius pasiulymus, atsizvelgiant i mano pirkimo istorija
@@ -210,8 +210,8 @@ const modalRegisterModule = props => {
             </Row>
             
             {props.extended ? 
-                <Row sm={12} >
-                    <Col className={styles.loginButtonCol} sm={{ span: 7, offset: 5 }} >
+                <Row xs={12} >
+                    <Col className={styles.loginButtonCol} xs={{ span: 9, offset: 3 }} sm={{ span: 7, offset: 5 }} >
                         <input className={styles.checkBox} type="checkbox" id="getOfferEmail" checked={props.getOfferEmailChecked} onClick={() => props.cCheckBox('offerEmail')}  />
                         <label className={styles.keepLogged} htmlFor="getOfferEmail" >
                             Sutinku gauti pasiūlymus el. paštu
@@ -221,8 +221,8 @@ const modalRegisterModule = props => {
             : null}
 
             {props.extended ? 
-                <Row sm={12} >
-                    <Col className={styles.loginButtonCol} sm={{ span: 7, offset: 5 }} >
+                <Row xs={12} >
+                    <Col className={styles.loginButtonCol} xs={{ span: 9, offset: 3 }} sm={{ span: 7, offset: 5 }} >
                         <input className={styles.checkBox} type="checkbox" id="getMobileAppOffer" checked={props.getMobileAppOfferChecked} onClick={() => props.cCheckBox('mobileAppOffer')} />
                         <label className={styles.keepLogged} htmlFor="getMobileAppOffer" >
                             Sutinku gauti pranešimus mobilioje aplikacijoje
@@ -232,8 +232,8 @@ const modalRegisterModule = props => {
             : null}
 
             {props.extended ?
-                <Row sm={12} >
-                    <Col className={styles.loginButtonCol} sm={{ span: 7, offset: 5 }} >
+                <Row xs={12} >
+                    <Col className={styles.loginButtonCol} xs={{ span: 9, offset: 3 }} sm={{ span: 7, offset: 5 }} >
                         <input className={styles.checkBox} type="checkbox" id="getSmsOffer" checked={props.getSmsOfferChecked} onClick={() => props.cCheckBox('smsOffer')} />
                         <label className={styles.keepLogged} htmlFor="getSmsOffer" >
                             Sutinku gauti pasiūlymus SMS žinutėmis
@@ -242,8 +242,8 @@ const modalRegisterModule = props => {
                 </Row>
             : null}
 
-            <Row sm={12} >
-                <Col className={styles.loginButtonCol} sm={{ span: 7, offset: 5 }} >
+            <Row xs={12} >
+                <Col className={styles.loginButtonCol} xs={{ span: 5, offset: 4 }} sm={{ span: 7, offset: 5 }} >
                     <button 
                         className={props.registerData.formIsValid ? styles.loginButton : styles.loginButtonDisabled} 
                         disabled={props.registerData.formIsValid ? false : true}

@@ -9,7 +9,6 @@ const AccountSettings = props => {
     useEffect(() => {
         Object.keys(props.data).map(key => {
             if (props.data[key].value === null) {
-                console.log('kek')
                 props.presetData();
             }
             if (props.data['email'].value !== props.storeEmail) {
@@ -139,7 +138,7 @@ const AccountSettings = props => {
                 </Col>
             </Row>
 
-            <Row sm={12} >
+            <Row sm={12} className={styles.loginButtonRow} >
                 <Col className={styles.loginButtonCol} sm={{ span: 7, offset: 3 }} >
                     <input className={styles.checkBox} type="checkbox" id="policy" checked={props.data.policyChecked} onClick={() => props.cCheckBox('policy')} />
                     <label className={styles.keepLogged} htmlFor="policy" >
@@ -148,7 +147,7 @@ const AccountSettings = props => {
                 </Col>
             </Row>
 
-            <Row sm={12} >
+            <Row sm={12} className={styles.loginButtonRow} >
                 <Col className={styles.loginButtonCol} sm={{ span: 7, offset: 3 }} >
                         <input className={styles.checkBox} type="checkbox" id="getPersonalOfferEmail" checked={props.data.getPersonalOfferEmailChecked} onClick={() => props.cCheckBox('personalOfferEmail')} />
                         <label className={styles.keepLogged}  htmlFor="getPersonalOfferEmail" >
@@ -157,7 +156,7 @@ const AccountSettings = props => {
                 </Col>
             </Row>
             
-                <Row sm={12} >
+                <Row sm={12} className={styles.loginButtonRow} >
                     <Col className={styles.loginButtonCol} sm={{ span: 7, offset: 3 }} >
                         <input className={styles.checkBox} type="checkbox" id="getOfferEmail" checked={props.data.getOfferEmailChecked} onClick={() => props.cCheckBox('offerEmail')}  />
                         <label className={styles.keepLogged} htmlFor="getOfferEmail" >
@@ -166,7 +165,7 @@ const AccountSettings = props => {
                     </Col>
                 </Row> 
 
-                <Row sm={12} >
+                <Row sm={12} className={styles.loginButtonRow} >
                     <Col className={styles.loginButtonCol} sm={{ span: 7, offset: 3 }} >
                         <input className={styles.checkBox} type="checkbox" id="getMobileAppOffer" checked={props.data.getMobileAppOfferChecked} onClick={() => props.cCheckBox('mobileAppOffer')} />
                         <label className={styles.keepLogged} htmlFor="getMobileAppOffer" >
@@ -175,7 +174,7 @@ const AccountSettings = props => {
                     </Col>
                 </Row>
 
-                <Row sm={12} >
+                <Row sm={12} className={styles.loginButtonRow} >
                     <Col className={styles.loginButtonCol} sm={{ span: 7, offset: 3 }} >
                         <input className={styles.checkBox} type="checkbox" id="getSmsOffer" checked={props.data.getSmsOfferChecked} onClick={() => props.cCheckBox('smsOffer')} />
                         <label className={styles.keepLogged} htmlFor="getSmsOffer" >
@@ -184,7 +183,7 @@ const AccountSettings = props => {
                     </Col>
                 </Row>
 
-            <Row sm={12} >
+            <Row sm={12} className={styles.loginButtonRow} >
                 <Col className={styles.loginButtonCol} sm={{ span: 7, offset: 5 }} >
                     <button 
                         className={

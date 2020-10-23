@@ -212,3 +212,23 @@
 .addToCartButton:hover {
     background-color: rgb(181, 14, 14);
 }
+
+@media (max-width: 1199px) {
+    .mainRibbon {
+        display: none !important;
+    }
+    
+    .altRibbon {
+        display: none !important;
+    }
+
+    .itemsRow {
+        text-align: center !important;
+    }
+}
+
+@media (max-width: 460px) {
+    .itemsRow {
+        padding-left: 18% !important;
+    }
+}

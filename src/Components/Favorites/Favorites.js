@@ -72,8 +72,8 @@ class Favorites extends Component {
 
         return (
             <Container className={styles.wholeWrap}>
-                <Row className={styles.panelsRow}>
-                    <Col className={styles.panelsCol}>
+                <Row xs={1} sm={2} className={styles.panelsRow}>
+                    <Col xs={12} sm={5} className={styles.panelsCol}>
                         <Row className={styles.panelTitle}>
                             Pirkimų istorija
                         </Row>
@@ -86,10 +86,10 @@ class Favorites extends Component {
                             Kol kas čia nieko nėra. Atlikite užsakymą ir jis iškart atsidurs pirkimų istorijoje!
                         </Row>}
                         <Row onClick={() => this.buyHistoryButtonClicked()} className={styles.panelButtonRow} style={this.props.orders.length > 0 ? {display:"block"} : {display:"none"}}>
-                            <span className={styles.panelButton}>Atidaryti</span>
+                            <div className={styles.panelButtonSettings}>Atidaryti</div>
                         </Row>
                     </Col>
-                    <Col className={styles.panelsCol}>
+                    <Col xs={12} sm={5} className={styles.panelsCol}>
                         <Row className={styles.panelTitleSettings}>
                             Norite pakeisti paskyros nustatymus?
                         </Row>
@@ -99,7 +99,7 @@ class Favorites extends Component {
                     </Col>
                 </Row>
                 <Row className={styles.wavyLine}/>
-                <Row className='show-grid' >{actualItems}</Row>
+                <Row className='show-grid' xs={1} className={styles.itemsRow} >{actualItems}</Row>
             </Container>
         );
     }

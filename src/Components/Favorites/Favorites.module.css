@@ -18,6 +18,7 @@
     padding: 8px 8px 16px 16px;
     font-family: "Sans serif";
     color: #494949;
+    margin-bottom: 20px;
 }
 
 .panelTitle {
@@ -56,9 +57,10 @@
 
 .panelButtonRow {
     display: block;
-    width: 40%;
+    /* width: 40%; */
+    max-width: 100px;
     height: 30px;
-    padding-left: 16px;
+    padding-left: 0px;
     padding-top: 4px;
     margin-left: 0px !important;
     color: #fff;
@@ -122,6 +124,17 @@
     height: 7px;
     background: url(https://barbora.lt/Assets/Images/zig-zag-fat.png) center repeat-x;
     border: none;
-    margin-top: 10px;
     margin-bottom: 10px;
+}
+
+@media (max-width: 1199px) {
+    .itemsRow {
+        text-align: center !important;
+    }
+}
+
+@media (max-width: 460px) {
+    .itemsRow {
+        padding-left: 18% !important;
+    }
 }

@@ -641,7 +641,7 @@ export class Main extends Component {
     }
 
     modalHandler = (mode) => {
-        if (mode === 'register') {
+        if (mode === 'register') {  
             this.setState({...this.state, modalActiveNow: 'register'});
             this.props.modalToggle();
         } else {

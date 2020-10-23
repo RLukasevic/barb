@@ -1,7 +1,7 @@
 .SideDrawer {
     position: fixed;
-    width: 280px;
-    max-width: 70%;
+    width: 220px;
+    /* max-width: 70%; */
     height: 100%;
     left: -280px;
     top: 0;
@@ -77,4 +77,14 @@
     z-index: 1200;
     width: 110%;
     height: 5px;
+}
+
+@media (max-height: 710px) {
+    .SideDrawer {
+        overflow-y: auto;
+    }
+
+    .SideDrawer::-webkit-scrollbar {
+        display: none;
+    }
 }

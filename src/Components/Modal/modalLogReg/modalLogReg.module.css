@@ -1,6 +1,5 @@
 .wholeModalWrap {
     display: inline-block;
-    height: 294px;
     width: 630px; 
 }
 
@@ -99,4 +98,46 @@
     width: 630px;
     padding: 30px 90px;
     position: relative;
+}
+
+@media (min-width: 730px) {
+    .headWrap {
+        left: calc(50% - 20px);
+    }
+
+    .wholeModalWrap {
+        height: 100%;
+        left: calc(50% - 20px);
+        max-height: 100% !important;
+    }
+
+    .content {
+        height: 100%;
+    }
+}
+
+@media (max-width: 729px) {
+    .headWrap {
+        width: 100%;
+        left: calc(50% - 20px);
+    }
+
+    .wholeModalWrap {
+        height: 100%;
+        width: 100%;
+        left: calc(50% - 20px);
+        max-height: 100% !important;
+    }
+
+    .content {
+        width: 100%;
+        padding: 5% 2%;
+        position: relative;
+    }
+}
+
+@media (max-height: 1000px) {
+    .content {
+        height: 120%;
+    }
 }

@@ -346,6 +346,14 @@
         z-index: 5;
     }
 
+    .burgerButtonCol {
+        min-width: 15px !important;
+        max-width: 50px !important;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        margin-left: 15px;
+    }
+
     .burgerButton {
         padding-top: 3px;
         display: inline-block;
@@ -358,6 +366,8 @@
     }
 
     .smallLogo {
+        min-width: 15px !important;
+        max-width: 50px !important;
         padding-left: 0px !important;
         padding-right: 0px !important;
         padding-bottom: 9px;
@@ -405,7 +415,8 @@
     }
 
     .smallLogo {
-        padding-left: 10px !important;
+        padding-left: 0px !important;
+        margin-left: 3px !important;
     }
 
     .cart {
@@ -418,5 +429,13 @@
         max-width: 125px !important;
         height: 32px;
         font-size: 1.2em;
+    }
+
+    .burgerButtonCol {
+        min-width: 15px !important;
+        max-width: 50px !important;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        margin-left: 2%;
     }
 }

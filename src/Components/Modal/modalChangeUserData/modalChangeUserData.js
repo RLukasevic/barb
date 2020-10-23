@@ -38,7 +38,14 @@ const modalChangeUserData = props => {
                                 name="pwd" 
                                 placeholder="*******" 
                             />
-                            <button type='button' className={styles.eyeButton} onMouseDown={props.handleModalButtonPress} onMouseUp={props.handleModalButtonRelease} >
+                            <button 
+                                type='button' 
+                                className={styles.eyeButton} 
+                                onTouchStart={props.handleModalButtonPress} 
+                                onTouchEnd={props.handleModalButtonRelease} 
+                                onMouseDown={props.handleModalButtonPress} 
+                                onMouseUp={props.handleModalButtonRelease} 
+                            >
 
                                 <svg display={props.modalPasswordMode === "password" ? 'inline-block' : 'none'} style={{"width": "1em", "height": "1em"}} >
                                     <use xlinkHref="#eye">
@@ -123,13 +130,20 @@ const modalChangeUserData = props => {
                             <input 
                                 onChange={(event) => props.changeHandler(event, 'changeUserData' , 'password')} 
                                 value={props.data.password.value} 
-                                className={!props.data.password.valid && props.data.password.touched ? styles.emailInputNotValid : styles.emailInput}  
+                                className={!props.data.password.valid && props.data.password.touched ? styles.passwordInputNotValid : styles.passwordInput}  
                                 type={props.modalPasswordMode} 
                                 id="pwd" 
                                 name="pwd" 
                                 placeholder="*******" 
                             />
-                            <button type='button' className={styles.eyeButton} onMouseDown={props.handleModalButtonPress} onMouseUp={props.handleModalButtonRelease} >
+                            <button 
+                                type='button' 
+                                className={styles.eyeButton} 
+                                onTouchStart={props.handleModalButtonPress} 
+                                onTouchEnd={props.handleModalButtonRelease} 
+                                onMouseDown={props.handleModalButtonPress} 
+                                onMouseUp={props.handleModalButtonRelease} 
+                            >
 
                                 <svg display={props.modalPasswordMode === "password" ? 'inline-block' : 'none'} style={{"width": "1em", "height": "1em"}} >
                                     <use xlinkHref="#eye">
@@ -193,13 +207,20 @@ const modalChangeUserData = props => {
                             <input 
                                 onChange={(event) => props.changeHandler(event, 'changeUserData' , 'newPassword')} 
                                 value={props.data.newPassword.value} 
-                                className={!props.data.newPassword.valid && props.data.newPassword.touched ? styles.emailInputNotValid : styles.emailInput} 
+                                className={!props.data.newPassword.valid && props.data.newPassword.touched ? styles.passwordInputNotValid : styles.passwordInput} 
                                 type={props.modalPasswordMode} 
                                 id="newpwd" 
                                 name="newpwd" 
                                 placeholder="*******" 
                             />
-                            <button type='button' className={styles.eyeButton} onMouseDown={props.handleModalButtonPress} onMouseUp={props.handleModalButtonRelease} >
+                            <button 
+                                type='button' 
+                                className={styles.eyeButton} 
+                                onTouchStart={props.handleModalButtonPress} 
+                                onTouchEnd={props.handleModalButtonRelease} 
+                                onMouseDown={props.handleModalButtonPress} 
+                                onMouseUp={props.handleModalButtonRelease} 
+                            >
 
                                 <svg display={props.modalPasswordMode === "password" ? 'inline-block' : 'none'} style={{"width": "1em", "height": "1em"}} >
                                     <use xlinkHref="#eye">
@@ -236,13 +257,20 @@ const modalChangeUserData = props => {
                             <input 
                                 onChange={(event) => props.changeHandler(event, 'changeUserData' , 'password')} 
                                 value={props.data.password.value} 
-                                className={!props.data.password.valid && props.data.password.touched ? styles.emailInputNotValid : styles.emailInput} 
+                                className={!props.data.password.valid && props.data.password.touched ? styles.passwordInputNotValid : styles.passwordInput} 
                                 type={props.modalPasswordMode} 
                                 id="pwd" 
                                 name="pwd" 
                                 placeholder="*******" 
                             />
-                            <button type='button' className={styles.eyeButton} onMouseDown={props.handleModalButtonPress} onMouseUp={props.handleModalButtonRelease} >
+                            <button 
+                                type='button' 
+                                className={styles.eyeButton} 
+                                onTouchStart={props.handleModalButtonPress} 
+                                onTouchEnd={props.handleModalButtonRelease} 
+                                onMouseDown={props.handleModalButtonPress} 
+                                onMouseUp={props.handleModalButtonRelease} 
+                            >
 
                                 <svg display={props.modalPasswordMode === "password" ? 'inline-block' : 'none'} style={{"width": "1em", "height": "1em"}} >
                                     <use xlinkHref="#eye">

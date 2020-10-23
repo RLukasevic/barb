@@ -27,7 +27,6 @@ const Item = props => {
 
 
     useEffect(() => {
-        console.log('JA TUT BLEAT')
 
         if (props.favorited && props.favorited.includes(id) && fav === false) {
             changeFav(true);
@@ -43,13 +42,17 @@ const Item = props => {
     const update = useForceUpdate();
 
     const favHandler = () => {
-        if (fav) {
-            props.favClick(id , 'DEL');
-            changeFav(false);
+        if (props.token) {
+            if (fav) {
+                props.favClick(id , 'DEL');
+                changeFav(false);
+            } else {
+                props.favClick(id , 'ADD');
+                changeFav(true);
+                update()
+            }
         } else {
-            props.favClick(id , 'ADD');
-            changeFav(true);
-            update()
+            props.favClick(id, 'ADD') // calls method, which checks token and calls login modal 
         }
     }
 
@@ -68,7 +71,7 @@ const Item = props => {
 
                     <Row className={styles.imgParamContainer}>
                         <Col className={styles.imageCol} xl={6} >
-                            <img className={styles.noSelect} src={props.items[id].imgBig} />
+                            <img className={styles.noSelect + ' ' + styles.image} src={props.items[id].imgBig} />
                         </Col>
                         <Col xl={6} >
                             <Row className={styles.nameRow}>
@@ -91,7 +94,7 @@ const Item = props => {
                                     </Row>
                                 </Col>
                             </Row>
-                            <Row>
+                            <Row className={styles.buyBarRow}>
                                 {buyBarMode === 'inCart' ? 
                                 <AddedToCartBuyBar 
                                     vienetai={props.items[id].params.vienetai} 

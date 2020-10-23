@@ -194,3 +194,53 @@
     color: #c21b25;
     text-decoration: none;
 }
+
+@media (max-width: 575px) {
+
+    .inputController {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .inputLabel {
+        text-align: left;
+        margin-bottom: -5px;
+        margin-left: 40px !important;
+    }
+
+    .emailInputCol {
+        margin-left: 30px !important;
+        margin-right: 15px !important;
+    }
+
+    .loginButtonCol {
+        margin-left: 30px !important;
+        margin-right: 15px !important;
+    }
+}
+
+@media (max-width: 1199px) {
+    .emailButtonCol {
+        margin-left: 30px !important;
+        margin-right: 30px !important;
+        width: 100% !important;
+    }
+
+    .passwordButtonCol {
+        width: 100% !important;
+        margin-left: 30px !important;
+        margin-right: 30px !important;
+    }
+
+    .epwRow {
+        width: 100%;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+    }
+
+    .loginButtonRow {
+        width: 100%;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+    }
+}

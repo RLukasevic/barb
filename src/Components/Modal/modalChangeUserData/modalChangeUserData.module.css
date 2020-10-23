@@ -14,13 +14,6 @@
     /* transition: all 0.2s ease-out; */
 }
 
-@media (min-width: 600px) {
-    .modal {
-        width: 530px;
-        left: calc(50% - 250px);
-    }
-}
-
 .inputController {
     width: 100%;
     height: 34px;
@@ -165,4 +158,73 @@
     margin-bottom: 10px;
     font-size: 16px;
     color: #e22e39;
+}
+
+@media (max-width: 729px) {
+    .error {
+        width: 100%;
+        margin-left: 2% !important;
+    }
+    
+    .notValid {
+        width: 100%;
+        margin-left: 10% !important;
+    }
+}
+
+@media (max-width: 728px) {
+    .modal {
+        width: 94%;
+        /*min-height: 280px !important;*/
+        top: 5%;
+        left: 3%;
+    }
+
+    .error {
+        margin-left: 15px !important;
+    }
+    
+    .notValid {
+        margin-left: 15px !important;
+    }
+
+    .inputController {
+        height: unset;
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
+
+    .inputLabel {
+        text-align: left;
+        margin-left: 25px;
+    }
+
+    .emailInput {
+        margin-left: 15px !important;
+        width: 90%;
+    }
+
+    .emailInputNotValid {
+        margin-left: 15px !important;
+        width: 90%;
+    }
+
+    .passwordInput {
+        margin-left: 15px !important;
+        width: 75%;
+    }
+
+    .passwordInputNotValid {
+        margin-left: 15px !important;
+        width: 75%;
+    }
+
+    .eyeButton {
+        width: 15%;
+        min-width: unset;
+    }
+
+    .loginButtonCol {
+        margin-left: 15px;
+    }
 }
