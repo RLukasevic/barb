@@ -24,8 +24,6 @@ import SideDrawer from '../../Components/UI/SideDrawer/sideDrawer';
 import MobileCart from '../../Components/MobileCart/MobileCart';
 import { validate } from '../../shared/utility';
 
-let calcOffset;
-
 export class Main extends Component {
     state = { 
         signInData: {

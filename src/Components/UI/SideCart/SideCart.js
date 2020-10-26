@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Row, Col, Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import * as authActions from '../../../Store/Actions/index';
 import styles from './SideCart.module.css';
 import SideCartFooter from './SideCartFooter/SideCartFooter';
 import SideInfo from './SideInfo/SideInfo';
@@ -9,7 +8,6 @@ import SideCartKrepselis from './SideCartKrepselis/SideCartKrepselis';
 import SideCartItem from './SideCartItem/SideCartItem';
 
 let cartItems = [];
-let copyOfCart = {};
 
 function useForceUpdate(){
     const [value, setValue] = useState(0); 

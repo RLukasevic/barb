@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import MobileCartItem from './MobileCartItem/MobileCartItem';
 
 let cartItems = [];
-let copyOfCart = {};
 
 function useForceUpdate(){
     const [value, setValue] = useState(0); 
@@ -14,11 +13,8 @@ function useForceUpdate(){
 
 const MobileCart = props => {
 
-    const [cartEmpty, changeCartEmpty] = useState(true);
     const [copyOfCartState, changeCopyOfcart] = useState({});
     const [cartUpdate, changeCartUpdate] = useState(0);
-
-    let mobileCartItems;
 
     const minKrepselis = 10;
     let diff = Number(minKrepselis - props.cartParams.cartFinalPrice).toFixed(2);

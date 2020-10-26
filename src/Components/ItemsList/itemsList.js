@@ -64,7 +64,7 @@ class ItemsList extends Component {
                     <Col className={styles.altRibbon} onClick={() => this.moreDiscountsClicked()} ><FontAwesomeIcon icon={fasCaretRight} className={styles.arrowIcon}></FontAwesomeIcon>Daugiau akciju</Col>
                 </Row>
 
-                <Row className='show-grid' xs={1} sm={2} md={3} className={styles.itemsRow} >{actualItems}</Row>
+                <Row xs={1} sm={2} md={3} className={'show-grid ' + styles.itemsRow} >{actualItems}</Row>
 
 
             </Container>

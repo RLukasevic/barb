@@ -99,7 +99,7 @@ class Favorites extends Component {
                     </Col>
                 </Row>
                 <Row className={styles.wavyLine}/>
-                <Row className='show-grid' xs={1} className={styles.itemsRow} >{actualItems}</Row>
+                <Row xs={1} className={'show-grid ' + styles.itemsRow} >{actualItems}</Row>
             </Container>
         );
     }

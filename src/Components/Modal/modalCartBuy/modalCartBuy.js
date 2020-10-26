@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Spinner from '../../UI/Spinner/Spinner';
 import styles from './modalCartBuy.module.css';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
